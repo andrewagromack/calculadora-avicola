@@ -462,3 +462,649 @@ a {
 .app-wrap {
   background: transparent !important;
   padding-top: 10px !important;
+}
+
+.card,
+.res-card,
+.pres-card,
+.kpi,
+.otros-header,
+.precio-card,
+.equilibrio-card,
+.adv-roja,
+.nota,
+#poll-temp-card {
+  box-shadow: 0 8px 22px rgba(64, 43, 20, 0.07) !important;
+}
+
+.card,
+.otros-header,
+.res-card,
+.pres-card,
+.kpi,
+.precio-card,
+.nota {
+  background: rgba(255, 250, 241, 0.78) !important;
+  border-color: rgba(211, 190, 160, 0.95) !important;
+}
+
+input,
+select {
+  background-color: #fffaf1 !important;
+  border-color: rgba(211, 190, 160, 0.95) !important;
+  color: var(--ag-text) !important;
+}
+
+button,
+.btn-calc,
+.tab-btn.active,
+.kpi-principal,
+.res-card.highlight,
+.kpi.verde {
+  background-color: var(--ag-green) !important;
+}
+
+.card-titulo,
+.card-title,
+.bloque-subtitulo {
+  color: var(--ag-green-2) !important;
+}
+
+.badge,
+.badge-mv {
+  background: var(--ag-green) !important;
+}
+
+.cta-avi,
+.ag-book-cta {
+  background:
+    linear-gradient(135deg, rgba(45,74,45,0.98), rgba(31,55,31,0.98)) !important;
+  border-radius: 22px !important;
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 18px 38px rgba(45,74,45,0.22);
+}
+
+.ag-book-cta {
+  max-width: 920px;
+  margin: 28px auto 38px;
+  padding: 26px 22px;
+  color: #fff;
+}
+
+.ag-book-cta .ag-cta-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  align-items: center;
+}
+
+.ag-book-cta .ag-cta-kicker {
+  color: rgba(255,255,255,0.66);
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 900;
+  margin-bottom: 7px;
+}
+
+.ag-book-cta h2 {
+  color: #fff;
+  font-size: clamp(1.25rem, 2.8vw, 2rem);
+  line-height: 1.08;
+  margin: 0 0 8px;
+}
+
+.ag-book-cta p {
+  color: rgba(255,255,255,0.78);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.ag-book-cta ul {
+  margin: 13px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ag-book-cta li {
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.84);
+  padding: 6px 9px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.ag-book-cta a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ag-gold);
+  color: #1f2a1c;
+  text-decoration: none;
+  font-weight: 900;
+  border-radius: 999px;
+  padding: 13px 20px;
+  white-space: nowrap;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.14);
+}
+
+.ag-book-cta a:hover {
+  background: #c99a49;
+}
+
+.ag-footer {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 16px 34px;
+  color: var(--ag-muted);
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .ag-nav {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ag-links {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 6px;
+  }
+
+  .ag-links a {
+    font-size: 0.76rem;
+    padding: 6px 8px;
+  }
+
+  .ag-book-cta .ag-cta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ag-book-cta a {
+    width: 100%;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<header class="ag-topbar">
+  <nav class="ag-nav" aria-label="Navegación principal">
+    <a class="ag-brand" href="index.html">
+      <strong>Avicultura en Casa</strong>
+      <span>M.V. Andrew MacKinnon</span>
+    </a>
+    <div class="ag-links">
+      <a href="index.html">Inicio</a>
+      <a class="ag-active" href="calculadora_avicola.html">Calculadora avícola</a>
+      <a class="" href="costo_huevo.html">Costo por huevo</a>
+      <a class="" href="proyecto_avicola.html">Estimación de proyecto</a>
+      <a class="ag-buy" href="#LINK_LIBRO_AVICULTURA">Comprar libro</a>
+    </div>
+  </nav>
+</header>
+
+<section class="ag-shell">
+  <div class="ag-breadcrumb">
+    <a href="index.html">Inicio</a>
+    <span>›</span>
+    <span>Calculadora avícola</span>
+  </div>
+
+  <div class="ag-page-hero">
+    <div class="ag-eyebrow">Herramienta gratuita</div>
+    <h1>Calculadora avícola</h1>
+    <p>Dimensiona requerimientos técnicos básicos para ponedoras y crianza de pollitas.</p>
+  </div>
+</section>
+
+<div class="app-wrap">
+
+  <div class="app-header" style="display:none;">
+    <div class="badge-mv">M.V. Andrew MacKinnon</div>
+    <h1>Calculadora Avícola</h1>
+    <p>Parámetros técnicos basados en estándares Hy-Line y Lohmann</p>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="setTab('ponedoras')">
+      🥚 Ponedoras en producción
+    </button>
+    <button class="tab-btn" onclick="setTab('pollitas')">
+      🐥 Crianza de pollitas
+    </button>
+  </div>
+
+  <!-- ===== TAB PONEDORAS ===== -->
+  <div id="tab-ponedoras" class="tab-content active">
+
+    <div class="card">
+      <div class="card-title">Línea genética</div>
+      <div class="radio-group">
+        <label class="radio-option selected" id="opt-cafe">
+          <input type="radio" name="tipo" value="cafe" checked onchange="calcPonedoras()">
+          <span>
+            <span class="opt-name">Huevo café</span>
+            <span class="opt-sub">Hy-Line Brown · Lohmann Brown</span>
+          </span>
+        </label>
+        <label class="radio-option" id="opt-blanco">
+          <input type="radio" name="tipo" value="blanco" onchange="calcPonedoras()">
+          <span>
+            <span class="opt-name">Huevo blanco</span>
+            <span class="opt-sub">Hy-Line W-36 · Lohmann LSL</span>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Sistema de alojamiento</div>
+      <label class="field-label" for="sel-sistema">Selecciona el sistema</label>
+      <select id="sel-sistema" onchange="calcPonedoras()">
+        <option value="piso">Piso (cama profunda)</option>
+        <option value="jaula">Jaula convencional</option>
+        <option value="semi">Semi-pastoreo / mixto</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Tipo de comedero</div>
+      <label class="field-label" for="sel-comedero">Selecciona el sistema de alimentación</label>
+      <select id="sel-comedero" onchange="calcPonedoras()">
+        <option value="lineal">Lineal (canal/bandeja)</option>
+        <option value="cilindrico">Cilíndrico (tolva/balde)</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Tipo de bebedero</div>
+      <label class="field-label" for="sel-bebedero">Selecciona el sistema de agua</label>
+      <select id="sel-bebedero" onchange="calcPonedoras()">
+        <option value="nipple">Nipple (chupete)</option>
+        <option value="campana">Campana / cazoleta</option>
+        <option value="canal">Canal o canaleta</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Número de aves</div>
+      <div class="slider-wrap">
+        <div class="slider-header">
+          <span class="field-label" style="margin:0;">Ponedoras en producción</span>
+          <span class="slider-val" id="p-aves-val">100</span>
+        </div>
+        <input type="range" id="p-aves" min="10" max="3000" step="10" value="100" oninput="calcPonedoras()">
+        <div class="slider-extremes"><span>10 aves</span><span>3.000 aves</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Resultados</div>
+      <div class="results-grid" id="p-resultados"></div>
+    </div>
+
+    <div class="nota" id="p-nota"></div>
+
+    <div class="fuentes" style="margin-top:16px;">
+      Fuentes: Hy-Line Brown Performance Standards 2022–2023 · Hy-Line W-36 Performance Standards 2022 · Lohmann Brown-Classic Management Guide · Lohmann LSL-Classic Management Guide. Valores para aves en pico de producción (sem 26–45). El rendimiento real varía según edad, sanidad, temperatura y manejo.
+    </div>
+  </div>
+
+  <!-- ===== TAB POLLITAS ===== -->
+  <div id="tab-pollitas" class="tab-content">
+
+    <div class="card">
+      <div class="card-title">Línea genética</div>
+      <div class="radio-group">
+        <label class="radio-option selected" id="poll-opt-cafe">
+          <input type="radio" name="tipo-poll" value="cafe" checked onchange="calcPollitas()">
+          <span>
+            <span class="opt-name">Línea café</span>
+            <span class="opt-sub">Hy-Line Brown · Lohmann Brown</span>
+          </span>
+        </label>
+        <label class="radio-option" id="poll-opt-blanco">
+          <input type="radio" name="tipo-poll" value="blanco" onchange="calcPollitas()">
+          <span>
+            <span class="opt-name">Línea blanca</span>
+            <span class="opt-sub">Hy-Line W-36 · Lohmann LSL</span>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Etapa de crianza</div>
+      <label class="field-label" for="sel-etapa">Selecciona la etapa</label>
+      <select id="sel-etapa" onchange="calcPollitas()">
+        <option value="fase1">Fase 1: Inicio (0–8 semanas)</option>
+        <option value="fase2">Fase 2: Desarrollo (9–17 semanas)</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Tipo de comedero</div>
+      <label class="field-label" for="sel-com-poll">Selecciona el sistema de alimentación</label>
+      <select id="sel-com-poll" onchange="calcPollitas()">
+        <option value="lineal">Lineal (canal/bandeja)</option>
+        <option value="cilindrico">Cilíndrico (tolva/balde)</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Tipo de bebedero</div>
+      <label class="field-label" for="sel-beb-poll">Selecciona el sistema de agua</label>
+      <select id="sel-beb-poll" onchange="calcPollitas()">
+        <option value="nipple">Nipple (chupete)</option>
+        <option value="campana">Campana / cazoleta</option>
+        <option value="canal">Canal o canaleta</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Número de pollitas</div>
+      <div class="slider-wrap">
+        <div class="slider-header">
+          <span class="field-label" style="margin:0;">Pollitas en crianza</span>
+          <span class="slider-val" id="poll-aves-val">100</span>
+        </div>
+        <input type="range" id="poll-aves" min="10" max="3000" step="10" value="100" oninput="calcPollitas()">
+        <div class="slider-extremes"><span>10 aves</span><span>3.000 aves</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Resultados</div>
+      <div class="results-grid" id="poll-resultados"></div>
+    </div>
+
+    <div class="card" id="poll-temp-card">
+      <div class="card-title">Temperatura de crianza recomendada</div>
+      <table class="temp-table" id="poll-temp-tabla"></table>
+    </div>
+
+    <div class="nota" id="poll-nota"></div>
+
+    <div class="fuentes" style="margin-top:16px;">
+      Fuentes: Hy-Line Brown Brooding & Rearing Guide · Hy-Line W-36 Rearing Guide · Lohmann Brown-Classic Rearing Management Guide · Lohmann LSL-Classic Rearing Guide. Valores orientativos. Ajustar según condiciones locales, temperatura ambiental y equipamiento disponible.
+    </div>
+  </div>
+
+</div>
+
+<script>
+const PONEDORAS = {
+  cafe: {
+    nombre: 'Hy-Line Brown / Lohmann Brown',
+    consumo_g: 115,
+    agua_ratio: 1.8,
+    postura_pico: 96,
+    postura_prom: 92,
+    espacio: { piso: 0.10, jaula: 0.055, semi: 0.25 },
+    comedero_cm: 10,
+    bebedero: { nipple: 8, campana: 80, canal: 10 },
+    nido: 5,
+  },
+  blanco: {
+    nombre: 'Hy-Line W-36 / Lohmann LSL',
+    consumo_g: 100,
+    agua_ratio: 1.8,
+    postura_pico: 97,
+    postura_prom: 93,
+    espacio: { piso: 0.09, jaula: 0.045, semi: 0.22 },
+    comedero_cm: 10,
+    bebedero: { nipple: 8, campana: 80, canal: 10 },
+    nido: 5,
+  }
+};
+
+const POLLITAS = {
+  cafe: {
+    nombre: 'Hy-Line Brown / Lohmann Brown',
+    fase1: {
+      label: 'Inicio (0–8 sem)',
+      consumo_g: 30,
+      agua_ratio: 2.0,
+      espacio_m2: 0.05,
+      comedero_cm: 5,
+      bebedero: { nipple: 10, campana: 50, canal: 4 },
+    },
+    fase2: {
+      label: 'Desarrollo (9–17 sem)',
+      consumo_g: 75,
+      agua_ratio: 1.9,
+      espacio_m2: 0.08,
+      comedero_cm: 8,
+      bebedero: { nipple: 8, campana: 60, canal: 8 },
+    },
+  },
+  blanco: {
+    nombre: 'Hy-Line W-36 / Lohmann LSL',
+    fase1: {
+      label: 'Inicio (0–8 sem)',
+      consumo_g: 25,
+      agua_ratio: 2.0,
+      espacio_m2: 0.045,
+      comedero_cm: 5,
+      bebedero: { nipple: 10, campana: 50, canal: 4 },
+    },
+    fase2: {
+      label: 'Desarrollo (9–17 sem)',
+      consumo_g: 65,
+      agua_ratio: 1.9,
+      espacio_m2: 0.075,
+      comedero_cm: 8,
+      bebedero: { nipple: 8, campana: 60, canal: 8 },
+    },
+  }
+};
+
+const TEMP = [
+  { sem: '1', rango: '32–34 °C' },
+  { sem: '2', rango: '30–32 °C' },
+  { sem: '3', rango: '28–30 °C' },
+  { sem: '4', rango: '26–28 °C' },
+  { sem: '5–6', rango: '24–26 °C' },
+  { sem: '7–8', rango: '22–24 °C' },
+  { sem: '9–17', rango: '18–22 °C (ambiental)' },
+];
+
+function beb_label(tipo) {
+  return { nipple: 'nipple', campana: 'campana', canal: 'canaleta de 1 m' }[tipo];
+}
+function beb_referencia(tipo) {
+  return {
+    nipple: 'aves por nipple',
+    campana: 'aves por campana',
+    canal: 'cm de canal por ave',
+  }[tipo];
+}
+
+function calcPonedoras() {
+  const tipo = document.querySelector('input[name="tipo"]:checked').value;
+  const sistema = document.getElementById('sel-sistema').value;
+  const beb = document.getElementById('sel-bebedero').value;
+  const com = document.getElementById('sel-comedero').value;
+  const n = parseInt(document.getElementById('p-aves').value);
+  document.getElementById('p-aves-val').textContent = n;
+
+  document.getElementById('opt-cafe').classList.toggle('selected', tipo === 'cafe');
+  document.getElementById('opt-blanco').classList.toggle('selected', tipo === 'blanco');
+
+  const d = PONEDORAS[tipo];
+  const espacio = (n * d.espacio[sistema]).toFixed(1);
+  const alimento_mes = Math.round(d.consumo_g * n * 30 / 1000);
+  const agua_mes = Math.round(alimento_mes * d.agua_ratio);
+  const huevos_mes = Math.round(n * d.postura_prom / 100 * 30);
+  const nidos = Math.ceil(n / d.nido);
+
+  let comederos_val, comederos_ref;
+  if (com === 'cilindrico') {
+    comederos_val = Math.ceil(n / 25);
+    comederos_ref = '1 tolva c/ 25 aves';
+  } else {
+    comederos_val = Math.ceil(n * d.comedero_cm / 100) + ' m';
+    comederos_ref = d.comedero_cm + ' cm por ave (lineal)';
+  }
+
+  let bebederos, beb_ref;
+  if (beb === 'canal') {
+    bebederos = Math.ceil(n * 0.025) + ' m';
+    beb_ref = '2.5 cm por ave (canal)';
+  } else {
+    bebederos = Math.ceil(n / d.bebedero[beb]);
+    beb_ref = beb_referencia(beb);
+  }
+
+  const sistema_txt = { piso: 'piso (cama)', jaula: 'jaulas', semi: 'semi-pastoreo' }[sistema];
+  const jaula_nota = sistema === 'jaula'
+    ? '<br><strong>Espacio en jaula:</strong> ' + (d.espacio.jaula * 10000) + ' cm² por ave.'
+    : '';
+
+  const cards = [
+    { emoji: '🏠', label: 'Espacio mínimo', val: espacio + ' m²', unit: sistema_txt },
+    { emoji: '🍽️', label: 'Comederos', val: String(comederos_val), unit: comederos_ref },
+    { emoji: '💧', label: 'Bebederos (' + beb_label(beb) + ')', val: bebederos, unit: beb_ref },
+    { emoji: '🪺', label: 'Nidos', val: nidos, unit: '1 nido c/ ' + d.nido + ' aves' },
+    { emoji: '🌾', label: 'Alimento / mes', val: alimento_mes + ' kg', unit: d.consumo_g + ' g/ave/día' },
+    { emoji: '🪣', label: 'Agua / mes', val: agua_mes + ' L', unit: 'ratio ' + d.agua_ratio + ':1' },
+    { emoji: '🥚', label: 'Huevos estimados / mes', val: huevos_mes.toLocaleString(), unit: d.postura_prom + '% postura', hl: true },
+  ];
+
+  document.getElementById('p-resultados').innerHTML = cards.map(c =>
+    '<div class="res-card' + (c.hl ? ' highlight' : '') + '">' +
+    '<div class="res-icon">' + c.emoji + '</div>' +
+    '<div class="res-label">' + c.label + '</div>' +
+    '<div class="res-val">' + c.val + '</div>' +
+    '<div class="res-unit">' + c.unit + '</div></div>'
+  ).join('');
+
+  // Texto explicativo
+  const posturaTexto = d.postura_prom >= 90 ? 'alta' : d.postura_prom >= 80 ? 'moderada' : 'baja';
+  const sistemaTexto = { piso: 'sistema de piso con cama profunda', jaula: 'jaulas convencionales', semi: 'sistema de semi-pastoreo' }[sistema];
+  const comederoTexto = com === 'cilindrico'
+    ? comederos_val + ' tolvas cilíndricas (tipo balde/tolva)'
+    : comederos_val + ' de comedero lineal';
+  document.getElementById('p-nota').innerHTML =
+    '<strong>Sobre estos resultados:</strong> Para ' + n.toLocaleString() + ' ' + d.nombre + ' en ' + sistemaTexto +
+    ', se estiman ' + huevos_mes.toLocaleString() + ' huevos mensuales con una postura promedio ' + posturaTexto + ' de ' + d.postura_prom + '%. ' +
+    'El proyecto requiere ' + espacio + ' m² de espacio, ' + comederoTexto + ', ' +
+    'y un consumo mensual de ' + alimento_mes + ' kg de alimento y ' + agua_mes + ' L de agua. ' +
+    'Estos valores corresponden a aves en pico de producción (sem 26–45). ' +
+    'La producción real varía según sanidad, temperatura y calidad del alimento.' + jaula_nota;
+}
+function calcPollitas() {
+  const tipo = document.querySelector('input[name="tipo-poll"]:checked').value;
+  const etapa = document.getElementById('sel-etapa').value;
+  const beb = document.getElementById('sel-beb-poll').value;
+  const com = document.getElementById('sel-com-poll').value;
+  const n = parseInt(document.getElementById('poll-aves').value);
+  document.getElementById('poll-aves-val').textContent = n;
+
+  document.getElementById('poll-opt-cafe').classList.toggle('selected', tipo === 'cafe');
+  document.getElementById('poll-opt-blanco').classList.toggle('selected', tipo === 'blanco');
+
+  const d = POLLITAS[tipo][etapa];
+  const espacio = (n * d.espacio_m2).toFixed(1);
+  const alimento_mes = Math.round(d.consumo_g * n * 30 / 1000);
+  const agua_mes = Math.round(alimento_mes * d.agua_ratio);
+
+  let comederos_val, comederos_ref;
+  if (com === 'cilindrico') {
+    comederos_val = Math.ceil(n / 20);
+    comederos_ref = '1 tolva c/ 20 pollitas';
+  } else {
+    comederos_val = Math.ceil(n * d.comedero_cm / 100) + ' m';
+    comederos_ref = d.comedero_cm + ' cm por pollita (lineal)';
+  }
+
+  let bebederos, beb_ref;
+  if (beb === 'canal') {
+    bebederos = Math.ceil(n * d.comedero_cm / 100) + ' m';
+    beb_ref = 'canal por etapa';
+  } else {
+    bebederos = Math.ceil(n / d.bebedero[beb]);
+    beb_ref = beb_referencia(beb);
+  }
+
+  const cards = [
+    { emoji: '🏠', label: 'Espacio mínimo', val: espacio + ' m²', unit: 'cama/piso' },
+    { emoji: '🍽️', label: 'Comederos', val: String(comederos_val), unit: comederos_ref },
+    { emoji: '💧', label: 'Bebederos (' + beb_label(beb) + ')', val: bebederos, unit: beb_ref },
+    { emoji: '🌾', label: 'Alimento / mes', val: alimento_mes + ' kg', unit: d.consumo_g + ' g/ave/día' },
+    { emoji: '🪣', label: 'Agua / mes', val: agua_mes + ' L', unit: 'ratio ' + d.agua_ratio + ':1' },
+  ];
+
+  document.getElementById('poll-resultados').innerHTML = cards.map(c =>
+    '<div class="res-card">' +
+    '<div class="res-icon">' + c.emoji + '</div>' +
+    '<div class="res-label">' + c.label + '</div>' +
+    '<div class="res-val">' + c.val + '</div>' +
+    '<div class="res-unit">' + c.unit + '</div></div>'
+  ).join('');
+
+  const tempRows = etapa === 'fase1'
+    ? TEMP.filter(function(_, i) { return i < 6; })
+    : TEMP.filter(function(_, i) { return i >= 6; });
+
+  document.getElementById('poll-temp-tabla').innerHTML =
+    '<tr><th>Semana</th><th>Temperatura brooder</th></tr>' +
+    tempRows.map(function(r) { return '<tr><td>' + r.sem + '</td><td>' + r.rango + '</td></tr>'; }).join('');
+
+  const etapaTexto = etapa === 'fase1' ? 'fase de inicio (semanas 1–8)' : 'fase de desarrollo (semanas 9–17)';
+  const comederoTexto = com === 'cilindrico'
+    ? comederos_val + ' tolvas cilíndricas'
+    : comederos_val + ' de comedero lineal';
+  document.getElementById('poll-nota').innerHTML =
+    '<strong>Sobre estos resultados:</strong> Para ' + n.toLocaleString() + ' pollitas de ' + POLLITAS[tipo].nombre + ' en ' + etapaTexto +
+    ', se requieren ' + espacio + ' m² de espacio mínimo, ' + comederoTexto + ' y un consumo estimado de ' +
+    alimento_mes + ' kg de alimento y ' + agua_mes + ' L de agua por mes. ' +
+    'En fase de inicio controle la temperatura de la campana criadora diariamente. ' +
+    'Reduzca gradualmente según la tabla. Apiñamiento bajo la campana indica frío; alejamiento excesivo indica calor.';
+}
+function setTab(tab) {
+  document.getElementById('tab-ponedoras').classList.toggle('active', tab === 'ponedoras');
+  document.getElementById('tab-pollitas').classList.toggle('active', tab === 'pollitas');
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', (i === 0 && tab === 'ponedoras') || (i === 1 && tab === 'pollitas'));
+  });
+}
+
+calcPonedoras();
+calcPollitas();
+</script>
+
+<section class="ag-book-cta" id="comprar-libro">
+  <div class="ag-cta-grid">
+    <div>
+      <div class="ag-cta-kicker">Siguiente paso</div>
+      <h2>Ordena tu proyecto avícola con el libro y el kit de gestión.</h2>
+      <p>Estas calculadoras ayudan a dimensionar. El libro y el kit te entregan estructura para registrar, corregir y tomar decisiones con más control.</p>
+      <ul>
+        <li>Ebook</li>
+        <li>Excel de registros productivos</li>
+        <li>Guía de contingencia</li>
+        <li>Documento sobre Salmonella</li>
+        <li>Guía de gestión</li>
+      </ul>
+    </div>
+    <a href="#LINK_LIBRO_AVICULTURA">Comprar libro + kit</a>
+  </div>
+</section>
+
+<footer class="ag-footer">
+  Herramientas orientativas. No reemplazan asesoría veterinaria, sanitaria ni financiera profesional.
+</footer>
+
+</body>
+</html>
