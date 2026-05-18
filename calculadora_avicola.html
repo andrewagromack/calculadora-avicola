@@ -632,6 +632,131 @@ button,
   }
 }
 
+
+/* =========================================================
+   HEADER RESPONSIVE HOMOLOGADO — MENÚ HAMBURGUESA
+   ========================================================= */
+.menu-toggle,
+.ag-menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(211, 190, 160, 0.9);
+  border-radius: 12px;
+  background: rgba(255, 250, 241, 0.72);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.menu-toggle span,
+.ag-menu-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--verde, var(--ag-green, #2d4a2d));
+  border-radius: 999px;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.menu-toggle.is-open span:nth-child(1),
+.ag-menu-toggle.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.is-open span:nth-child(2),
+.ag-menu-toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.is-open span:nth-child(3),
+.ag-menu-toggle.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 860px) {
+  .nav,
+  .ag-nav {
+    position: relative;
+    flex-direction: row !important;
+    align-items: center !important;
+    padding: 12px 16px !important;
+  }
+
+  .menu-toggle,
+  .ag-menu-toggle {
+    display: inline-flex !important;
+  }
+
+  .nav-links,
+  .ag-links {
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    left: 16px !important;
+    right: 16px !important;
+    display: none !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    width: auto !important;
+    overflow: visible !important;
+    padding: 12px !important;
+    background: rgba(255, 250, 241, 0.98) !important;
+    border: 1px solid rgba(211, 190, 160, 0.95) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 18px 34px rgba(64, 43, 20, 0.16) !important;
+    z-index: 1000 !important;
+  }
+
+  .nav-links.is-open,
+  .ag-links.is-open {
+    display: flex !important;
+  }
+
+  .nav-links a,
+  .ag-links a {
+    display: block !important;
+    width: 100% !important;
+    white-space: normal !important;
+    background: rgba(239, 229, 210, 0.58) !important;
+    border: 1px solid rgba(211, 190, 160, 0.72) !important;
+    border-radius: 12px !important;
+    padding: 11px 12px !important;
+    font-size: 0.88rem !important;
+    color: var(--texto, var(--ag-text, #2b241c)) !important;
+    text-decoration: none !important;
+  }
+
+  .nav-links a:hover,
+  .ag-links a:hover {
+    color: var(--verde, var(--ag-green, #2d4a2d)) !important;
+  }
+
+  .nav-links .nav-cta,
+  .ag-links .ag-buy,
+  .ag-links a.ag-buy {
+    background: var(--verde, var(--ag-green, #2d4a2d)) !important;
+    color: #fff !important;
+    border-color: var(--verde, var(--ag-green, #2d4a2d)) !important;
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .brand strong,
+  .ag-brand strong {
+    font-size: 0.92rem !important;
+  }
+
+  .brand span,
+  .ag-brand span {
+    font-size: 0.7rem !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -642,7 +767,18 @@ button,
       <strong>Avicultura en Casa</strong>
       <span>M.V. Andrew MacKinnon</span>
     </a>
-    <div class="ag-links">
+    <button class="ag-menu-toggle" type="button" aria-label="Abrir menú" aria-controls="ag-links" aria-expanded="false">
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+    </button>
+
+
+    <div class="ag-links" id="ag-links">
       <a href="index.html">Inicio</a>
       <a class="ag-active" href="calculadora_avicola.html">Calculadora avícola</a>
       <a class="" href="costo_huevo.html">Costo por huevo</a>
@@ -1105,6 +1241,44 @@ calcPollitas();
 <footer class="ag-footer">
   Herramientas orientativas. No reemplazan asesoría veterinaria, sanitaria ni financiera profesional.
 </footer>
+
+
+<script>
+  (function () {
+    const toggle = document.querySelector('.menu-toggle, .ag-menu-toggle');
+    const menu = document.querySelector('.nav-links, .ag-links');
+
+    if (!toggle || !menu) return;
+
+    function closeMenu() {
+      toggle.classList.remove('is-open');
+      menu.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    toggle.addEventListener('click', function () {
+      const isOpen = menu.classList.toggle('is-open');
+      toggle.classList.toggle('is-open', isOpen);
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('click', function (event) {
+      if (!menu.contains(event.target) && !toggle.contains(event.target)) {
+        closeMenu();
+      }
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 860) {
+        closeMenu();
+      }
+    });
+  })();
+</script>
 
 </body>
 </html>
