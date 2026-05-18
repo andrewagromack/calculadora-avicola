@@ -113,12 +113,531 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
   .kpi-principal .kpi-val { font-size: 2.2rem; }
   .card { padding: 14px; }
 }
+
+/* =========================================================
+   CAPA AGROMACK — HEADER, BREADCRUMB, PALETA HOMOLOGADA Y CTA
+   Link de compra pendiente:
+   Reemplazar #LINK_LIBRO_AVICULTURA por el enlace final de pago/Hotmart/Shopify.
+   ========================================================= */
+
+:root {
+  --ag-bg: #efe5d2;
+  --ag-bg-2: #e6d5bb;
+  --ag-surface: #fff8ec;
+  --ag-surface-2: #f7efe2;
+  --ag-border: #d3bea0;
+  --ag-green: #2d4a2d;
+  --ag-green-2: #3f6b3f;
+  --ag-earth: #8a6428;
+  --ag-gold: #b98738;
+  --ag-text: #2b241c;
+  --ag-muted: #665a4b;
+  --ag-danger: #b94632;
+  --ag-danger-bg: #fff0ea;
+  --ag-radius: 16px;
+  --ag-shadow: 0 14px 34px rgba(64, 43, 20, 0.10);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(255,250,241,0.95), transparent 34%),
+    linear-gradient(180deg, var(--ag-bg) 0%, var(--ag-bg-2) 100%) !important;
+  color: var(--ag-text) !important;
+}
+
+a {
+  color: inherit;
+}
+
+.ag-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: rgba(239, 229, 210, 0.94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(211, 190, 160, 0.85);
+}
+
+.ag-nav {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 13px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+
+.ag-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  text-decoration: none;
+}
+
+.ag-brand strong {
+  color: var(--ag-green);
+  font-size: 0.98rem;
+  line-height: 1.1;
+}
+
+.ag-brand span {
+  color: var(--ag-muted);
+  font-size: 0.75rem;
+}
+
+.ag-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.ag-links a {
+  text-decoration: none;
+  color: var(--ag-muted);
+  font-size: 0.82rem;
+  font-weight: 750;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.ag-links a:hover,
+.ag-links a.ag-active {
+  color: var(--ag-green);
+  background: rgba(255, 250, 241, 0.62);
+  border-color: rgba(211, 190, 160, 0.85);
+}
+
+.ag-links a.ag-buy {
+  background: var(--ag-green);
+  color: #fff;
+  border-color: var(--ag-green);
+  box-shadow: 0 8px 18px rgba(45, 74, 45, 0.18);
+}
+
+.ag-links a.ag-buy:hover {
+  background: #213b21;
+  color: #fff;
+}
+
+.ag-shell {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 22px 16px 0;
+}
+
+.ag-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  align-items: center;
+  color: var(--ag-muted);
+  font-size: 0.78rem;
+  margin-bottom: 14px;
+}
+
+.ag-breadcrumb a {
+  color: var(--ag-green);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.ag-breadcrumb span {
+  color: var(--ag-muted);
+}
+
+.ag-page-hero {
+  background: rgba(255, 250, 241, 0.72);
+  border: 1px solid rgba(211, 190, 160, 0.88);
+  border-radius: 24px;
+  box-shadow: var(--ag-shadow);
+  padding: 22px 22px 20px;
+  margin-bottom: 18px;
+}
+
+.ag-page-hero .ag-eyebrow {
+  display: inline-block;
+  background: rgba(45, 74, 45, 0.10);
+  color: var(--ag-green);
+  border: 1px solid rgba(45, 74, 45, 0.18);
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 10px;
+}
+
+.ag-page-hero h1 {
+  color: var(--ag-text);
+  font-size: clamp(1.45rem, 3.4vw, 2.35rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  margin: 0 0 8px;
+}
+
+.ag-page-hero p {
+  color: var(--ag-muted);
+  font-size: 0.96rem;
+  max-width: 760px;
+  margin: 0;
+}
+
+.wrap,
+.app-wrap {
+  background: transparent !important;
+  padding-top: 10px !important;
+}
+
+.card,
+.res-card,
+.pres-card,
+.kpi,
+.otros-header,
+.precio-card,
+.equilibrio-card,
+.adv-roja,
+.nota,
+#poll-temp-card {
+  box-shadow: 0 8px 22px rgba(64, 43, 20, 0.07) !important;
+}
+
+.card,
+.otros-header,
+.res-card,
+.pres-card,
+.kpi,
+.precio-card,
+.nota {
+  background: rgba(255, 250, 241, 0.78) !important;
+  border-color: rgba(211, 190, 160, 0.95) !important;
+}
+
+input,
+select {
+  background-color: #fffaf1 !important;
+  border-color: rgba(211, 190, 160, 0.95) !important;
+  color: var(--ag-text) !important;
+}
+
+button,
+.btn-calc,
+.tab-btn.active,
+.kpi-principal,
+.res-card.highlight,
+.kpi.verde {
+  background-color: var(--ag-green) !important;
+}
+
+.card-titulo,
+.card-title,
+.bloque-subtitulo {
+  color: var(--ag-green-2) !important;
+}
+
+.badge,
+.badge-mv {
+  background: var(--ag-green) !important;
+}
+
+.cta-avi,
+.ag-book-cta {
+  background:
+    linear-gradient(135deg, rgba(45,74,45,0.98), rgba(31,55,31,0.98)) !important;
+  border-radius: 22px !important;
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 18px 38px rgba(45,74,45,0.22);
+}
+
+.ag-book-cta {
+  max-width: 920px;
+  margin: 28px auto 38px;
+  padding: 26px 22px;
+  color: #fff;
+}
+
+.ag-book-cta .ag-cta-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  align-items: center;
+}
+
+.ag-book-cta .ag-cta-kicker {
+  color: rgba(255,255,255,0.66);
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 900;
+  margin-bottom: 7px;
+}
+
+.ag-book-cta h2 {
+  color: #fff;
+  font-size: clamp(1.25rem, 2.8vw, 2rem);
+  line-height: 1.08;
+  margin: 0 0 8px;
+}
+
+.ag-book-cta p {
+  color: rgba(255,255,255,0.78);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.ag-book-cta ul {
+  margin: 13px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ag-book-cta li {
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.84);
+  padding: 6px 9px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.ag-book-cta a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ag-gold);
+  color: #1f2a1c;
+  text-decoration: none;
+  font-weight: 900;
+  border-radius: 999px;
+  padding: 13px 20px;
+  white-space: nowrap;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.14);
+}
+
+.ag-book-cta a:hover {
+  background: #c99a49;
+}
+
+.ag-footer {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 16px 34px;
+  color: var(--ag-muted);
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .ag-nav {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ag-links {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 6px;
+  }
+
+  .ag-links a {
+    font-size: 0.76rem;
+    padding: 6px 8px;
+  }
+
+  .ag-book-cta .ag-cta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ag-book-cta a {
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   HEADER RESPONSIVE HOMOLOGADO — MENÚ HAMBURGUESA
+   ========================================================= */
+.menu-toggle,
+.ag-menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(211, 190, 160, 0.9);
+  border-radius: 12px;
+  background: rgba(255, 250, 241, 0.72);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.menu-toggle span,
+.ag-menu-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--verde, var(--ag-green, #2d4a2d));
+  border-radius: 999px;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.menu-toggle.is-open span:nth-child(1),
+.ag-menu-toggle.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.is-open span:nth-child(2),
+.ag-menu-toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.is-open span:nth-child(3),
+.ag-menu-toggle.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 860px) {
+  .nav,
+  .ag-nav {
+    position: relative;
+    flex-direction: row !important;
+    align-items: center !important;
+    padding: 12px 16px !important;
+  }
+
+  .menu-toggle,
+  .ag-menu-toggle {
+    display: inline-flex !important;
+  }
+
+  .nav-links,
+  .ag-links {
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    left: 16px !important;
+    right: 16px !important;
+    display: none !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    width: auto !important;
+    overflow: visible !important;
+    padding: 12px !important;
+    background: rgba(255, 250, 241, 0.98) !important;
+    border: 1px solid rgba(211, 190, 160, 0.95) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 18px 34px rgba(64, 43, 20, 0.16) !important;
+    z-index: 1000 !important;
+  }
+
+  .nav-links.is-open,
+  .ag-links.is-open {
+    display: flex !important;
+  }
+
+  .nav-links a,
+  .ag-links a {
+    display: block !important;
+    width: 100% !important;
+    white-space: normal !important;
+    background: rgba(239, 229, 210, 0.58) !important;
+    border: 1px solid rgba(211, 190, 160, 0.72) !important;
+    border-radius: 12px !important;
+    padding: 11px 12px !important;
+    font-size: 0.88rem !important;
+    color: var(--texto, var(--ag-text, #2b241c)) !important;
+    text-decoration: none !important;
+  }
+
+  .nav-links a:hover,
+  .ag-links a:hover {
+    color: var(--verde, var(--ag-green, #2d4a2d)) !important;
+  }
+
+  .nav-links .nav-cta,
+  .ag-links .ag-buy,
+  .ag-links a.ag-buy {
+    background: var(--verde, var(--ag-green, #2d4a2d)) !important;
+    color: #fff !important;
+    border-color: var(--verde, var(--ag-green, #2d4a2d)) !important;
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .brand strong,
+  .ag-brand strong {
+    font-size: 0.92rem !important;
+  }
+
+  .brand span,
+  .ag-brand span {
+    font-size: 0.7rem !important;
+  }
+}
+
 </style>
 </head>
 <body>
+
+<header class="ag-topbar">
+  <nav class="ag-nav" aria-label="Navegación principal">
+    <a class="ag-brand" href="index.html">
+      <strong>Avicultura en Casa</strong>
+      <span>M.V. Andrew MacKinnon</span>
+    </a>
+    <button class="ag-menu-toggle" type="button" aria-label="Abrir menú" aria-controls="ag-links" aria-expanded="false">
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+    </button>
+
+
+    <div class="ag-links" id="ag-links">
+      <a href="index.html">Inicio</a>
+      <a class="" href="calculadora_avicola.html">Calculadora avícola</a>
+      <a class="ag-active" href="costo_huevo.html">Costo por huevo</a>
+      <a class="" href="proyecto_avicola.html">Estimación de proyecto</a>
+      <a class="ag-buy" href="#LINK_LIBRO_AVICULTURA">Comprar libro</a>
+    </div>
+  </nav>
+</header>
+
+<section class="ag-shell">
+  <div class="ag-breadcrumb">
+    <a href="index.html">Inicio</a>
+    <span>›</span>
+    <span>Costo por huevo</span>
+  </div>
+
+  <div class="ag-page-hero">
+    <div class="ag-eyebrow">Herramienta gratuita</div>
+    <h1>Costo por huevo</h1>
+    <p>Calcula el costo real de producción del mes y revisa margen por unidad y presentación.</p>
+  </div>
+</section>
+
 <div class="wrap">
 
-<div class="app-header">
+<div class="app-header" style="display:none;">
   <div class="badge">M.V. Andrew MacKinnon</div>
   <h1>Calculadora de Costo por Huevo</h1>
   <p>Ingresa tus costos reales del mes y obtén el costo de producción por unidad y presentación</p>
@@ -511,5 +1030,66 @@ function irAviManager() {
   alert('Enlace a AviManager — reemplaza esta función con tu URL real.');
 }
 </script>
+
+<section class="ag-book-cta" id="comprar-libro">
+  <div class="ag-cta-grid">
+    <div>
+      <div class="ag-cta-kicker">Siguiente paso</div>
+      <h2>Ordena tu proyecto avícola con el libro y el kit de gestión.</h2>
+      <p>Estas calculadoras ayudan a dimensionar. El libro y el kit te entregan estructura para registrar, corregir y tomar decisiones con más control.</p>
+      <ul>
+        <li>Ebook</li>
+        <li>Excel de registros productivos</li>
+        <li>Guía de contingencia</li>
+        <li>Documento sobre Salmonella</li>
+        <li>Guía de gestión</li>
+      </ul>
+    </div>
+    <a href="#LINK_LIBRO_AVICULTURA">Comprar libro + kit</a>
+  </div>
+</section>
+
+<footer class="ag-footer">
+  Herramientas orientativas. No reemplazan asesoría veterinaria, sanitaria ni financiera profesional.
+</footer>
+
+
+<script>
+  (function () {
+    const toggle = document.querySelector('.menu-toggle, .ag-menu-toggle');
+    const menu = document.querySelector('.nav-links, .ag-links');
+
+    if (!toggle || !menu) return;
+
+    function closeMenu() {
+      toggle.classList.remove('is-open');
+      menu.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    toggle.addEventListener('click', function () {
+      const isOpen = menu.classList.toggle('is-open');
+      toggle.classList.toggle('is-open', isOpen);
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    menu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('click', function (event) {
+      if (!menu.contains(event.target) && !toggle.contains(event.target)) {
+        closeMenu();
+      }
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 860) {
+        closeMenu();
+      }
+    });
+  })();
+</script>
+
 </body>
 </html>
