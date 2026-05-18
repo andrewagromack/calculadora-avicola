@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Costo por Huevo — M.V. Andrew MacKinnon</title>
+<style>
+:root {
+  --verde: #2d4a2d;
+  --verde-claro: #4a7c4a;
+  --verde-bg: #eef5ee;
+  --crema: #f7f3ec;
+  --borde: #d0ccc4;
+  --texto: #2a2520;
+  --texto-sec: #6a6258;
+  --blanco: #ffffff;
+  --rojo: #c0392b;
+  --rojo-bg: #fdf0ee;
+  --rojo-borde: #e8b4ae;
+  --tierra: #8b6914;
+  --tierra-claro: #c49a2a;
+  --radio: 8px;
+  --sombra: 0 1px 4px rgba(0,0,0,0.07);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: transparent; color: var(--texto); font-size: 15px; line-height: 1.6; overflow-x: hidden; }
+.wrap { width: 100%; max-width: 720px; margin: 0 auto; padding: 24px 16px 48px; }
+
+.app-header { text-align: center; margin-bottom: 24px; }
+.app-header h1 { font-size: 1.35rem; font-weight: 700; color: var(--verde); margin-bottom: 4px; }
+.app-header p { font-size: 0.85rem; color: var(--texto-sec); }
+.badge { display: inline-block; background: var(--verde); color: #fff; font-size: 0.7rem; letter-spacing: 0.08em; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; text-transform: uppercase; }
+
+.card { background: var(--blanco); border: 1px solid var(--borde); border-radius: var(--radio); padding: 20px; margin-bottom: 14px; box-shadow: var(--sombra); }
+.card-titulo { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--verde-claro); margin-bottom: 14px; }
+
+.sep-titulo { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--texto-sec); padding: 8px 0 10px; border-bottom: 1px solid var(--borde); margin-bottom: 12px; margin-top: 6px; }
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 480px) { .form-grid { grid-template-columns: 1fr; } }
+.form-grid.tres { grid-template-columns: 1fr 1fr 1fr; }
+@media (max-width: 540px) { .form-grid.tres { grid-template-columns: 1fr 1fr; } }
+
+.campo { display: flex; flex-direction: column; gap: 4px; }
+.campo label { font-size: 0.8rem; color: var(--texto-sec); font-weight: 500; }
+.campo input { padding: 9px 11px; border: 1px solid var(--borde); border-radius: var(--radio); font-size: 0.9rem; background: var(--blanco); color: var(--texto); transition: border-color 0.15s; }
+.campo input:focus { outline: none; border-color: var(--verde-claro); }
+.campo .hint { font-size: 0.72rem; color: var(--texto-sec); line-height: 1.4; }
+.campo .hint.rojo { color: var(--rojo); font-weight: 600; }
+.campo select { padding: 9px 11px; border: 1px solid var(--borde); border-radius: var(--radio); font-size: 0.9rem; background: var(--blanco); color: var(--texto); }
+
+.btn-calc { width: 100%; padding: 16px; background: var(--verde); color: #fff; border: none; border-radius: var(--radio); font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 0.15s; margin-top: 4px; }
+.btn-calc:hover { background: #1e3a1e; }
+
+/* RESULTADOS */
+#resultados { display: none; margin-top: 20px; }
+
+.kpi-principal { background: var(--verde); border-radius: var(--radio); padding: 24px 20px; text-align: center; margin-bottom: 14px; }
+.kpi-principal .kpi-label { font-size: 0.8rem; color: rgba(255,255,255,0.75); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+.kpi-principal .kpi-val { font-size: 3rem; font-weight: 700; color: #fff; line-height: 1; }
+.kpi-principal .kpi-unit { font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-top: 6px; }
+
+.presentaciones-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 14px; }
+.pres-card { background: var(--crema); border: 1px solid var(--borde); border-radius: var(--radio); padding: 14px; text-align: center; }
+.pres-card .pres-nombre { font-size: 0.75rem; color: var(--texto-sec); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+.pres-card .pres-costo { font-size: 1.2rem; font-weight: 700; color: var(--verde); }
+.pres-card .pres-unidades { font-size: 0.72rem; color: var(--texto-sec); margin-top: 3px; }
+
+/* MARGEN */
+.margen-wrap { margin-bottom: 14px; }
+.margen-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--borde); font-size: 0.88rem; }
+.margen-row:last-child { border-bottom: none; }
+.margen-row .mr-nombre { color: var(--texto-sec); }
+.margen-row .mr-precio { font-weight: 600; color: var(--texto); min-width: 80px; text-align: right; }
+.margen-row .mr-margen { font-size: 0.8rem; min-width: 100px; text-align: right; }
+.margen-row .mr-margen.pos { color: var(--verde-claro); font-weight: 600; }
+.margen-row .mr-margen.neg { color: var(--rojo); font-weight: 600; }
+
+/* DESGLOSE */
+.desglose-tabla { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+.desglose-tabla th { background: var(--verde); color: #fff; padding: 8px 10px; text-align: left; font-weight: 600; }
+.desglose-tabla td { padding: 8px 10px; border-bottom: 1px solid var(--borde); }
+.desglose-tabla tr:nth-child(even) td { background: var(--verde-bg); }
+.desglose-tabla .td-pct { color: var(--texto-sec); font-size: 0.78rem; }
+.desglose-tabla .td-total { font-weight: 700; background: var(--crema) !important; }
+
+/* EQUILIBRIO */
+.equilibrio-card { background: var(--rojo-bg); border: 1px solid var(--rojo-borde); border-left: 4px solid var(--rojo); border-radius: var(--radio); padding: 16px; margin-bottom: 14px; }
+.equilibrio-card .eq-titulo { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--rojo); margin-bottom: 8px; letter-spacing: 0.06em; }
+.equilibrio-card .eq-val { font-size: 1.6rem; font-weight: 700; color: var(--rojo); }
+.equilibrio-card .eq-desc { font-size: 0.82rem; color: #8b3a2a; margin-top: 6px; line-height: 1.6; }
+
+/* PRECIO INGRESADO */
+.precio-card { background: var(--verde-bg); border: 1px solid var(--verde-claro); border-radius: var(--radio); padding: 14px 16px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.precio-card .pc-label { font-size: 0.85rem; color: var(--verde); font-weight: 600; }
+.precio-card .pc-val { font-size: 1.3rem; font-weight: 700; color: var(--verde); }
+.precio-card .pc-margen { font-size: 0.82rem; }
+
+/* CTA AVIMANAGER */
+.cta-avi { background: var(--verde-oscuro, #1a2e1a); border-radius: var(--radio); padding: 24px 20px; margin-top: 8px; text-align: center; background: #1e3520; }
+.cta-avi .cta-titulo { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+.cta-avi .cta-sub { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 16px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.cta-avi .cta-puntos { list-style: none; text-align: left; display: inline-block; margin-bottom: 18px; }
+.cta-avi .cta-puntos li { font-size: 0.83rem; color: rgba(255,255,255,0.8); padding: 4px 0; }
+.cta-avi .cta-puntos li::before { content: '→ '; color: var(--tierra-claro); }
+.cta-avi .cta-btn { display: inline-block; background: var(--tierra-claro); color: var(--verde); font-weight: 700; font-size: 0.95rem; padding: 14px 32px; border-radius: var(--radio); text-decoration: none; cursor: pointer; border: none; transition: background 0.15s; }
+.cta-avi .cta-btn:hover { background: #d4aa30; }
+.cta-avi .cta-nota { font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-top: 10px; }
+
+.nota-pie { font-size: 0.73rem; color: var(--texto-sec); line-height: 1.7; border-top: 1px solid var(--borde); padding-top: 12px; margin-top: 16px; }
+
+@media (max-width: 480px) {
+  .kpi-principal .kpi-val { font-size: 2.2rem; }
+  .card { padding: 14px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="app-header">
+  <div class="badge">M.V. Andrew MacKinnon</div>
+  <h1>Calculadora de Costo por Huevo</h1>
+  <p>Ingresa tus costos reales del mes y obtén el costo de producción por unidad y presentación</p>
+</div>
+
+<!-- DATOS BÁSICOS -->
+<div class="card">
+  <div class="card-titulo">Producción del mes</div>
+  <div class="form-grid">
+    <div class="campo">
+      <label>Aves en producción</label>
+      <input type="number" id="n-aves" value="100" min="1" step="1">
+      <span class="hint">Gallinas ponedoras ese mes</span>
+    </div>
+    <div class="campo">
+      <label>Huevos producidos ese mes</label>
+      <input type="number" id="n-huevos" value="2400" min="1" step="10">
+      <span class="hint">Total real, no estimado</span>
+    </div>
+    <div class="campo">
+      <label>Precio de venta (por huevo)</label>
+      <input type="number" id="p-venta" value="0.12" min="0" step="0.01">
+      <span class="hint">Precio unitario de venta</span>
+    </div>
+    <div class="campo">
+      <label>Moneda</label>
+      <select id="moneda">
+        <option value="USD">USD</option>
+        <option value="MXN">MXN</option>
+        <option value="CLP">CLP</option>
+        <option value="COP">COP</option>
+        <option value="PEN">PEN</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- COSTOS FIJOS -->
+<div class="card">
+  <div class="card-titulo">Costos fijos mensuales</div>
+  <div class="sep-titulo">Mano de obra</div>
+  <div class="form-grid">
+    <div class="campo">
+      <label>Mano de obra mensual</label>
+      <input type="number" id="c-mdo" value="0" min="0" step="10">
+      <span class="hint rojo">⚠ Crítico — no ignorar</span>
+    </div>
+    <div class="campo">
+      <label>Arriendo o amortización galpón</label>
+      <input type="number" id="c-arriendo" value="0" min="0" step="10">
+      <span class="hint">Mensual o cuota de inversión</span>
+    </div>
+  </div>
+  <div class="sep-titulo" style="margin-top:14px;">Servicios</div>
+  <div class="form-grid tres">
+    <div class="campo">
+      <label>Electricidad</label>
+      <input type="number" id="c-luz" value="0" min="0" step="5">
+    </div>
+    <div class="campo">
+      <label>Agua</label>
+      <input type="number" id="c-agua" value="0" min="0" step="5">
+    </div>
+    <div class="campo">
+      <label>Internet / telefonía</label>
+      <input type="number" id="c-internet" value="0" min="0" step="5">
+    </div>
+  </div>
+  <div class="sep-titulo" style="margin-top:14px;">Otros fijos</div>
+  <div class="form-grid">
+    <div class="campo">
+      <label>Seguros</label>
+      <input type="number" id="c-seguros" value="0" min="0" step="5">
+    </div>
+    <div class="campo">
+      <label>Otros costos fijos</label>
+      <input type="number" id="c-fijos-otros" value="0" min="0" step="5">
+    </div>
+  </div>
+</div>
+
+<!-- COSTOS VARIABLES -->
+<div class="card">
+  <div class="card-titulo">Costos variables mensuales</div>
+  <div class="sep-titulo">Alimentación</div>
+  <div class="form-grid">
+    <div class="campo">
+      <label>Alimento consumido (kg)</label>
+      <input type="number" id="kg-alimento" value="345" min="0" step="1">
+      <span class="hint">Kg reales consumidos ese mes</span>
+    </div>
+    <div class="campo">
+      <label>Precio alimento (por kg)</label>
+      <input type="number" id="p-alimento" value="0.50" min="0" step="0.01">
+    </div>
+  </div>
+  <div class="sep-titulo" style="margin-top:14px;">Sanidad</div>
+  <div class="form-grid tres">
+    <div class="campo">
+      <label>Medicamentos</label>
+      <input type="number" id="c-med" value="0" min="0" step="5">
+    </div>
+    <div class="campo">
+      <label>Vacunas</label>
+      <input type="number" id="c-vac" value="0" min="0" step="5">
+    </div>
+    <div class="campo">
+      <label>Desinfectantes / bioseguridad</label>
+      <input type="number" id="c-desinf" value="0" min="0" step="5">
+    </div>
+  </div>
+  <div class="sep-titulo" style="margin-top:14px;">Logística y comercialización</div>
+  <div class="form-grid tres">
+    <div class="campo">
+      <label>Empaques / cartones</label>
+      <input type="number" id="c-empaques" value="0" min="0" step="5">
+    </div>
+    <div class="campo">
+      <label>Transporte / distribución</label>
+      <input type="number" id="c-transporte" value="0" min="0" step="5">
+    </div>
+    <div class="campo">
+      <label>Materiales de limpieza</label>
+      <input type="number" id="c-limpieza" value="0" min="0" step="5">
+    </div>
+  </div>
+  <div class="sep-titulo" style="margin-top:14px;">Otros variables</div>
+  <div class="form-grid">
+    <div class="campo">
+      <label>Cama / sustrato</label>
+      <input type="number" id="c-cama" value="0" min="0" step="5">
+    </div>
+    <div class="campo">
+      <label>Otros costos variables</label>
+      <input type="number" id="c-var-otros" value="0" min="0" step="5">
+    </div>
+  </div>
+</div>
+
+<!-- REPOSICIÓN -->
+<div class="card">
+  <div class="card-titulo">Costos de reposición</div>
+  <div class="form-grid">
+    <div class="campo">
+      <label>Aves muertas ese mes</label>
+      <input type="number" id="n-muertas" value="0" min="0" step="1">
+    </div>
+    <div class="campo">
+      <label>Valor de reposición por ave</label>
+      <input type="number" id="p-reposicion" value="6.50" min="0" step="0.25">
+      <span class="hint">Costo de reemplazar una gallina</span>
+    </div>
+    <div class="campo">
+      <label>Desgaste equipamiento (mensual)</label>
+      <input type="number" id="c-desgaste" value="0" min="0" step="5">
+      <span class="hint">Depreciación estimada</span>
+    </div>
+  </div>
+</div>
+
+<button class="btn-calc" onclick="calcular()">Calcular costo por huevo →</button>
+
+<!-- RESULTADOS -->
+<div id="resultados">
+
+  <div class="kpi-principal">
+    <div class="kpi-label">Costo de producción por huevo</div>
+    <div class="kpi-val" id="r-costo-huevo">—</div>
+    <div class="kpi-unit" id="r-costo-unit">ese mes</div>
+  </div>
+
+  <!-- PRECIO VS COSTO -->
+  <div class="precio-card" id="r-precio-card">
+    <div>
+      <div class="pc-label">Tu precio de venta: <span id="r-precio-venta">—</span></div>
+      <div class="pc-margen" id="r-margen-txt"></div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:0.78rem;color:var(--texto-sec);">Margen por huevo</div>
+      <div class="pc-val" id="r-margen-val" style="font-size:1.4rem;font-weight:700;"></div>
+    </div>
+  </div>
+
+  <!-- PUNTO DE EQUILIBRIO -->
+  <div class="equilibrio-card">
+    <div class="eq-titulo">Precio mínimo para no perder</div>
+    <div class="eq-val" id="r-equilibrio">—</div>
+    <div class="eq-desc" id="r-equilibrio-desc"></div>
+  </div>
+
+  <!-- PRESENTACIONES -->
+  <div class="card">
+    <div class="card-titulo">Costo por presentación</div>
+    <div class="presentaciones-grid" id="r-presentaciones"></div>
+  </div>
+
+  <!-- PRECIO DE VENTA POR PRESENTACIÓN -->
+  <div class="card">
+    <div class="card-titulo">Margen por presentación (al precio ingresado)</div>
+    <div id="r-margenes"></div>
+  </div>
+
+  <!-- DESGLOSE DE COSTOS -->
+  <div class="card">
+    <div class="card-titulo">Desglose de costos del mes</div>
+    <div style="overflow-x:auto;">
+      <table class="desglose-tabla" id="r-desglose"></table>
+    </div>
+  </div>
+
+  <!-- CTA AVIMANAGER -->
+  <div class="cta-avi">
+    <div class="cta-titulo">Este cálculo es una foto de un mes</div>
+    <div class="cta-sub">Para saber si tu costo por huevo está mejorando o empeorando, necesitas registrarlo cada mes y compararlo. Eso es exactamente lo que hace AviManager.</div>
+    <ul class="cta-puntos">
+      <li>Registra producción, mortalidad y costos mes a mes</li>
+      <li>Ve cómo evoluciona tu costo por huevo en el tiempo</li>
+      <li>Detecta qué meses pierdes sin darte cuenta</li>
+      <li>Toma decisiones con datos reales, no con intuición</li>
+    </ul>
+    <button class="cta-btn" onclick="irAviManager()">Conocer AviManager →</button>
+    <div class="cta-nota">Desarrollado por M.V. Andrew MacKinnon · Médico Veterinario especialista en producción avícola</div>
+  </div>
+
+  <div class="nota-pie">
+    El costo por huevo incluye todos los ítems ingresados divididos entre los huevos producidos ese mes. Un costo alto puede reflejar baja postura, costos fijos elevados o ambos. Comparar el costo mensual a lo largo del tiempo es la única forma de saber si la operación mejora.
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+const PRESENTACIONES = [
+  { nombre: 'Unidad',       unidades: 1  },
+  { nombre: 'Media docena', unidades: 6  },
+  { nombre: 'Docena',       unidades: 12 },
+  { nombre: 'Bandeja 20',   unidades: 20 },
+  { nombre: 'Bandeja 30',   unidades: 30 },
+];
+
+function g(id) {
+  var e = document.getElementById(id);
+  return e ? (parseFloat(e.value) || 0) : 0;
+}
+function s(id) {
+  var e = document.getElementById(id);
+  return e ? e.value : '';
+}
+
+function calcular() {
+  var mon = s('moneda');
+  var nHuevos = g('n-huevos');
+  if (nHuevos <= 0) { alert('Ingresa los huevos producidos ese mes.'); return; }
+
+  // Costos fijos
+  var cFijos = g('c-mdo') + g('c-arriendo') + g('c-luz') + g('c-agua') +
+               g('c-internet') + g('c-seguros') + g('c-fijos-otros');
+
+  // Alimento
+  var cAlimento = g('kg-alimento') * g('p-alimento');
+
+  // Variables
+  var cVariables = cAlimento + g('c-med') + g('c-vac') + g('c-desinf') +
+                   g('c-empaques') + g('c-transporte') + g('c-limpieza') +
+                   g('c-cama') + g('c-var-otros');
+
+  // Reposición
+  var cReposicion = g('n-muertas') * g('p-reposicion') + g('c-desgaste');
+
+  var cTotal = cFijos + cVariables + cReposicion;
+  var costoPorHuevo = cTotal / nHuevos;
+  var pVenta = g('p-venta');
+  var margen = pVenta - costoPorHuevo;
+  var margenPct = pVenta > 0 ? (margen / pVenta * 100) : 0;
+
+  function fmt(n, dec) {
+    dec = dec === undefined ? 2 : dec;
+    return mon + ' ' + n.toFixed(dec);
+  }
+  function fmtN(n) { return Math.round(n).toLocaleString('es-CL'); }
+
+  // KPI principal
+  document.getElementById('r-costo-huevo').textContent = fmt(costoPorHuevo);
+  document.getElementById('r-costo-unit').textContent = 'costo real por huevo · ' + fmtN(nHuevos) + ' huevos producidos';
+
+  // Precio vs costo
+  document.getElementById('r-precio-venta').textContent = fmt(pVenta);
+  var margenColor = margen >= 0 ? 'var(--verde-claro)' : 'var(--rojo)';
+  document.getElementById('r-margen-val').style.color = margenColor;
+  document.getElementById('r-margen-val').textContent = fmt(margen) + ' (' + margenPct.toFixed(1) + '%)';
+  document.getElementById('r-margen-txt').textContent = margen >= 0
+    ? 'Tu operación genera margen positivo este mes.'
+    : '⚠ Tu precio de venta no cubre el costo de producción.';
+  document.getElementById('r-margen-txt').style.color = margen >= 0 ? 'var(--verde-claro)' : 'var(--rojo)';
+  document.getElementById('r-precio-card').style.borderColor = margen >= 0 ? 'var(--verde-claro)' : 'var(--rojo)';
+
+  // Punto de equilibrio
+  document.getElementById('r-equilibrio').textContent = fmt(costoPorHuevo);
+  var diff = pVenta - costoPorHuevo;
+  var diffAbs = Math.abs(diff * nHuevos);
+  document.getElementById('r-equilibrio-desc').textContent = pVenta >= costoPorHuevo
+    ? 'Tu precio de venta supera el costo en ' + fmt(diff) + ' por huevo. Al mes eso representa ' + mon + ' ' + Math.round(diff * nHuevos).toLocaleString('es-CL') + ' de margen bruto.'
+    : 'Tu precio de venta está ' + fmt(Math.abs(diff)) + ' por debajo del costo. Estás perdiendo ' + mon + ' ' + Math.round(diffAbs).toLocaleString('es-CL') + ' este mes.';
+
+  // Presentaciones
+  document.getElementById('r-presentaciones').innerHTML = PRESENTACIONES.map(function(p) {
+    var costo = costoPorHuevo * p.unidades;
+    return '<div class="pres-card">' +
+      '<div class="pres-nombre">' + p.nombre + '</div>' +
+      '<div class="pres-costo">' + fmt(costo, 2) + '</div>' +
+      '<div class="pres-unidades">' + p.unidades + ' huevo' + (p.unidades > 1 ? 's' : '') + '</div>' +
+    '</div>';
+  }).join('');
+
+  // Márgenes por presentación
+  document.getElementById('r-margenes').innerHTML =
+    '<div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:0.83rem;">' +
+    '<tr style="background:var(--verde);color:#fff;">' +
+    '<th style="padding:8px 10px;text-align:left;">Presentación</th>' +
+    '<th style="padding:8px 10px;text-align:right;">Costo</th>' +
+    '<th style="padding:8px 10px;text-align:right;">Precio venta</th>' +
+    '<th style="padding:8px 10px;text-align:right;">Margen</th>' +
+    '<th style="padding:8px 10px;text-align:right;">Margen %</th>' +
+    '</tr>' +
+    PRESENTACIONES.map(function(p, i) {
+      var costo = costoPorHuevo * p.unidades;
+      var pventa = pVenta * p.unidades;
+      var mg = pventa - costo;
+      var mgPct = pventa > 0 ? (mg / pventa * 100) : 0;
+      var bg = i % 2 === 0 ? '' : 'background:var(--verde-bg);';
+      var mgClass = mg >= 0 ? 'color:var(--verde-claro);font-weight:600;' : 'color:var(--rojo);font-weight:600;';
+      return '<tr style="' + bg + '">' +
+        '<td style="padding:8px 10px;">' + p.nombre + '</td>' +
+        '<td style="padding:8px 10px;text-align:right;">' + fmt(costo, 2) + '</td>' +
+        '<td style="padding:8px 10px;text-align:right;">' + fmt(pventa, 2) + '</td>' +
+        '<td style="padding:8px 10px;text-align:right;' + mgClass + '">' + fmt(mg, 2) + '</td>' +
+        '<td style="padding:8px 10px;text-align:right;' + mgClass + '">' + mgPct.toFixed(1) + '%</td>' +
+      '</tr>';
+    }).join('') +
+    '</table></div>';
+
+  // Desglose
+  var partidas = [
+    { nombre: 'Mano de obra',             valor: g('c-mdo'),         cat: 'Fijos' },
+    { nombre: 'Arriendo / amortización',  valor: g('c-arriendo'),    cat: 'Fijos' },
+    { nombre: 'Electricidad',             valor: g('c-luz'),         cat: 'Fijos' },
+    { nombre: 'Agua',                     valor: g('c-agua'),        cat: 'Fijos' },
+    { nombre: 'Internet / telefonía',     valor: g('c-internet'),    cat: 'Fijos' },
+    { nombre: 'Seguros',                  valor: g('c-seguros'),     cat: 'Fijos' },
+    { nombre: 'Otros fijos',              valor: g('c-fijos-otros'), cat: 'Fijos' },
+    { nombre: 'Alimento',                 valor: cAlimento,          cat: 'Variables' },
+    { nombre: 'Medicamentos',             valor: g('c-med'),         cat: 'Variables' },
+    { nombre: 'Vacunas',                  valor: g('c-vac'),         cat: 'Variables' },
+    { nombre: 'Desinfectantes',           valor: g('c-desinf'),      cat: 'Variables' },
+    { nombre: 'Empaques / cartones',      valor: g('c-empaques'),    cat: 'Variables' },
+    { nombre: 'Transporte',               valor: g('c-transporte'),  cat: 'Variables' },
+    { nombre: 'Materiales de limpieza',   valor: g('c-limpieza'),    cat: 'Variables' },
+    { nombre: 'Cama / sustrato',          valor: g('c-cama'),        cat: 'Variables' },
+    { nombre: 'Otros variables',          valor: g('c-var-otros'),   cat: 'Variables' },
+    { nombre: 'Reposición de aves',       valor: g('n-muertas') * g('p-reposicion'), cat: 'Reposición' },
+    { nombre: 'Desgaste equipamiento',    valor: g('c-desgaste'),    cat: 'Reposición' },
+  ].filter(function(p) { return p.valor > 0; });
+
+  var html = '<tr><th>Partida</th><th style="text-align:right;">Monto</th><th style="text-align:right;">% del total</th><th style="text-align:right;">Costo/huevo</th></tr>';
+  var catActual = '';
+  partidas.forEach(function(p) {
+    if (p.cat !== catActual) {
+      catActual = p.cat;
+      html += '<tr><td colspan="4" style="background:var(--crema);font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--texto-sec);padding:6px 10px;">' + p.cat + '</td></tr>';
+    }
+    var pct = cTotal > 0 ? (p.valor / cTotal * 100).toFixed(1) : '0.0';
+    var ch = (p.valor / nHuevos).toFixed(2);
+    html += '<tr><td style="padding:8px 10px;">' + p.nombre + '</td>' +
+      '<td style="padding:8px 10px;text-align:right;">' + mon + ' ' + p.valor.toLocaleString('es-CL', {minimumFractionDigits:2, maximumFractionDigits:2}) + '</td>' +
+      '<td style="padding:8px 10px;text-align:right;color:var(--texto-sec);">' + pct + '%</td>' +
+      '<td style="padding:8px 10px;text-align:right;">' + mon + ' ' + ch + '</td></tr>';
+  });
+  html += '<tr class="td-total"><td style="padding:8px 10px;font-weight:700;background:var(--crema);">TOTAL</td>' +
+    '<td style="padding:8px 10px;text-align:right;font-weight:700;background:var(--crema);">' + mon + ' ' + cTotal.toLocaleString('es-CL', {minimumFractionDigits:2, maximumFractionDigits:2}) + '</td>' +
+    '<td style="padding:8px 10px;background:var(--crema);"></td>' +
+    '<td style="padding:8px 10px;text-align:right;font-weight:700;background:var(--crema);">' + fmt(costoPorHuevo) + '</td></tr>';
+
+  document.getElementById('r-desglose').innerHTML = html;
+
+  document.getElementById('resultados').style.display = 'block';
+  document.getElementById('resultados').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function irAviManager() {
+  alert('Enlace a AviManager — reemplaza esta función con tu URL real.');
+}
+</script>
+</body>
+</html>
