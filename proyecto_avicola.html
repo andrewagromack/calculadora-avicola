@@ -660,6 +660,41 @@ button,
   }
 }
 
+
+/* FIX CRÍTICO HAMBURGUESA:
+   Evita que las reglas globales de button pinten el botón completo de verde.
+*/
+.menu-toggle,
+.ag-menu-toggle,
+button.menu-toggle,
+button.ag-menu-toggle {
+  background: rgba(255, 250, 241, 0.92) !important;
+  background-color: rgba(255, 250, 241, 0.92) !important;
+  border: 1px solid rgba(211, 190, 160, 0.95) !important;
+  box-shadow: 0 8px 18px rgba(64, 43, 20, 0.10) !important;
+  color: var(--verde, var(--ag-green, #2d4a2d)) !important;
+}
+
+.menu-toggle span,
+.ag-menu-toggle span,
+button.menu-toggle span,
+button.ag-menu-toggle span {
+  background: var(--verde, var(--ag-green, #2d4a2d)) !important;
+  background-color: var(--verde, var(--ag-green, #2d4a2d)) !important;
+  width: 22px !important;
+  height: 2px !important;
+  display: block !important;
+  border-radius: 999px !important;
+}
+
+.menu-toggle:hover,
+.ag-menu-toggle:hover,
+button.menu-toggle:hover,
+button.ag-menu-toggle:hover {
+  background: #fffaf1 !important;
+  background-color: #fffaf1 !important;
+}
+
 </style>
 </head>
 <body>
