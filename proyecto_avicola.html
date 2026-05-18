@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proyección Avícola — M.V. Andrew MacKinnon</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+:root {
+  --verde: #2d4a2d;
+  --verde-claro: #4a7c4a;
+  --verde-bg: #eef5ee;
+  --crema: #f7f3ec;
+  --borde: #d0ccc4;
+  --texto: #2a2520;
+  --texto-sec: #6a6258;
+  --blanco: #ffffff;
+  --rojo: #c0392b;
+  --rojo-bg: #fdf0ee;
+  --rojo-borde: #e8b4ae;
+  --amarillo-bg: #fffbf0;
+  --amarillo-borde: #e8d98a;
+  --amarillo-texto: #6b5a10;
+  --radio: 8px;
+  --sombra: 0 1px 4px rgba(0,0,0,0.07);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: transparent; color: var(--texto); font-size: 15px; line-height: 1.6; overflow-x: hidden; }
+.wrap { width: 100%; max-width: 780px; margin: 0 auto; padding: 24px 16px 48px; }
+
+/* HEADER */
+.app-header { text-align: center; margin-bottom: 28px; }
+.app-header h1 { font-size: 1.4rem; font-weight: 700; color: var(--verde); margin-bottom: 4px; }
+.app-header p { font-size: 0.85rem; color: var(--texto-sec); }
+.badge { display: inline-block; background: var(--verde); color: #fff; font-size: 0.7rem; letter-spacing: 0.08em; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; text-transform: uppercase; }
+
+/* ADVERTENCIA ROJA PERMANENTE */
+.adv-roja {
+  background: var(--rojo-bg);
+  border: 1.5px solid var(--rojo-borde);
+  border-left: 4px solid var(--rojo);
+  border-radius: var(--radio);
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+.adv-roja .adv-titulo { color: var(--rojo); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.adv-roja ul { list-style: none; }
+.adv-roja ul li { font-size: 0.83rem; color: var(--rojo); padding: 4px 0; border-bottom: 1px solid var(--rojo-borde); line-height: 1.5; }
+.adv-roja ul li:last-child { border-bottom: none; }
+.adv-roja ul li::before { content: '⚠ '; }
+
+/* CARD */
+.card { background: var(--blanco); border: 1px solid var(--borde); border-radius: var(--radio); padding: 20px; margin-bottom: 14px; box-shadow: var(--sombra); }
+.card-titulo { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--verde-claro); margin-bottom: 14px; }
+
+/* GRID FORM */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-grid.tres { grid-template-columns: 1fr 1fr 1fr; }
+@media (max-width: 540px) { .form-grid, .form-grid.tres { grid-template-columns: 1fr; } }
+.campo { display: flex; flex-direction: column; gap: 4px; }
+.campo label { font-size: 0.8rem; color: var(--texto-sec); font-weight: 500; }
+.campo input, .campo select {
+  padding: 9px 11px; border: 1px solid var(--borde); border-radius: var(--radio);
+  font-size: 0.9rem; background: var(--blanco); color: var(--texto);
+  transition: border-color 0.15s;
+}
+.campo input:focus, .campo select:focus { outline: none; border-color: var(--verde-claro); }
+.campo .hint { font-size: 0.72rem; color: var(--texto-sec); line-height: 1.4; }
+.campo .hint.rojo { color: var(--rojo); font-weight: 600; }
+
+/* RADIO SELECTOR */
+.radio-grupo { display: flex; gap: 10px; flex-wrap: wrap; }
+.radio-op {
+  flex: 1; min-width: 140px; border: 1.5px solid var(--borde); border-radius: var(--radio);
+  padding: 10px 12px; cursor: pointer; display: flex; align-items: flex-start; gap: 8px;
+  transition: border-color 0.15s, background 0.15s; font-size: 0.88rem;
+}
+.radio-op.sel { border-color: var(--verde); background: var(--verde-bg); }
+.radio-op input { accent-color: var(--verde); margin-top: 3px; flex-shrink: 0; }
+.radio-op .op-nom { font-weight: 600; display: block; font-size: 0.88rem; }
+.radio-op .op-sub { font-size: 0.75rem; color: var(--texto-sec); }
+
+/* SLIDER */
+.slider-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+.slider-val { font-size: 1.5rem; font-weight: 700; color: var(--verde); }
+input[type=range] { width: 100%; accent-color: var(--verde); cursor: pointer; }
+.slider-ext { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--texto-sec); margin-top: 3px; }
+
+/* OTROS COSTOS COLAPSABLES */
+.otros-header {
+  display: flex; align-items: center; justify-content: space-between;
+  cursor: pointer; padding: 14px 16px;
+  background: var(--blanco); border: 1px solid var(--borde);
+  border-radius: var(--radio); margin-bottom: 4px;
+}
+.otros-header:hover { background: var(--verde-bg); }
+.otros-toggle { font-size: 1.2rem; transition: transform 0.2s; }
+.otros-toggle.abierto { transform: rotate(180deg); }
+.otros-body { display: none; }
+.otros-body.visible { display: block; }
+
+/* ADVERTENCIA OTROS COSTOS */
+.adv-otros {
+  background: var(--rojo-bg);
+  border: 2px solid var(--rojo);
+  border-radius: var(--radio);
+  padding: 12px 16px;
+  margin-bottom: 14px;
+  font-size: 0.83rem;
+  color: var(--rojo);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+/* BTN CALCULAR */
+.btn-calc {
+  width: 100%; padding: 16px; background: var(--verde); color: #fff;
+  border: none; border-radius: var(--radio); font-size: 1rem; font-weight: 700;
+  cursor: pointer; transition: background 0.15s, transform 0.1s;
+  margin-top: 8px; letter-spacing: 0.02em;
+}
+.btn-calc:hover { background: #1e3a1e; }
+.btn-calc:active { transform: scale(0.99); }
+
+/* RESULTADOS */
+#resultados { display: none; }
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.kpi { background: var(--crema); border: 1px solid var(--borde); border-radius: var(--radio); padding: 14px 16px; }
+.kpi.verde { background: var(--verde); border-color: var(--verde); }
+.kpi.verde .kpi-label, .kpi.verde .kpi-unit { color: rgba(255,255,255,0.75); }
+.kpi.verde .kpi-val { color: #fff; }
+.kpi.rojo-kpi { background: var(--rojo-bg); border-color: var(--rojo-borde); }
+.kpi.rojo-kpi .kpi-val { color: var(--rojo); }
+.kpi-label { font-size: 0.75rem; color: var(--texto-sec); margin-bottom: 4px; }
+.kpi-val { font-size: 1.25rem; font-weight: 700; color: var(--verde); line-height: 1.2; }
+.kpi-unit { font-size: 0.72rem; color: var(--texto-sec); margin-top: 2px; }
+
+/* ESCENARIOS LEYENDA */
+.leyenda { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+.ley-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; }
+.ley-color { width: 20px; height: 4px; border-radius: 2px; flex-shrink: 0; }
+
+/* GRAFICO */
+.chart-wrap { position: relative; width: 100%; height: 320px; margin-bottom: 16px; }
+@media (max-width: 480px) { .chart-wrap { height: 240px; } }
+
+/* SELECTOR ESCENARIO MOVIL */
+.sel-escenario-movil { display: none; margin-bottom: 12px; }
+@media (max-width: 540px) { .sel-escenario-movil { display: block; } }
+
+/* TABLA ETAPAS */
+.tabla-etapas { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+.tabla-etapas th { background: var(--verde); color: #fff; padding: 8px 10px; text-align: left; font-weight: 600; }
+.tabla-etapas td { padding: 8px 10px; border-bottom: 1px solid var(--borde); }
+.tabla-etapas tr:nth-child(even) td { background: var(--verde-bg); }
+.tabla-etapas .neg { color: var(--rojo); font-weight: 600; }
+.tabla-etapas .pos { color: var(--verde-claro); font-weight: 600; }
+.tabla-wrap { overflow-x: auto; }
+
+/* TABS ESCENARIOS */
+.esc-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.esc-tab { padding: 6px 14px; border: 1px solid var(--borde); border-radius: 20px; font-size: 0.8rem; cursor: pointer; background: var(--blanco); color: var(--texto-sec); transition: all 0.15s; }
+.esc-tab.activo { background: var(--verde); color: #fff; border-color: var(--verde); }
+
+/* NOTA PIE */
+.nota-pie { font-size: 0.73rem; color: var(--texto-sec); line-height: 1.7; border-top: 1px solid var(--borde); padding-top: 12px; margin-top: 8px; }
+
+/* SEPARADOR */
+.sep { height: 1px; background: var(--borde); margin: 6px 0 14px; }
+
+@media (max-width: 480px) {
+  .card { padding: 14px; }
+  .kpi-val { font-size: 1.05rem; }
+  .app-header h1 { font-size: 1.15rem; }
+}
+.bloque-subtitulo {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--texto-sec);
+  padding: 8px 0 10px;
+  border-bottom: 1px solid var(--borde);
+  margin-bottom: 12px;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="app-header">
+  <div class="badge">M.V. Andrew MacKinnon</div>
+  <h1>Proyección de Proyecto Avícola</h1>
+  <p>Estimación de flujo de caja para crianza y producción de ponedoras · Hy-Line / Lohmann</p>
+</div>
+
+<!-- ADVERTENCIA ROJA PERMANENTE -->
+<div class="adv-roja">
+  <div class="adv-titulo">⚠ Advertencias importantes — Lea antes de usar</div>
+  <ul>
+    <li>Esta herramienta genera estimaciones orientativas. Los resultados reales dependen de su manejo, sanidad, clima y mercado local.</li>
+    <li>Los precios de huevos, alimento y aves fluctúan. Simule distintos escenarios antes de tomar decisiones de inversión.</li>
+    <li>La curva de postura asume aves sanas y bien manejadas. Enfermedades o estrés calórico reducen significativamente la producción real.</li>
+    <li>Esta calculadora no reemplaza asesoría veterinaria ni financiera profesional. Consulte a un especialista antes de invertir.</li>
+    <li>Los costos de mano de obra, servicios y sanidad son críticos. No ignorarlos.</li>
+  </ul>
+</div>
+
+<!-- MÓDULO 1: CONFIGURACIÓN -->
+<div class="card">
+  <div class="card-titulo">1 · Configuración del proyecto</div>
+
+  <div style="margin-bottom:14px;">
+    <label style="font-size:0.8rem;color:var(--texto-sec);font-weight:500;display:block;margin-bottom:6px;">Moneda</label>
+    <div class="radio-grupo">
+      <label class="radio-op sel" id="m-usd"><input type="radio" name="moneda" value="USD" checked onchange="selMoneda(this)"><span><span class="op-nom">USD</span><span class="op-sub">Dólar</span></span></label>
+      <label class="radio-op" id="m-clp"><input type="radio" name="moneda" value="CLP" onchange="selMoneda(this)"><span><span class="op-nom">CLP</span><span class="op-sub">Chile</span></span></label>
+      <label class="radio-op" id="m-mxn"><input type="radio" name="moneda" value="MXN" onchange="selMoneda(this)"><span><span class="op-nom">MXN</span><span class="op-sub">México</span></span></label>
+      <label class="radio-op" id="m-cop"><input type="radio" name="moneda" value="COP" onchange="selMoneda(this)"><span><span class="op-nom">COP</span><span class="op-sub">Colombia</span></span></label>
+      <label class="radio-op" id="m-pen"><input type="radio" name="moneda" value="PEN" onchange="selMoneda(this)"><span><span class="op-nom">PEN</span><span class="op-sub">Perú</span></span></label>
+    </div>
+  </div>
+
+  <div style="margin-bottom:14px;">
+    <label style="font-size:0.8rem;color:var(--texto-sec);font-weight:500;display:block;margin-bottom:6px;">Línea genética</label>
+    <div class="radio-grupo">
+      <label class="radio-op sel" id="g-cafe"><input type="radio" name="genetica" value="cafe" checked onchange="selRadio('genetica',this)"><span><span class="op-nom">Huevo café</span><span class="op-sub">Hy-Line Brown · Lohmann Brown</span></span></label>
+      <label class="radio-op" id="g-blanco"><input type="radio" name="genetica" value="blanco" onchange="selRadio('genetica',this)"><span><span class="op-nom">Huevo blanco</span><span class="op-sub">Hy-Line W-36 · Lohmann LSL</span></span></label>
+    </div>
+  </div>
+
+  <div style="margin-bottom:14px;">
+    <label style="font-size:0.8rem;color:var(--texto-sec);font-weight:500;display:block;margin-bottom:6px;">Tipo de proyecto</label>
+    <div class="radio-grupo">
+      <label class="radio-op sel" id="i-recria"><input type="radio" name="inicio" value="recria" checked onchange="selRadio('inicio',this);toggleInicio()"><span><span class="op-nom">Solo recría</span><span class="op-sub">Pollita de un día → venta sem 17</span></span></label>
+      <label class="radio-op" id="i-postura"><input type="radio" name="inicio" value="postura" onchange="selRadio('inicio',this);toggleInicio()"><span><span class="op-nom">Solo producción</span><span class="op-sub">Compra pollita lista para postura</span></span></label>
+      <label class="radio-op" id="i-completo"><input type="radio" name="inicio" value="completo" onchange="selRadio('inicio',this);toggleInicio()"><span><span class="op-nom">Ciclo completo</span><span class="op-sub">Pollita de un día hasta fin de postura</span></span></label>
+    </div>
+  </div>
+
+  <div>
+    <div class="slider-header">
+      <label style="font-size:0.8rem;color:var(--texto-sec);font-weight:500;">Número de aves al inicio</label>
+      <span class="slider-val" id="n-aves-val">500</span>
+    </div>
+    <input type="range" id="n-aves" min="50" max="3000" step="50" value="500" oninput="document.getElementById('n-aves-val').textContent=this.value">
+    <div class="slider-ext"><span>50 aves</span><span>3.000 aves</span></div>
+  </div>
+</div>
+
+<!-- MÓDULO 2: PRECIOS -->
+<div class="card">
+  <div class="card-titulo">2 · Costos y precios (en <span id="lbl-moneda">USD</span>)</div>
+
+  <!-- BLOQUE A: INVERSIÓN INICIAL -->
+  <div id="bloque-inversion">
+  <div class="bloque-subtitulo">Inversión inicial</div>
+  <div class="form-grid">
+    <div class="campo">
+      <label>Costo construcción e infraestructura</label>
+      <input type="number" id="p-construccion" value="5000" step="100" min="0">
+      <span class="hint rojo">⚠ Ingrese su costo real local. Este ítem es crítico.</span>
+    </div>
+    <div class="campo">
+      <label>Costo equipamiento (comederos, bebederos, nidos)</label>
+      <input type="number" id="p-equipo" value="800" step="50" min="0">
+      <span class="hint">Estimado automático — editable</span>
+    </div>
+  </div>
+
+  <!-- BLOQUE B: COSTOS DE ENTRADA DE AVES -->
+  <div id="bloque-entrada">
+  <div class="bloque-subtitulo" style="margin-top:16px;">Costo de entrada de aves</div>
+  <div class="form-grid">
+    <div class="campo" id="campo-dia1">
+      <label>Costo pollita de un día</label>
+      <input type="number" id="p-bb" value="0.80" step="0.05" min="0">
+      <span class="hint">Por pollita sexada hembra</span>
+    </div>
+    <div class="campo" id="campo-rec">
+      <label>Costo pollita lista para postura (sem 17)</label>
+      <input type="number" id="p-recriada" value="6.50" step="0.25" min="0">
+      <span class="hint">Por ave lista para iniciar postura</span>
+    </div>
+    <div class="campo" id="campo-ali-rec">
+      <label>Costo alimento recría (kg)</label>
+      <input type="number" id="p-ali-rec" value="0.55" step="0.01" min="0">
+      <span class="hint">Sem 1–17 · Alimento inicio/crecimiento</span>
+    </div>
+    <div class="campo" id="campo-venta-recriada">
+      <label>Precio venta pollita recriada (sem 17)</label>
+      <input type="number" id="p-venta-recriada" value="7.50" step="0.25" min="0">
+      <span class="hint">Por ave vendida lista para postura</span>
+    </div>
+  </div>
+  </div>
+
+  <!-- BLOQUE C: FASE PRODUCTIVA -->
+  <div id="bloque-productivo">
+  <div class="bloque-subtitulo" style="margin-top:16px;">Fase productiva — semana 18 en adelante</div>
+  <div class="form-grid">
+    <div class="campo">
+      <label>Costo alimento postura (kg)</label>
+      <input type="number" id="p-ali-pos" value="0.50" step="0.01" min="0">
+      <span class="hint">Sem 18–70 · Alimento postura estándar</span>
+    </div>
+    <div class="campo">
+      <label>Precio de venta del huevo</label>
+      <input type="number" id="p-huevo" value="0.12" step="0.01" min="0">
+      <span class="hint">Por unidad · Sem 18–70</span>
+    </div>
+    <div class="campo">
+      <label>Precio venta de ave al fin de ciclo</label>
+      <input type="number" id="p-ave-fin" value="2.50" step="0.10" min="0">
+      <span class="hint">Por gallina al cierre (sem 70–72)</span>
+    </div>
+  </div>
+  </div><!-- /bloque-productivo -->
+</div>
+
+<!-- MÓDULO 3: OTROS COSTOS OPCIONALES -->
+<div style="margin-bottom:14px;">
+  <div class="otros-header" onclick="toggleOtros()">
+    <span style="font-weight:600;font-size:0.9rem;">3 · Otros costos mensuales <span style="color:var(--texto-sec);font-weight:400;">(opcionales)</span></span>
+    <span class="otros-toggle" id="otros-toggle">▼</span>
+  </div>
+  <div class="otros-body" id="otros-body">
+    <div class="adv-otros">
+      ⚠ ATENCIÓN: Estos costos pueden representar entre el 20% y el 40% del egreso mensual real de su operación. Ignorarlos sobreestima significativamente la rentabilidad proyectada. Se recomienda completarlos aunque sea con estimaciones conservadoras.
+    </div>
+    <div class="card" style="margin-top:0;">
+      <div class="form-grid">
+        <div class="campo">
+          <label>Mano de obra mensual</label>
+          <input type="number" id="c-mdo" value="0" step="10" min="0">
+          <span class="hint rojo">⚠ Crítico en operaciones +500 aves</span>
+        </div>
+        <div class="campo">
+          <label>Agua mensual</label>
+          <input type="number" id="c-agua" value="0" step="5" min="0">
+          <span class="hint">Costo del servicio</span>
+        </div>
+        <div class="campo">
+          <label>Electricidad mensual</label>
+          <input type="number" id="c-luz" value="0" step="5" min="0">
+          <span class="hint">Iluminación y ventilación</span>
+        </div>
+        <div class="campo">
+          <label>Sanidad y medicamentos (mensual)</label>
+          <input type="number" id="c-san" value="0" step="5" min="0">
+          <span class="hint rojo">⚠ No ignorar — afecta toda la curva</span>
+        </div>
+        <div class="campo">
+          <label>Otros costos mensuales</label>
+          <input type="number" id="c-otros" value="0" step="10" min="0">
+          <span class="hint">Transporte, empaques, etc.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="btn-calc" onclick="calcular()">Calcular proyección →</button>
+
+<!-- RESULTADOS -->
+<div id="resultados">
+  <div style="height:24px;"></div>
+  <div class="adv-roja">
+    <div class="adv-titulo">⚠ Sobre los resultados</div>
+    <ul>
+      <li>Los números a continuación son proyecciones basadas en curvas técnicas de Hy-Line/Lohmann y los precios que usted ingresó. No son garantía de rentabilidad.</li>
+      <li>El escenario estándar asume condiciones óptimas de manejo. Los escenarios alternativos muestran el impacto de una menor producción real.</li>
+      <li>Si no ingresó otros costos mensuales, la rentabilidad proyectada está sobreestimada.</li>
+    </ul>
+  </div>
+
+  <!-- KPIs -->
+  <div class="card">
+    <div class="card-titulo">Resumen ejecutivo — Escenario estándar (Hy-Line)</div>
+    <div class="kpi-grid" id="kpi-grid"></div>
+  </div>
+
+  <!-- GRÁFICO FLUJO DE CAJA ACUMULADO -->
+  <div class="card">
+    <div class="card-titulo">Flujo de caja acumulado — 4 escenarios</div>
+    <div class="leyenda" id="leyenda-graf"></div>
+    <div class="chart-wrap"><canvas id="grafico-flujo"></canvas></div>
+    <p style="font-size:0.75rem;color:var(--texto-sec);margin-top:4px;">El cruce de la línea con el eje cero indica el punto de recuperación de la inversión. Eje X = mes desde inicio. Eje Y = flujo acumulado en <span id="lbl-moneda-graf">USD</span>.</p>
+  </div>
+
+  <!-- TABLA POR ETAPA -->
+  <div class="card">
+    <div class="card-titulo">Detalle por etapa — seleccione escenario</div>
+    <div class="esc-tabs" id="esc-tabs"></div>
+    <div id="contenedor-tabla"></div>
+  </div>
+
+  <div class="nota-pie">
+    Fuentes técnicas: Hy-Line Brown Performance Standards 2022–2023 · Hy-Line W-36 Performance Standards 2022 · Lohmann Brown-Classic Management Guide · Lohmann LSL-Classic Management Guide. Curvas de postura y consumo basadas en datos publicados para condiciones óptimas de manejo. Mortalidad estimada: recría 3% total, postura 0.5% mensual base. Desarrollado por M.V. Andrew MacKinnon — uso orientativo exclusivamente.
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+// ── DATOS TÉCNICOS ──
+const GEN = {
+  cafe:   { consumo_rec_g: 55, consumo_pos_g: 115, peso_fin_kg: 2.0 },
+  blanco: { consumo_rec_g: 45, consumo_pos_g: 100, peso_fin_kg: 1.65 }
+};
+
+// Curva mensual de postura % (12 meses productivos = mes 5–16 desde BB, mes 1–12 desde recriada)
+// Basada en Hy-Line Brown standard performance
+const CURVA_POSTURA = [62, 92, 95, 95, 94, 93, 91, 89, 86, 83, 79, 74];
+// Meses de postura
+const MESES_POSTURA = 12;
+const DIAS_MES = 30.4;
+
+// Mortalidad mensual base postura (%)
+const MORT_POS_MENSUAL = 0.5;
+const MORT_REC_TOTAL = 3.0;
+
+const ESCENARIOS = [
+  { id:'A', nombre:'Estándar (Hy-Line)', delta_pos:0,   delta_mort:0,   color:'#2d4a2d', dash:[] },
+  { id:'B', nombre:'Moderado (−5%)',     delta_pos:-5,  delta_mort:5,   color:'#c49a2a', dash:[6,3] },
+  { id:'C', nombre:'Conservador (−10%)', delta_pos:-10, delta_mort:5,   color:'#e07a30', dash:[4,4] },
+  { id:'D', nombre:'Pesimista (−15%)',   delta_pos:-15, delta_mort:5,   color:'#c0392b', dash:[2,4] },
+];
+
+let moneda = 'USD';
+let chartRef = null;
+let datosEscenarios = [];
+let escTabActivo = 0;
+
+// ── UI HELPERS ──
+function selMoneda(el) {
+  moneda = el.value;
+  document.querySelectorAll('input[name="moneda"]').forEach(r => {
+    r.closest('.radio-op').classList.remove('sel');
+  });
+  el.closest('.radio-op').classList.add('sel');
+  ['lbl-moneda','lbl-moneda-graf'].forEach(id => {
+    var e = document.getElementById(id);
+    if (e) e.textContent = el.value;
+  });
+}
+
+function selRadio(nombre, el) {
+  document.querySelectorAll('input[name="' + nombre + '"]').forEach(r => {
+    r.closest('.radio-op').classList.remove('sel');
+  });
+  el.closest('.radio-op').classList.add('sel');
+}
+
+function toggleInicio() {
+  const tipo = document.querySelector('input[name="inicio"]:checked').value;
+  // recria | postura | completo
+
+  // helpers
+  function show(id) { var e = document.getElementById(id); if(e) e.style.display = 'flex'; }
+  function hide(id) { var e = document.getElementById(id); if(e) e.style.display = 'none'; }
+  function showBlock(id) { var e = document.getElementById(id); if(e) e.style.display = 'block'; }
+  function hideBlock(id) { var e = document.getElementById(id); if(e) e.style.display = 'none'; }
+
+  // Ocultar todo primero
+  hide('campo-dia1');
+  hide('campo-rec');
+  hide('campo-ali-rec');
+  hide('campo-venta-recriada');
+  hideBlock('bloque-productivo');
+  hideBlock('bloque-inversion');
+
+  if (tipo === 'recria') {
+    // Pollita de un día → vende a sem 17
+    showBlock('bloque-inversion');
+    showBlock('bloque-entrada');
+    show('campo-dia1');
+    show('campo-ali-rec');
+    show('campo-venta-recriada');
+    // Sin fase productiva
+
+  } else if (tipo === 'postura') {
+    // Compra pollita lista → produce hasta sem 70
+    showBlock('bloque-inversion');
+    showBlock('bloque-entrada');
+    show('campo-rec');
+    showBlock('bloque-productivo');
+
+  } else {
+    // Ciclo completo
+    showBlock('bloque-inversion');
+    showBlock('bloque-entrada');
+    show('campo-dia1');
+    show('campo-ali-rec');
+    showBlock('bloque-productivo');
+  }
+}
+
+function toggleOtros() {
+  const body = document.getElementById('otros-body');
+  const tog = document.getElementById('otros-toggle');
+  body.classList.toggle('visible');
+  tog.classList.toggle('abierto');
+}
+
+// ── CÁLCULO PRINCIPAL ──
+function calcular() {
+  const gen = document.querySelector('input[name="genetica"]:checked').value;
+  const tipo = document.querySelector('input[name="inicio"]:checked').value;
+  const nInicio = parseInt(document.getElementById('n-aves').value);
+  const G = GEN[gen];
+
+  const g = function(id) { var e = document.getElementById(id); return e ? parseFloat(e.value) || 0 : 0; };
+
+  const pHuevo      = g('p-huevo');
+  const pAveFin     = g('p-ave-fin');
+  const pDia1       = g('p-bb');
+  const pRec        = g('p-recriada');
+  const pVentaRec   = g('p-venta-recriada');
+  const pAliRec     = g('p-ali-rec');
+  const pAliPos     = g('p-ali-pos');
+  const pCons       = g('p-construccion');
+  const pEquip      = g('p-equipo');
+  const invInicial  = pCons + pEquip;
+
+  const otrosMes = g('c-mdo') + g('c-agua') + g('c-luz') + g('c-san') + g('c-otros');
+
+  datosEscenarios = ESCENARIOS.map(esc =>
+    calcEscenario(esc, gen, tipo, nInicio, G, pHuevo, pAveFin, pDia1, pRec, pVentaRec, pAliRec, pAliPos, invInicial, otrosMes)
+  );
+
+  renderResultados(nInicio, invInicial, otrosMes, tipo);
+  document.getElementById('resultados').style.display = 'block';
+  document.getElementById('resultados').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function calcEscenario(esc, gen, tipo, nInicio, G, pHuevo, pAveFin, pDia1, pRec, pVentaRec, pAliRec, pAliPos, invInicial, otrosMes) {
+  const meses = [];
+  let avesVivas = nInicio;
+  let flujoCumulativo = -invInicial;
+  let ingresoTotal = 0;
+  let egresoTotal = invInicial;
+  let huevosTotales = 0;
+  let mesEquilibrio = null;
+  let prevCumulativo = -invInicial;
+
+  const MESES_REC = 4;
+  const mortRecAjust = (3 + esc.delta_mort * 0.5) / 100;
+  const mortRecMensual = mortRecAjust / MESES_REC;
+
+  // ── RECRÍA (recria o completo)
+  if (tipo === 'recria' || tipo === 'completo') {
+    const costoCompra = nInicio * pDia1;
+    for (let m = 1; m <= MESES_REC; m++) {
+      const avesIni = avesVivas;
+      avesVivas = Math.round(avesVivas * (1 - mortRecMensual));
+      const consumo_kg = avesIni * G.consumo_rec_g * DIAS_MES / 1000;
+      const egreso = consumo_kg * pAliRec + otrosMes + (m === 1 ? costoCompra : 0);
+      flujoCumulativo -= egreso;
+      egresoTotal += egreso;
+      // Ingreso por venta al final de recría (solo perfil recria)
+      const ingVenta = (tipo === 'recria' && m === MESES_REC) ? Math.round(avesVivas * pVentaRec) : 0;
+      if (ingVenta > 0) { flujoCumulativo += ingVenta; ingresoTotal += ingVenta; }
+      meses.push({
+        tipo: 'recría', mes: m, label: 'Rec. Mes ' + m,
+        avesVivas, consumo_kg: Math.round(consumo_kg),
+        huevos: 0, ingreso: ingVenta, ingAveFin: ingVenta,
+        egreso: Math.round(egreso),
+        flujoMes: Math.round(ingVenta - egreso),
+        flujoCum: Math.round(flujoCumulativo),
+      });
+      if (flujoCumulativo >= 0 && mesEquilibrio === null && prevCumulativo < 0) mesEquilibrio = m;
+      prevCumulativo = flujoCumulativo;
+    }
+  }
+
+  // ── COMPRA POLLITA RECRIADA (solo postura)
+  if (tipo === 'postura') {
+    const costoCompra = nInicio * pRec;
+    flujoCumulativo -= costoCompra;
+    egresoTotal += costoCompra;
+  }
+
+  // ── POSTURA (postura o completo)
+  if (tipo === 'postura' || tipo === 'completo') {
+    const mesesOffset = (tipo === 'completo') ? MESES_REC : 0;
+    for (let m = 0; m < MESES_POSTURA; m++) {
+      const avesIni = avesVivas;
+      const mortMes = (MORT_POS_MENSUAL + esc.delta_mort * 0.1) / 100;
+      avesVivas = Math.round(avesVivas * (1 - mortMes));
+      const posturaBase = CURVA_POSTURA[m] / 100;
+      const posturaAdj = Math.max(0, posturaBase + esc.delta_pos / 100);
+      const huevosM = Math.round(avesIni * posturaAdj * DIAS_MES);
+      huevosTotales += huevosM;
+      const ingHuevos = huevosM * pHuevo;
+      const ingAveFin = (m === MESES_POSTURA - 1) ? Math.round(avesVivas * pAveFin) : 0;
+      const ingreso = ingHuevos + ingAveFin;
+      const consumo_kg = avesIni * G.consumo_pos_g * DIAS_MES / 1000;
+      const egreso = consumo_kg * pAliPos + otrosMes;
+      const flujoMes = ingreso - egreso;
+      flujoCumulativo += flujoMes;
+      ingresoTotal += ingreso;
+      egresoTotal += egreso;
+      const mesGlobal = mesesOffset + m + 1;
+      meses.push({
+        tipo: 'postura', mes: mesGlobal, label: 'Pos. Mes ' + (m + 1),
+        avesVivas, consumo_kg: Math.round(consumo_kg),
+        huevos: huevosM, postura: Math.round(posturaAdj * 100),
+        ingreso: Math.round(ingreso), ingAveFin: Math.round(ingAveFin),
+        egreso: Math.round(egreso), flujoMes: Math.round(flujoMes),
+        flujoCum: Math.round(flujoCumulativo),
+      });
+      if (flujoCumulativo >= 0 && mesEquilibrio === null && prevCumulativo < 0) mesEquilibrio = mesGlobal;
+      prevCumulativo = flujoCumulativo;
+    }
+  }
+
+  const utilidad = ingresoTotal - egresoTotal;
+  return { esc, meses, tipo, ingresoTotal: Math.round(ingresoTotal), egresoTotal: Math.round(egresoTotal), utilidad: Math.round(utilidad), huevosTotales, mesEquilibrio, avesFinales: avesVivas };
+}
+
+
+
+// ── RENDER ──
+function fmt(n) {
+  return moneda + ' ' + Math.round(n).toLocaleString('es-CL');
+}
+function fmtN(n) { return Math.round(n).toLocaleString('es-CL'); }
+
+function renderResultados(nInicio, invInicial, otrosMes, tipo) {
+  const std = datosEscenarios[0];
+
+  var kpis = [
+    { label: 'Inversión inicial', val: fmt(invInicial), unit: 'construcción + equipamiento', cl: '' },
+    { label: 'Ingreso total', val: fmt(std.ingresoTotal), unit: tipo === 'recria' ? 'venta pollitas recriadas' : 'huevos + venta aves', cl: 'verde' },
+    { label: 'Egreso total', val: fmt(std.egresoTotal), unit: 'alimento + compra aves + otros', cl: '' },
+    { label: 'Utilidad estimada', val: fmt(std.utilidad), unit: 'escenario estándar', cl: std.utilidad >= 0 ? 'verde' : 'rojo-kpi' },
+  ];
+
+  if (tipo !== 'recria') {
+    kpis.push({ label: 'Huevos totales', val: fmtN(std.huevosTotales), unit: 'ciclo completo', cl: '' });
+  }
+  kpis.push({ label: 'Punto de equilibrio', val: std.mesEquilibrio ? 'Mes ' + std.mesEquilibrio : 'No alcanzado', unit: 'recuperación inversión', cl: std.mesEquilibrio ? '' : 'rojo-kpi' });
+  kpis.push({ label: 'Aves al final', val: fmtN(std.avesFinales), unit: 'de ' + nInicio + ' iniciales', cl: '' });
+  kpis.push({ label: 'Otros costos mensuales', val: otrosMes > 0 ? fmt(otrosMes) : 'No ingresados', unit: otrosMes > 0 ? 'incluidos' : '⚠ Puede sobreestimar rentabilidad', cl: otrosMes === 0 ? 'rojo-kpi' : '' });
+
+  document.getElementById('kpi-grid').innerHTML = kpis.map(k =>
+    '<div class="kpi ' + k.cl + '"><div class="kpi-label">' + k.label + '</div><div class="kpi-val">' + k.val + '</div><div class="kpi-unit">' + k.unit + '</div></div>'
+  ).join('');
+
+  document.querySelectorAll('#lbl-moneda, #lbl-moneda-graf').forEach(function(e) { e.textContent = moneda; });
+
+  renderGrafico();
+  renderTablaEscenario(0);
+  renderEscTabs();
+}
+
+
+function renderGrafico() {
+  const labels = datosEscenarios[0].meses.map(m => m.label);
+  const datasets = datosEscenarios.map(d => ({
+    label: d.esc.nombre,
+    data: d.meses.map(m => m.flujoCum),
+    borderColor: d.esc.color,
+    borderWidth: 2.5,
+    borderDash: d.esc.dash,
+    pointRadius: 0,
+    pointHoverRadius: 4,
+    fill: false,
+    tension: 0.3,
+  }));
+
+  // Plugin linea cero
+  const lineaCero = {
+    id: 'lineaCero',
+    beforeDraw(chart) {
+      const { ctx, chartArea, scales } = chart;
+      if (!chartArea) return;
+      const y0 = scales.y.getPixelForValue(0);
+      if (y0 < chartArea.top || y0 > chartArea.bottom) return;
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(chartArea.left, y0);
+      ctx.lineTo(chartArea.right, y0);
+      ctx.strokeStyle = 'rgba(192,57,43,0.85)';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([6, 3]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      // Etiqueta
+      ctx.fillStyle = 'rgba(192,57,43,0.9)';
+      ctx.font = 'bold 10px sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText('Punto de equilibrio', chartArea.left + 4, y0 - 5);
+      ctx.restore();
+    }
+  };
+
+  // Leyenda
+  document.getElementById('leyenda-graf').innerHTML = datosEscenarios.map(d =>
+    '<div class="ley-item">' +
+    '<div class="ley-color" style="background:' + d.esc.color + ';"></div>' +
+    '<span>' + d.esc.nombre + '</span></div>'
+  ).join('') +
+  '<div class="ley-item"><div class="ley-color" style="background:rgba(192,57,43,0.85);border:none;height:2px;"></div><span style="color:#c0392b;">Línea de equilibrio (0)</span></div>';
+
+  if (chartRef) chartRef.destroy();
+  const ctx = document.getElementById('grafico-flujo').getContext('2d');
+  chartRef = new Chart(ctx, {
+    type: 'line',
+    data: { labels, datasets },
+    plugins: [lineaCero],
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(c) {
+              return c.dataset.label + ': ' + moneda + ' ' + Math.round(c.raw).toLocaleString('es-CL');
+            }
+          }
+        }
+      },
+      scales: {
+        x: { ticks: { font: { size: 10 }, maxRotation: 45 } },
+        y: {
+          ticks: {
+            font: { size: 10 },
+            callback: function(v) { return moneda + ' ' + (v/1000).toFixed(0) + 'k'; }
+          },
+          grid: { color: 'rgba(0,0,0,0.06)' }
+        }
+      }
+    }
+  });
+}
+
+function renderEscTabs() {
+  document.getElementById('esc-tabs').innerHTML = datosEscenarios.map((d, i) =>
+    `<button class="esc-tab${i === escTabActivo ? ' activo' : ''}" onclick="selEscTab(${i})">${d.esc.id}. ${d.esc.nombre}</button>`
+  ).join('');
+}
+
+function selEscTab(i) {
+  escTabActivo = i;
+  renderEscTabs();
+  renderTablaEscenario(i);
+}
+
+function textoEscenario(d) {
+  var e = d.esc;
+  var util = d.utilidad;
+  var eq = d.mesEquilibrio;
+  var huevos = d.huevosTotales;
+  var avesIni = parseInt(document.getElementById('n-aves').value);
+  var mort = avesIni - d.avesFinales;
+  var mortPct = Math.round(mort / avesIni * 100);
+
+  // Postura promedio solo meses de postura
+  var mesesPos = d.meses.filter(function(m){ return m.tipo === 'postura'; });
+  var postProm = mesesPos.length > 0 ? Math.round(mesesPos.reduce(function(s,m){ return s + m.postura; }, 0) / mesesPos.length) : 0;
+
+  var nombre = e.nombre;
+  var rentable = util > 0;
+  var eqTexto = eq ? ('en el mes ' + eq) : 'dentro del ciclo analizado';
+
+  var tipoProyecto = d.tipo || 'completo';
+  var intro = '';
+  if (e.id === 'A') {
+    intro = tipoProyecto === 'recria' ? 'Este es el escenario base para recría, usando consumos estándar Hy-Line/Lohmann.' : 'Este es el escenario base, usando los estándares publicados por Hy-Line y Lohmann en condiciones óptimas de manejo.';
+  } else if (e.id === 'B') {
+    intro = 'Este escenario modela una producción moderadamente inferior al estándar: 5% menos postura y algo más de mortalidad. Es un resultado frecuente en crianzas con buen manejo pero alguna variación sanitaria o climática.';
+  } else if (e.id === 'C') {
+    intro = 'Este escenario representa una producción conservadora: 10% menos postura. Ocurre cuando hay problemas de manejo puntuales, calor excesivo, o calidad de alimento variable.';
+  } else {
+    intro = 'Este escenario muestra el impacto de una producción 15% inferior al estándar. Refleja condiciones difíciles: problemas sanitarios no controlados, estrés sostenido o manejo deficiente.';
+  }
+
+  var resumen = intro + ' ';
+  if (tipoProyecto === 'recria') {
+    resumen += 'Con ' + avesIni.toLocaleString('es-CL') + ' pollitas al inicio, el proyecto genera ingresos por la venta de aves recriadas al final de la semana 17. ';
+  } else {
+    resumen += 'Con ' + avesIni.toLocaleString('es-CL') + ' aves al inicio, se estima una postura promedio de ' + postProm + '% durante el ciclo, ';
+    resumen += 'generando aproximadamente ' + huevos.toLocaleString('es-CL') + ' huevos en total. ';
+  }
+  resumen += 'La mortalidad acumulada estimada es de ' + mort.toLocaleString('es-CL') + ' aves (' + mortPct + '%). ';
+
+  if (rentable) {
+    resumen += 'El proyecto recupera la inversión ' + eqTexto + ' y cierra con una utilidad estimada de ' + fmt(util) + '. ';
+  } else {
+    resumen += 'Con los precios ingresados, el proyecto no recupera la inversión dentro del ciclo y cierra con un resultado negativo de ' + fmt(util) + '. ';
+    resumen += 'Considere revisar el precio de venta del huevo, reducir costos de construcción o aumentar el número de aves para mejorar la rentabilidad. ';
+  }
+
+  if (e.id !== 'A') {
+    var stdUtil = datosEscenarios[0].utilidad;
+    var diff = stdUtil - util;
+    resumen += 'Comparado con el escenario estándar, este resultado implica ' + fmt(diff) + ' menos de utilidad en el ciclo completo.';
+  }
+
+  return resumen;
+}
+
+function renderTablaEscenario(i) {
+  var d = datosEscenarios[i];
+
+  // Texto explicativo
+  var texto = textoEscenario(d);
+  var colorTexto = d.utilidad >= 0 ? 'var(--verde)' : 'var(--rojo)';
+  var bgTexto = d.utilidad >= 0 ? 'var(--verde-bg)' : 'var(--rojo-bg)';
+  var borderTexto = d.utilidad >= 0 ? 'var(--verde-claro)' : 'var(--rojo)';
+
+  var htmlTexto = '<div style="background:' + bgTexto + ';border-left:4px solid ' + borderTexto + ';border-radius:var(--radio);padding:14px 16px;margin-bottom:16px;font-size:0.88rem;line-height:1.75;color:var(--texto);">' +
+    '<strong style="display:block;margin-bottom:6px;color:' + colorTexto + ';font-size:0.8rem;text-transform:uppercase;letter-spacing:0.06em;">Escenario ' + d.esc.id + ' — ' + d.esc.nombre + '</strong>' +
+    texto + '</div>';
+
+  var encabezado = '<tr><th>Período</th><th>Aves vivas</th><th>% Postura</th>' +
+    '<th>Huevos</th><th>Alimento (kg)</th>' +
+    '<th>Ingreso</th><th>Egreso</th><th>Flujo mes</th><th>Flujo acum.</th></tr>';
+
+  var filas = d.meses.map(function(m) {
+    var posStr = m.tipo === 'recría' ? '—' : m.postura + '%';
+    var huevStr = m.tipo === 'recría' ? '—' : fmtN(m.huevos);
+    var ingStr = m.ingreso > 0 ? fmt(m.ingreso) : '—';
+    var flujoClass = m.flujoMes >= 0 ? 'pos' : 'neg';
+    var cumClass = m.flujoCum >= 0 ? 'pos' : 'neg';
+    var aveFin = m.ingAveFin > 0 ? '<br><small style="font-size:0.7rem;color:var(--verde-claro)">+' + fmt(m.ingAveFin) + ' aves</small>' : '';
+    return '<tr><td>' + m.label + '</td><td>' + fmtN(m.avesVivas) + '</td><td>' + posStr + '</td><td>' + huevStr + '</td><td>' + fmtN(m.consumo_kg) + '</td><td>' + ingStr + aveFin + '</td><td>' + fmt(m.egreso) + '</td><td class="' + flujoClass + '">' + fmt(m.flujoMes) + '</td><td class="' + cumClass + '">' + fmt(m.flujoCum) + '</td></tr>';
+  }).join('');
+
+  // Insertar texto antes de la tabla
+  var contenedor = document.getElementById('contenedor-tabla');
+  if (contenedor) {
+    contenedor.innerHTML = htmlTexto + '<div class="tabla-wrap"><table class="tabla-etapas">' + encabezado + filas + '</table></div>';
+  } else {
+    console.warn('contenedor-tabla no encontrado');
+  }
+}
+
+// Init
+toggleInicio();
+</script>
+</body>
+</html>
