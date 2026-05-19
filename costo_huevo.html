@@ -625,6 +625,117 @@ button.ag-menu-toggle:hover {
   background-color: #fffaf1 !important;
 }
 
+
+/* =========================================================
+   FIX MOBILE OVERFLOW - COSTO POR HUEVO
+   Corrige desplazamiento lateral en celular y franja vertical.
+   No modifica cálculos, inputs, IDs ni scripts.
+   ========================================================= */
+html,
+body {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  overscroll-behavior-x: none;
+}
+
+body {
+  position: relative;
+}
+
+.ag-topbar,
+.ag-shell,
+.wrap,
+.ag-book-cta,
+.ag-footer {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.ag-nav,
+.ag-shell,
+.wrap,
+.ag-book-cta,
+.ag-footer {
+  box-sizing: border-box !important;
+}
+
+.wrap {
+  overflow-x: hidden !important;
+}
+
+.card,
+.precio-card,
+.equilibrio-card,
+.kpi-principal,
+.presentaciones-grid,
+.margen-wrap,
+.desglose-tabla,
+.cta-avi,
+.ag-page-hero,
+.ag-book-cta {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.card:has(.desglose-tabla) {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 860px) {
+  .ag-nav {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .ag-links {
+    left: 12px !important;
+    right: 12px !important;
+    max-width: calc(100vw - 24px) !important;
+    box-sizing: border-box !important;
+  }
+
+  .ag-shell {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .wrap {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .form-grid,
+  .form-grid.tres {
+    grid-template-columns: 1fr !important;
+  }
+
+  .margen-row {
+    gap: 8px !important;
+    align-items: flex-start !important;
+  }
+
+  .margen-row .mr-precio,
+  .margen-row .mr-margen {
+    min-width: 0 !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .precio-card {
+    align-items: flex-start !important;
+  }
+
+  .margen-row {
+    flex-direction: column !important;
+  }
+
+  .presentaciones-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 </style>
 </head>
 <body>
