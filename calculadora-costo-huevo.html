@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Calculadora de Costo por Huevo — M.V. Andrew MacKinnon</title>
+
+<link href="assets/css/calculadora-costo-huevo.css" rel="stylesheet"/>
+<link href="assets/css/common.css" rel="stylesheet"/></head>
+<body><header class="global-header">
+<nav aria-label="Navegación principal" class="global-nav">
+<a aria-label="Ir al inicio" class="global-logo" href="index.html">
+<img alt="Agromack" src="assets/img/logo-agromack.png"/>
+</a>
+<button aria-controls="global-menu" aria-expanded="false" aria-label="Abrir menú" class="global-menu-toggle" type="button">
+<span></span><span></span><span></span>
+</button>
+<div class="global-menu" id="global-menu">
+<a class="" href="index.html">Inicio</a><a class="is-active" href="calculadora-costo-huevo.html">Costo por huevo</a><a class="" href="calculadora-simple.html">Calculadora simple</a><a class="" href="calculadora-integral-proyecto.html">Calculadora integral</a><a class="menu-primary" href="index.html#contacto">Contacto</a>
+</div>
+</nav>
+</header><section aria-label="Ruta de navegación" class="breadcrumb-shell">
+<nav class="breadcrumbs">
+<a href="index.html">Inicio</a>
+<span>›</span><span>Calculadora de costo por huevo</span>
+</nav>
+</section><section class="page-intro">
+<div class="eyebrow">Herramienta gratuita</div>
+<h1>Calculadora de costo por huevo</h1>
+<p>Calcula costo unitario, margen y punto de equilibrio para producción de huevos.</p>
+</section>
+<div class="wrap">
+<div class="app-header" style="display:none;">
+<div class="badge">M.V. Andrew MacKinnon</div>
+<h1>Calculadora de Costo por Huevo</h1>
+<p>Ingresa tus costos reales del mes y obtén el costo de producción por unidad y presentación</p>
+</div>
+<!-- DATOS BÁSICOS -->
+<div class="card">
+<div class="card-titulo">Producción del mes</div>
+<div class="form-grid">
+<div class="campo">
+<label>Aves en producción</label>
+<input id="n-aves" min="1" step="1" type="number" value="100"/>
+<span class="hint">Gallinas ponedoras ese mes</span>
+</div>
+<div class="campo">
+<label>Huevos producidos ese mes</label>
+<input id="n-huevos" min="1" step="10" type="number" value="2400"/>
+<span class="hint">Total real, no estimado</span>
+</div>
+<div class="campo">
+<label>Precio de venta (por huevo)</label>
+<input id="p-venta" min="0" step="0.01" type="number" value="0.12"/>
+<span class="hint">Precio unitario de venta</span>
+</div>
+<div class="campo">
+<label>Moneda</label>
+<select id="moneda">
+<option value="USD">USD</option>
+<option value="MXN">MXN</option>
+<option value="CLP">CLP</option>
+<option value="COP">COP</option>
+<option value="PEN">PEN</option>
+</select>
+</div>
+</div>
+</div>
+<!-- COSTOS FIJOS -->
+<div class="card">
+<div class="card-titulo">Costos fijos mensuales</div>
+<div class="sep-titulo">Mano de obra</div>
+<div class="form-grid">
+<div class="campo">
+<label>Mano de obra mensual</label>
+<input id="c-mdo" min="0" step="10" type="number" value="0"/>
+<span class="hint rojo">⚠ Crítico — no ignorar</span>
+</div>
+<div class="campo">
+<label>Arriendo o amortización galpón</label>
+<input id="c-arriendo" min="0" step="10" type="number" value="0"/>
+<span class="hint">Mensual o cuota de inversión</span>
+</div>
+</div>
+<div class="sep-titulo" style="margin-top:14px;">Servicios</div>
+<div class="form-grid tres">
+<div class="campo">
+<label>Electricidad</label>
+<input id="c-luz" min="0" step="5" type="number" value="0"/>
+</div>
+<div class="campo">
+<label>Agua</label>
+<input id="c-agua" min="0" step="5" type="number" value="0"/>
+</div>
+<div class="campo">
+<label>Internet / telefonía</label>
+<input id="c-internet" min="0" step="5" type="number" value="0"/>
+</div>
+</div>
+<div class="sep-titulo" style="margin-top:14px;">Otros fijos</div>
+<div class="form-grid">
+<div class="campo">
+<label>Seguros</label>
+<input id="c-seguros" min="0" step="5" type="number" value="0"/>
+</div>
+<div class="campo">
+<label>Otros costos fijos</label>
+<input id="c-fijos-otros" min="0" step="5" type="number" value="0"/>
+</div>
+</div>
+</div>
+<!-- COSTOS VARIABLES -->
+<div class="card">
+<div class="card-titulo">Costos variables mensuales</div>
+<div class="sep-titulo">Alimentación</div>
+<div class="form-grid">
+<div class="campo">
+<label>Alimento consumido (kg)</label>
+<input id="kg-alimento" min="0" step="1" type="number" value="345"/>
+<span class="hint">Kg reales consumidos ese mes</span>
+</div>
+<div class="campo">
+<label>Precio alimento (por kg)</label>
+<input id="p-alimento" min="0" step="0.01" type="number" value="0.50"/>
+</div>
+</div>
+<div class="sep-titulo" style="margin-top:14px;">Sanidad</div>
+<div class="form-grid tres">
+<div class="campo">
+<label>Medicamentos</label>
+<input id="c-med" min="0" step="5" type="number" value="0"/>
+</div>
+<div class="campo">
+<label>Vacunas</label>
+<input id="c-vac" min="0" step="5" type="number" value="0"/>
+</div>
+<div class="campo">
+<label>Desinfectantes / bioseguridad</label>
+<input id="c-desinf" min="0" step="5" type="number" value="0"/>
+</div>
+</div>
+<div class="sep-titulo" style="margin-top:14px;">Logística y comercialización</div>
+<div class="form-grid tres">
+<div class="campo">
+<label>Empaques / cartones</label>
+<input id="c-empaques" min="0" step="5" type="number" value="0"/>
+</div>
+<div class="campo">
+<label>Transporte / distribución</label>
+<input id="c-transporte" min="0" step="5" type="number" value="0"/>
+</div>
+<div class="campo">
+<label>Materiales de limpieza</label>
+<input id="c-limpieza" min="0" step="5" type="number" value="0"/>
+</div>
+</div>
+<div class="sep-titulo" style="margin-top:14px;">Otros variables</div>
+<div class="form-grid">
+<div class="campo">
+<label>Cama / sustrato</label>
+<input id="c-cama" min="0" step="5" type="number" value="0"/>
+</div>
+<div class="campo">
+<label>Otros costos variables</label>
+<input id="c-var-otros" min="0" step="5" type="number" value="0"/>
+</div>
+</div>
+</div>
+<!-- REPOSICIÓN -->
+<div class="card">
+<div class="card-titulo">Costos de reposición</div>
+<div class="form-grid">
+<div class="campo">
+<label>Aves muertas ese mes</label>
+<input id="n-muertas" min="0" step="1" type="number" value="0"/>
+</div>
+<div class="campo">
+<label>Valor de reposición por ave</label>
+<input id="p-reposicion" min="0" step="0.25" type="number" value="6.50"/>
+<span class="hint">Costo de reemplazar una gallina</span>
+</div>
+<div class="campo">
+<label>Desgaste equipamiento (mensual)</label>
+<input id="c-desgaste" min="0" step="5" type="number" value="0"/>
+<span class="hint">Depreciación estimada</span>
+</div>
+</div>
+</div>
+<button class="btn-calc" onclick="calcular()">Calcular costo por huevo →</button>
+<!-- RESULTADOS -->
+<div id="resultados">
+<div class="kpi-principal">
+<div class="kpi-label">Costo de producción por huevo</div>
+<div class="kpi-val" id="r-costo-huevo">—</div>
+<div class="kpi-unit" id="r-costo-unit">ese mes</div>
+</div>
+<!-- PRECIO VS COSTO -->
+<div class="precio-card" id="r-precio-card">
+<div>
+<div class="pc-label">Tu precio de venta: <span id="r-precio-venta">—</span></div>
+<div class="pc-margen" id="r-margen-txt"></div>
+</div>
+<div style="text-align:right;">
+<div style="font-size:0.78rem;color:var(--texto-sec);">Margen por huevo</div>
+<div class="pc-val" id="r-margen-val" style="font-size:1.4rem;font-weight:700;"></div>
+</div>
+</div>
+<!-- PUNTO DE EQUILIBRIO -->
+<div class="equilibrio-card">
+<div class="eq-titulo">Precio mínimo para no perder</div>
+<div class="eq-val" id="r-equilibrio">—</div>
+<div class="eq-desc" id="r-equilibrio-desc"></div>
+</div>
+<!-- PRESENTACIONES -->
+<div class="card">
+<div class="card-titulo">Costo por presentación</div>
+<div class="presentaciones-grid" id="r-presentaciones"></div>
+</div>
+<!-- PRECIO DE VENTA POR PRESENTACIÓN -->
+<div class="card">
+<div class="card-titulo">Margen por presentación (al precio ingresado)</div>
+<div id="r-margenes"></div>
+</div>
+<!-- DESGLOSE DE COSTOS -->
+<div class="card">
+<div class="card-titulo">Desglose de costos del mes</div>
+<div style="overflow-x:auto;">
+<table class="desglose-tabla" id="r-desglose"></table>
+</div>
+</div>
+<!-- CTA AVIMANAGER -->
+<div class="cta-avi">
+<div class="cta-titulo">Este cálculo es una foto de un mes</div>
+<div class="cta-sub">Para saber si tu costo por huevo está mejorando o empeorando, necesitas registrarlo cada mes y compararlo. Eso es exactamente lo que hace AviManager.</div>
+<ul class="cta-puntos">
+<li>Registra producción, mortalidad y costos mes a mes</li>
+<li>Ve cómo evoluciona tu costo por huevo en el tiempo</li>
+<li>Detecta qué meses pierdes sin darte cuenta</li>
+<li>Toma decisiones con datos reales, no con intuición</li>
+</ul>
+<button class="cta-btn" onclick="irAviManager()">Conocer AviManager →</button>
+<div class="cta-nota">Desarrollado por M.V. Andrew MacKinnon · Médico Veterinario especialista en producción avícola</div>
+</div>
+<div class="nota-pie">
+    El costo por huevo incluye todos los ítems ingresados divididos entre los huevos producidos ese mes. Un costo alto puede reflejar baja postura, costos fijos elevados o ambos. Comparar el costo mensual a lo largo del tiempo es la única forma de saber si la operación mejora.
+  </div>
+</div>
+</div><!-- /wrap -->
+<section class="ag-book-cta" id="comprar-libro">
+<div class="ag-cta-grid">
+<div>
+<div class="ag-cta-kicker">Siguiente paso</div>
+<h2>Ordena tu proyecto avícola con el libro y el kit de gestión.</h2>
+<p>Estas calculadoras ayudan a dimensionar. El libro y el kit te entregan estructura para registrar, corregir y tomar decisiones con más control.</p>
+<ul>
+<li>Ebook</li>
+<li>Excel de registros productivos</li>
+<li>Guía de contingencia</li>
+<li>Documento sobre Salmonella</li>
+<li>Guía de gestión</li>
+</ul>
+</div>
+<a href="index.html#contacto">Comprar libro + kit</a>
+</div>
+</section>
+<footer class="ag-footer">
+  Herramientas orientativas. No reemplazan asesoría veterinaria, sanitaria ni financiera profesional.
+</footer>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/calculadora-costo-huevo.js"></script></body>
+</html>
