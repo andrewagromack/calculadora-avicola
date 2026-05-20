@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Calculadora Avícola — M.V. Andrew MacKinnon</title>
+
+<link href="assets/css/common.css" rel="stylesheet"/>
+<link href="assets/css/calculadora-simple.css" rel="stylesheet"/>  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+</head>
+<body><header class="global-header">
+<nav aria-label="Navegación principal" class="global-nav">
+<a aria-label="Ir al inicio" class="global-logo" href="index.html">
+<img alt="Agromack" src="assets/img/logo-agromack.png"/>
+</a>
+<button aria-controls="global-menu" aria-expanded="false" aria-label="Abrir menú" class="global-menu-toggle" type="button">
+<span></span><span></span><span></span>
+</button>
+<div class="global-menu" id="global-menu">
+<a class="" href="index.html">Inicio</a><a class="" href="calculadora-costo-huevo.html">Costo por huevo</a><a class="is-active" href="calculadora-simple.html">Calculadora simple</a><a class="" href="calculadora-integral-proyecto.html">Calculadora integral</a><a class="menu-primary" href="index.html#contacto">Contacto</a>
+</div>
+</nav>
+</header><section aria-label="Ruta de navegación" class="breadcrumb-shell">
+<nav class="breadcrumbs">
+<a href="index.html">Inicio</a>
+<span>›</span><span>Calculadora simple</span>
+</nav>
+</section><section class="page-intro">
+<div class="eyebrow">Herramienta gratuita</div>
+<h1>Calculadora simple</h1>
+<p>Dimensiona requerimientos técnicos básicos para ponedoras y crianza de pollitas.</p>
+</section>
+<div class="app-wrap">
+<div class="app-header" style="display:none;">
+<div class="badge-mv">M.V. Andrew MacKinnon</div>
+<h1>Calculadora Avícola</h1>
+<p>Parámetros técnicos basados en estándares Hy-Line y Lohmann</p>
+</div>
+<!-- TABS -->
+<div class="tabs">
+<button class="tab-btn active" onclick="setTab('ponedoras')">
+      🥚 Ponedoras en producción
+    </button>
+<button class="tab-btn" onclick="setTab('pollitas')">
+      🐥 Crianza de pollitas
+    </button>
+</div>
+<!-- ===== TAB PONEDORAS ===== -->
+<div class="tab-content active" id="tab-ponedoras">
+<div class="card">
+<div class="card-title">Línea genética</div>
+<div class="radio-group">
+<label class="radio-option selected" id="opt-cafe">
+<input checked="" name="tipo" onchange="calcPonedoras()" type="radio" value="cafe"/>
+<span>
+<span class="opt-name">Huevo café</span>
+<span class="opt-sub">Hy-Line Brown · Lohmann Brown</span>
+</span>
+</label>
+<label class="radio-option" id="opt-blanco">
+<input name="tipo" onchange="calcPonedoras()" type="radio" value="blanco"/>
+<span>
+<span class="opt-name">Huevo blanco</span>
+<span class="opt-sub">Hy-Line W-36 · Lohmann LSL</span>
+</span>
+</label>
+</div>
+</div>
+<div class="card">
+<div class="card-title">Sistema de alojamiento</div>
+<label class="field-label" for="sel-sistema">Selecciona el sistema</label>
+<select id="sel-sistema" onchange="calcPonedoras()">
+<option value="piso">Piso (cama profunda)</option>
+<option value="jaula">Jaula convencional</option>
+<option value="semi">Semi-pastoreo / mixto</option>
+</select>
+</div>
+<div class="card">
+<div class="card-title">Tipo de comedero</div>
+<label class="field-label" for="sel-comedero">Selecciona el sistema de alimentación</label>
+<select id="sel-comedero" onchange="calcPonedoras()">
+<option value="lineal">Lineal (canal/bandeja)</option>
+<option value="cilindrico">Cilíndrico (tolva/balde)</option>
+</select>
+</div>
+<div class="card">
+<div class="card-title">Tipo de bebedero</div>
+<label class="field-label" for="sel-bebedero">Selecciona el sistema de agua</label>
+<select id="sel-bebedero" onchange="calcPonedoras()">
+<option value="nipple">Nipple (chupete)</option>
+<option value="campana">Campana / cazoleta</option>
+<option value="canal">Canal o canaleta</option>
+</select>
+</div>
+<div class="card">
+<div class="card-title">Número de aves</div>
+<div class="slider-wrap">
+<div class="slider-header">
+<span class="field-label" style="margin:0;">Ponedoras en producción</span>
+<span class="slider-val" id="p-aves-val">100</span>
+</div>
+<input id="p-aves" max="3000" min="10" oninput="calcPonedoras()" step="10" type="range" value="100"/>
+<div class="slider-extremes"><span>10 aves</span><span>3.000 aves</span></div>
+</div>
+</div>
+<div class="card">
+<div class="card-title">Resultados</div>
+<div class="results-grid" id="p-resultados"></div>
+</div>
+<div class="nota" id="p-nota"></div>
+<div class="fuentes" style="margin-top:16px;">
+      Fuentes: Hy-Line Brown Performance Standards 2022–2023 · Hy-Line W-36 Performance Standards 2022 · Lohmann Brown-Classic Management Guide · Lohmann LSL-Classic Management Guide. Valores para aves en pico de producción (sem 26–45). El rendimiento real varía según edad, sanidad, temperatura y manejo.
+    </div>
+</div>
+<!-- ===== TAB POLLITAS ===== -->
+<div class="tab-content" id="tab-pollitas">
+<div class="card">
+<div class="card-title">Línea genética</div>
+<div class="radio-group">
+<label class="radio-option selected" id="poll-opt-cafe">
+<input checked="" name="tipo-poll" onchange="calcPollitas()" type="radio" value="cafe"/>
+<span>
+<span class="opt-name">Línea café</span>
+<span class="opt-sub">Hy-Line Brown · Lohmann Brown</span>
+</span>
+</label>
+<label class="radio-option" id="poll-opt-blanco">
+<input name="tipo-poll" onchange="calcPollitas()" type="radio" value="blanco"/>
+<span>
+<span class="opt-name">Línea blanca</span>
+<span class="opt-sub">Hy-Line W-36 · Lohmann LSL</span>
+</span>
+</label>
+</div>
+</div>
+<div class="card">
+<div class="card-title">Etapa de crianza</div>
+<label class="field-label" for="sel-etapa">Selecciona la etapa</label>
+<select id="sel-etapa" onchange="calcPollitas()">
+<option value="fase1">Fase 1: Inicio (0–8 semanas)</option>
+<option value="fase2">Fase 2: Desarrollo (9–17 semanas)</option>
+</select>
+</div>
+<div class="card">
+<div class="card-title">Tipo de comedero</div>
+<label class="field-label" for="sel-com-poll">Selecciona el sistema de alimentación</label>
+<select id="sel-com-poll" onchange="calcPollitas()">
+<option value="lineal">Lineal (canal/bandeja)</option>
+<option value="cilindrico">Cilíndrico (tolva/balde)</option>
+</select>
+</div>
+<div class="card">
+<div class="card-title">Tipo de bebedero</div>
+<label class="field-label" for="sel-beb-poll">Selecciona el sistema de agua</label>
+<select id="sel-beb-poll" onchange="calcPollitas()">
+<option value="nipple">Nipple (chupete)</option>
+<option value="campana">Campana / cazoleta</option>
+<option value="canal">Canal o canaleta</option>
+</select>
+</div>
+<div class="card">
+<div class="card-title">Número de pollitas</div>
+<div class="slider-wrap">
+<div class="slider-header">
+<span class="field-label" style="margin:0;">Pollitas en crianza</span>
+<span class="slider-val" id="poll-aves-val">100</span>
+</div>
+<input id="poll-aves" max="3000" min="10" oninput="calcPollitas()" step="10" type="range" value="100"/>
+<div class="slider-extremes"><span>10 aves</span><span>3.000 aves</span></div>
+</div>
+</div>
+<div class="card">
+<div class="card-title">Resultados</div>
+<div class="results-grid" id="poll-resultados"></div>
+</div>
+<div class="card" id="poll-temp-card">
+<div class="card-title">Temperatura de crianza recomendada</div>
+<table class="temp-table" id="poll-temp-tabla"></table>
+</div>
+<div class="nota" id="poll-nota"></div>
+<div class="fuentes" style="margin-top:16px;">
+      Fuentes: Hy-Line Brown Brooding &amp; Rearing Guide · Hy-Line W-36 Rearing Guide · Lohmann Brown-Classic Rearing Management Guide · Lohmann LSL-Classic Rearing Guide. Valores orientativos. Ajustar según condiciones locales, temperatura ambiental y equipamiento disponible.
+    </div>
+</div>
+</div>
+<section class="ag-book-cta" id="comprar-libro">
+<div class="ag-cta-grid">
+<div>
+<div class="ag-cta-kicker">Siguiente paso</div>
+<h2>Ordena tu proyecto avícola con el libro y el kit de gestión.</h2>
+<p>Estas calculadoras ayudan a dimensionar. El libro y el kit te entregan estructura para registrar, corregir y tomar decisiones con más control.</p>
+<ul>
+<li>Ebook</li>
+<li>Excel de registros productivos</li>
+<li>Guía de contingencia</li>
+<li>Documento sobre Salmonella</li>
+<li>Guía de gestión</li>
+</ul>
+</div>
+<a href="index.html#contacto">Comprar libro + kit</a>
+</div>
+</section>
+<footer class="ag-footer">
+  Herramientas orientativas. No reemplazan asesoría veterinaria, sanitaria ni financiera profesional.
+</footer>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/calculadora-simple.js"></script></body>
+</html>
