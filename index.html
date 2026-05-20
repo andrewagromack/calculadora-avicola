@@ -4,13 +4,130 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Comienza tu proyecto avícola | Herramientas para crecer</title>
+<title>Kit de gestión Avícola | Herramientas para crecer</title>
 <meta content="Herramientas prácticas para comenzar en avicultura, creadas por el M.V. Andrew MacKinnon. Calculadoras, guía técnica y kit completo de gestión avícola." name="description"/>
 
 <link href="assets/css/common.css" rel="stylesheet"/>
 <link href="assets/css/index.css" rel="stylesheet"/>  <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+<style>
+/* Integración MailerLite — estilo Agromack */
+.ag-ml-form-shell,
+#mlb2-41579773.ml-form-embedContainer {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+#mlb2-41579773.ml-form-embedContainer,
+#mlb2-41579773.ml-form-embedContainer * {
+  box-sizing: border-box;
+}
+#mlb2-41579773.ml-form-embedContainer .ml-form-align-center,
+#mlb2-41579773.ml-form-embedContainer .ml-form-align-default {
+  display: block !important;
+  width: 100% !important;
+  text-align: left !important;
+}
+#mlb2-41579773.ml-form-embedContainer .ml-form-embedWrapper,
+#mlb2-41579773.ml-form-embedContainer .ml-form-embedWrapper.embedForm {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: block !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+#mlb2-41579773.ml-form-embedContainer .ml-form-embedBody,
+#mlb2-41579773.ml-form-embedContainer .ml-form-successBody {
+  padding: 0 !important;
+}
+#mlb2-41579773.ml-form-embedContainer .ml-form-embedContent {
+  display: none !important;
+}
+#mlb2-41579773.ml-form-embedContainer .ml-form-formContent {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0 0 16px !important;
+  width: 100% !important;
+}
+#mlb2-41579773.ml-form-embedContainer .ml-form-fieldRow {
+  margin: 0 !important;
+  width: 100% !important;
+}
+#mlb2-41579773.ml-form-embedContainer .ml-form-fieldRow.ml-last-item {
+  grid-column: 1 / -1;
+}
+#mlb2-41579773.ml-form-embedContainer input,
+#mlb2-41579773.ml-form-embedContainer select,
+#mlb2-41579773.ml-form-embedContainer textarea {
+  width: 100% !important;
+  background: #fffaf1 !important;
+  color: #2b241c !important;
+  border: 1.5px solid rgba(211,190,160,.95) !important;
+  border-radius: 12px !important;
+  padding: 12px 14px !important;
+  font: inherit !important;
+  line-height: 1.35 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+#mlb2-41579773.ml-form-embedContainer textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+#mlb2-41579773.ml-form-embedContainer input:focus,
+#mlb2-41579773.ml-form-embedContainer select:focus,
+#mlb2-41579773.ml-form-embedContainer textarea:focus {
+  border-color: #2d4a2d !important;
+  box-shadow: 0 0 0 3px rgba(45,74,45,.12) !important;
+}
+#mlb2-41579773.ml-form-embedContainer .ml-form-embedSubmit {
+  width: 100% !important;
+  margin: 0 !important;
+  float: none !important;
+}
+#mlb2-41579773.ml-form-embedContainer .ml-form-embedSubmit button.primary {
+  width: 100% !important;
+  background: #2d4a2d !important;
+  color: #fffaf1 !important;
+  border: 1px solid #2d4a2d !important;
+  border-radius: 999px !important;
+  padding: 13px 20px !important;
+  font-weight: 900 !important;
+  font-size: .95rem !important;
+  cursor: pointer !important;
+  box-shadow: 0 10px 22px rgba(45,74,45,.18) !important;
+}
+#mlb2-41579773.ml-form-embedContainer .ml-form-embedSubmit button.primary:hover {
+  background: #213b21 !important;
+}
+#mlb2-41579773.ml-form-embedContainer .ml-form-successContent {
+  background: rgba(45,74,45,.08);
+  border: 1px solid rgba(45,74,45,.18);
+  border-radius: 16px;
+  padding: 18px;
+}
+#mlb2-41579773.ml-form-embedContainer .ml-form-successContent h4 {
+  color: #2d4a2d !important;
+  font-size: 1.2rem !important;
+  margin: 0 0 6px !important;
+}
+#mlb2-41579773.ml-form-embedContainer .ml-form-successContent p {
+  color: #665a4b !important;
+  margin: 0 !important;
+}
+@media (max-width: 720px) {
+  #mlb2-41579773.ml-form-embedContainer .ml-form-formContent {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
 </head>
 <body><header class="global-header">
 <nav aria-label="Navegación principal" class="global-nav">
@@ -215,7 +332,7 @@
             Usa las herramientas gratuitas. Si el proyecto sigue teniendo sentido, el siguiente paso lógico es trabajar con registros, guía de manejo y criterio sanitario desde el inicio.
           </p>
 </div>
-<a class="btn" href="mailto:andrew@agromack.cl?subject=Consulta%20Kit%20Avicola">Solicitar el kit</a>
+<a class="btn" href="#contacto">Solicitar el kit</a>
 </div>
 </section>
 </main>
@@ -225,30 +342,68 @@
 <div>
 <div class="kicker">Contacto</div>
 <h2>Solicita el kit o deja tu consulta técnica.</h2>
-<p>Este formulario abre un correo dirigido a <strong>andrew@agromack.cl</strong>. Úsalo para pedir el kit avícola, consultar por implementación o enviar antecedentes de tu proyecto.</p>
-<div class="contact-note">Te responderé prontamente</div>
+<p>Completa el formulario y recibiré tu consulta a través de MailerLite. También quedarás registrado para enviarte información práctica sobre gestión avícola.</p>
+<div class="contact-note">El mensaje queda guardado en MailerLite como dato del suscriptor. Si prefieres escribir directamente, puedes hacerlo a <strong>andrew@agromack.cl</strong>.</div>
 </div>
-<form action="mailto:andrew@agromack.cl" class="contact-form" enctype="text/plain" method="post">
-<label>Nombre
-          <input autocomplete="name" name="nombre" required="" type="text"/>
-</label>
-<label>Correo
-          <input autocomplete="email" name="correo" required="" type="email"/>
-</label>
-<label>Motivo
-          <select name="motivo">
-<option>Quiero información sobre el kit avícola</option>
-<option>Necesito revisar números de mi proyecto</option>
-<option>Consulta por asesoría avícola</option>
-<option>Otro</option>
-</select>
-</label>
-<label>Mensaje
-          <textarea name="mensaje" placeholder="Cuéntame cantidad de aves, etapa del proyecto y principal problema que quieres resolver." required=""></textarea>
-</label>
-<button type="submit">Enviar correo a Agromack</button>
-<small>Si tu navegador bloquea el envío por formulario, escribe directamente a andrew@agromack.cl.</small>
-</form>
+<div class="ag-ml-form-shell">
+<div id="mlb2-41579773" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-41579773">
+  <div class="ml-form-align-center">
+    <div class="ml-form-embedWrapper embedForm">
+      <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+        <div class="ml-form-embedContent">
+          <h4>Solicita el kit o deja tu consulta técnica</h4>
+          <p>Completa el formulario y recibiré tu consulta a través de MailerLite.</p>
+        </div>
+        <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2057335/forms/188026674106861481/subscribe" data-code="" method="post" target="_blank">
+          <div class="ml-form-formContent">
+            <div class="ml-form-fieldRow">
+              <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                <input aria-label="email" aria-required="true" type="email" class="form-control" name="fields[email]" placeholder="Tu correo electrónico" autocomplete="email" required>
+              </div>
+            </div>
+            <div class="ml-form-fieldRow">
+              <div class="ml-field-group ml-field-name">
+                <input aria-label="name" type="text" class="form-control" name="fields[name]" placeholder="Nombre" autocomplete="given-name">
+              </div>
+            </div>
+            <div class="ml-form-fieldRow">
+              <div class="ml-field-group ml-field-motivo ml-validate-required">
+                <select class="custom-select" name="fields[motivo]" aria-label="motivo" aria-required="true" required>
+                  <option value="">Selecciona el motivo</option>
+                  <option>Quiero información sobre el kit avícola</option>
+                  <option>Necesito revisar números de mi proyecto</option>
+                  <option>Consulta por asesoría avícola</option>
+                  <option>Otros</option>
+                </select>
+              </div>
+            </div>
+            <div class="ml-form-fieldRow ml-last-item">
+              <div class="ml-field-group ml-field-mensajes ml-validate-required">
+                <textarea class="form-control" name="fields[mensajes]" aria-label="mensajes" aria-required="true" maxlength="1024" placeholder="Escribe aquí tu mensaje" required></textarea>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" name="ml-submit" value="1">
+          <div class="ml-form-embedSubmit">
+            <button type="submit" class="primary">Enviar consulta</button>
+            <button disabled="disabled" style="display: none;" type="button" class="loading">
+              <div class="ml-form-embedSubmitLoad"></div>
+              <span class="sr-only">Loading...</span>
+            </button>
+          </div>
+          <input type="hidden" name="anticsrf" value="true">
+        </form>
+      </div>
+      <div class="ml-form-successBody row-success" style="display: none">
+        <div class="ml-form-successContent">
+          <h4>Consulta recibida</h4>
+          <p>Gracias. Recibí tus datos y revisaré tu mensaje.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 </div>
 </div>
 </section><footer class="site-footer">
@@ -257,6 +412,19 @@
 <span>Herramientas orientativas. No reemplazan asesoría veterinaria, sanitaria ni financiera.</span>
 </div>
 </footer>
+
+<script>
+  function ml_webform_success_41579773() {
+    var $ = ml_jQuery || jQuery;
+    $('.ml-subscribe-form-41579773 .row-success').show();
+    $('.ml-subscribe-form-41579773 .row-form').hide();
+  }
+</script>
+<script src="https://groot.mailerlite.com/js/w/webforms.min.js?vb397d78ebaa8a0f631d35384c46d781b" type="text/javascript"></script>
+<script>
+  fetch("https://assets.mailerlite.com/jsonp/2057335/forms/188026674106861481/takel");
+</script>
+
 <script src="assets/js/common.js"></script>
 <script src="assets/js/index.js"></script></body>
 </html>
