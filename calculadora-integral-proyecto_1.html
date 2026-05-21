@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Calculadora Integral Avícola — M.V. Andrew MacKinnon</title>
+<link href="assets/css/common.css" rel="stylesheet"/>
+<link href="assets/css/calculadora-integral-proyecto.css" rel="stylesheet"/> <link href="favicon.ico" rel="icon" sizes="any"/>
+<link href="assets/img/favicon.png" rel="icon" type="image/png"/>
+<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"/>
+</head>
+<body><header class="global-header">
+<nav aria-label="Navegación principal" class="global-nav">
+<a aria-label="Ir al inicio" class="global-logo" href="index.html">
+<img alt="Agromack" src="assets/img/logo-agromack.png"/>
+</a>
+<button aria-controls="global-menu" aria-expanded="false" aria-label="Abrir menú" class="global-menu-toggle" type="button">
+<span></span><span></span><span></span>
+</button>
+<div class="global-menu" id="global-menu">
+<a class="" href="index.html">Inicio</a><a class="" href="calculadora-costo-huevo.html">Costo por huevo</a><a class="" href="calculadora-simple.html">Calculadora simple</a><a class="is-active" href="calculadora-integral-proyecto.html">Calculadora integral</a><a class="menu-primary" href="index.html#contacto">Contacto</a>
+</div>
+</nav>
+</header><section aria-label="Ruta de navegación" class="breadcrumb-shell">
+<nav class="breadcrumbs">
+<a href="index.html">Inicio</a>
+<span>›</span><span>Calculadora integral de proyecto</span>
+</nav>
+</section><section class="page-intro">
+<div class="eyebrow">Herramienta gratuita</div>
+<h1>Calculadora integral de proyecto</h1>
+<p>Proyecta equipamiento, inversión inicial y flujo mensual para un proyecto avícola de postura.</p>
+</section>
+<main class="shell">
+<section class="hero">
+<div class="eyebrow">Herramienta integrada</div>
+<h1>Calculadora integral de dimensionamiento y proyecto avícola</h1>
+<p>Elige si quieres proyectar postura o cría, ingresa tus datos y revisa equipamiento, inversión y flujo mensual.</p>
+</section>
+<div class="modo-selector">
+<button class="modo-btn active" data-modo="postura" type="button">
+<div class="modo-icon">🥚</div>
+<span class="modo-titulo">Solo postura</span>
+<span class="modo-desc">Compras gallinas listas para poner y operas hasta la pelecha.</span>
+</button>
+<button class="modo-btn" data-modo="cria" type="button">
+<div class="modo-icon">🐣</div>
+<span class="modo-titulo">Cría y venta</span>
+<span class="modo-desc">Compras pollitas de 1 día y las vendes listas para postura.</span>
+</button>
+</div>
+<div class="calculator-stack"><div class="panel">
+<div class="panel-hd"><div class="panel-num">1</div><h2>Tu proyecto</h2></div>
+<div class="fgroup">
+<div class="field">
+<label for="aves">Número de aves</label>
+<input id="aves" min="1" step="1" type="number" value="500"/>
+<span class="hint">Todo se calcula a partir de este número.</span>
+</div>
+</div>
+<div class="fgroup">
+<span class="fgroup-label">Configuración general</span>
+<div class="field-row">
+<div class="field">
+<label for="moneda">Moneda</label>
+<select id="moneda">
+<option value="USD">USD — Dólar</option>
+<option value="CLP">CLP — Peso chileno</option>
+<option value="MXN">MXN — Peso mexicano</option>
+<option value="COP">COP — Peso colombiano</option>
+<option value="PEN">PEN — Sol peruano</option>
+</select>
+</div>
+<div class="field">
+<label for="meses">Meses a proyectar</label>
+<input id="meses" max="36" min="1" step="1" type="number" value="14"/>
+<span class="hint" id="hint-meses"></span>
+</div>
+</div>
+<div class="field">
+<label for="curva">Tipo de huevo</label>
+<select id="curva">
+<option value="hyline_brown">Huevo café</option>
+<option value="hyline_w36">Huevo blanco</option>
+</select>
+<span class="hint">Cálculos basados en tablas Hy-Line. Si utiliza otra línea genética, re-chequee los valores técnicos con la guía correspondiente.</span>
+</div>
+<div class="field">
+<label for="sistema">Sistema de alojamiento</label>
+<select id="sistema">
+<option value="piso">Piso / cama profunda</option>
+<option value="jaula">Jaula convencional</option>
+<option value="semi">Semi-pastoreo / mixto</option>
+</select>
+</div>
+</div>
+<div class="fgroup">
+<span class="fgroup-label">Tipo de equipamiento a usar</span>
+<div class="field">
+<label for="tipoComedero">¿Qué tipo de comedero usarás?</label>
+<select id="tipoComedero">
+<option value="tolva">Tolva / comedero cilíndrico</option>
+<option value="lineal">Comedero lineal (por metros)</option>
+</select>
+<span class="hint">La calculadora dimensiona la cantidad exacta según tus aves.</span>
+</div>
+<div class="field">
+<label for="tipoBebedero">¿Qué tipo de bebedero usarás?</label>
+<select id="tipoBebedero">
+<option value="nipple">Nipple / chupete</option>
+<option value="campana">Campana / cazoleta</option>
+<option value="canal">Canal lineal (por metros)</option>
+</select>
+<span class="hint">La calculadora dimensiona la cantidad exacta según tus aves.</span>
+</div>
+</div>
+</div><div class="panel">
+<div class="panel-hd"><div class="panel-num">2</div><h2>Precios locales</h2></div>
+<div class="fgroup">
+<span class="fgroup-label">Aves</span>
+<div class="field cond" id="f-precio-gallina">
+<label for="precioAvePostura" id="lbl-gallina">Precio gallina lista para postura</label>
+<input id="precioAvePostura" min="0" step="0.05" type="number" value="6.50"/>
+<span class="hint" id="hint-gallina">Ave en semana 17–18, lista para iniciar postura.</span>
+</div>
+<div class="field cond" id="f-precio-pollita">
+<label for="precioPollita">Precio pollita 1 día</label>
+<input id="precioPollita" min="0" step="0.05" type="number" value="1.20"/>
+</div>
+<div class="field cond" id="f-precio-venta-recria">
+<label for="precioVentaRecria">Precio venta pollona lista</label>
+<input id="precioVentaRecria" min="0" step="0.05" type="number" value="6.50"/>
+<span class="hint">Precio al que vendes las aves en semana 17.</span>
+</div>
+<div class="field cond" id="f-semana-venta">
+<label for="semanaVentaCria">Semana de venta</label>
+<input id="semanaVentaCria" max="20" min="14" step="1" type="number" value="17"/>
+<span class="hint">Estándar: semana 17. Rango normal: 14–20.</span>
+</div>
+</div>
+<div class="fgroup">
+<span class="fgroup-label">Producción</span>
+<div class="field cond" id="f-precio-huevo">
+<label for="precioHuevo">Precio de venta del huevo (por unidad)</label>
+<input id="precioHuevo" min="0" step="0.01" type="number" value="0.12"/>
+<span class="hint warn">Ajusta según tu canal. El precio directo al consumidor suele ser 2–3× el mayorista.</span>
+</div>
+<div class="field cond" id="f-alimento-postura">
+<label for="precioAlimentoPostura">Alimento de postura (por kg)</label>
+<input id="precioAlimentoPostura" min="0" step="0.01" type="number" value="0.50"/>
+<span class="hint warn">Verifica el precio local. Es el principal costo operativo.</span>
+</div>
+<div class="field cond" id="f-alimento-cria">
+<label for="precioAlimentoCria">Alimento de recría / iniciación (por kg)</label>
+<input id="precioAlimentoCria" min="0" step="0.01" type="number" value="0.45"/>
+<span class="hint">Generalmente menor costo que el alimento de postura.</span>
+</div>
+</div>
+<div class="fgroup">
+<span class="fgroup-label">Infraestructura</span>
+<div class="field">
+<label for="costoM2">Costo de construcción (por m²)</label>
+<input id="costoM2" min="0" step="1" type="number" value="80"/>
+</div>
+<div class="field">
+<label for="infraExtra">Otros costos de infraestructura (monto fijo)</label>
+<input id="infraExtra" min="0" step="10" type="number" value="500"/>
+<span class="hint">Instalaciones, cercados, bodegas, ventilación, etc.</span>
+</div>
+<div class="field">
+<label for="vidaUtilInfra">Vida útil de la infraestructura (meses)</label>
+<input id="vidaUtilInfra" max="360" min="12" step="12" type="number" value="120"/>
+<span class="hint">Se usa para calcular la depreciación mensual.</span>
+</div>
+</div>
+<div class="fgroup">
+<span class="fgroup-label">Costos operativos mensuales</span>
+<div class="field">
+<label for="manoObra">Mano de obra</label>
+<input id="manoObra" min="0" step="10" type="number" value="0"/>
+</div>
+<div class="field">
+<label for="otrosMensuales">Otros costos (agua, luz, sanidad, empaques…)</label>
+<input id="otrosMensuales" min="0" step="10" type="number" value="0"/>
+</div>
+<div class="field cond" id="f-reposicion">
+<label for="tasaReposicion">Reposición de aves (% del lote por mes)</label>
+<input id="tasaReposicion" max="5" min="0" step="0.1" type="number" value="0"/>
+<span class="hint">0 = sin reposición activa.</span>
+</div>
+</div>
+<div class="notice warn" id="aviso-costos-cero" style="display:none;">
+<strong>Atención:</strong> mano de obra y otros costos están en cero. El flujo y el margen quedan subestimados.
+    </div>
+</div><div class="kpi-row">
+<div class="kpi main">
+<div class="kl">Aves</div><div class="kv" id="k-aves">—</div><div class="ks">Base de cálculo</div>
+</div>
+<div class="kpi">
+<div class="kl">Área requerida</div><div class="kv" id="k-area">—</div><div class="ks" id="k-area-sub">Según sistema</div>
+</div>
+<div class="kpi">
+<div class="kl" id="k-alim-label">Alimento / mes</div><div class="kv" id="k-alimento">—</div><div class="ks" id="k-alim-sub">Postura día 1</div>
+</div>
+<div class="kpi">
+<div class="kl">Inversión inicial</div><div class="kv" id="k-inversion">—</div><div class="ks">Estimada</div>
+</div>
+</div><div class="card equipment-card">
+<div class="card-hd">
+<div class="card-title">Equipamiento que necesitas</div>
+<div class="card-desc">La calculadora estimó las cantidades para tus aves. Ingresa el precio unitario local de cada ítem y verás el costo total al instante.</div>
+</div>
+<div id="equip-list"></div>
+<div style="margin-top:18px;">
+<span class="fgroup-label">Infraestructura</span>
+<div class="infra-items" id="infra-resumen"></div>
+</div>
+<div class="inversion-total">
+<span class="inversion-label">Total inversión inicial estimada</span>
+<span class="inversion-val" id="total-inversion">—</span>
+</div>
+</div><div class="card economy-card">
+<div class="card-hd"><div class="card-title" id="titulo-economia">Producción y economía</div></div>
+<div class="table-wrap"><table><tbody id="tabla-economia"></tbody></table></div>
+<div class="capital-box" id="capital-trabajo-box" style="display:none;"></div>
+</div><div class="card flow-card">
+<div class="card-hd">
+<div class="card-title">Flujo mensual proyectado</div>
+<div class="card-desc" id="flujo-nota"></div>
+</div>
+<div class="table-wrap">
+<table><thead id="flujo-thead"></thead><tbody id="tabla-flujo"></tbody></table>
+</div>
+<p style="font-size:.69rem;color:var(--muted);margin-top:8px;">Egresos operativos = alimento + mano de obra + otros. La depreciación aparece en el resumen económico, no en el flujo de caja.</p>
+</div><div class="card obs-card">
+<div class="card-hd"><div class="card-title">Lo que debes revisar</div></div>
+<div id="observaciones"></div>
+</div></div><!-- /layout -->
+<section class="descarga-xlsx" id="bloque-descarga" style="display:none;">
+<div class="descarga-inner">
+  <div class="descarga-icon">📊</div>
+  <h2 class="descarga-titulo">Descarga tu simulación en Excel</h2>
+  <p class="descarga-sub">Ingresa tu correo y recibe el archivo con los datos de tu proyecto ya ingresados. Sin spam, solo herramientas útiles.</p>
+  <div class="descarga-form" id="descarga-form">
+    <input type="email" id="descarga-email" placeholder="tu@correo.com" autocomplete="email"/>
+    <button type="button" id="descarga-btn" onclick="procesarDescarga()">Descargar Excel →</button>
+  </div>
+  <div class="descarga-estado" id="descarga-estado" style="display:none;"></div>
+  <p class="descarga-nota">Tu correo se agrega a la lista de herramientas avícolas de M.V. Andrew MacKinnon. Puedes darte de baja cuando quieras.</p>
+</div>
+</section>
+
+<style>
+.descarga-xlsx {
+  background: var(--surface, #f8f7f4);
+  border-top: 1px solid var(--border, #e5e3dd);
+  border-bottom: 1px solid var(--border, #e5e3dd);
+  padding: 56px 24px;
+}
+.descarga-inner {
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: center;
+}
+.descarga-icon {
+  font-size: 2.4rem;
+  margin-bottom: 16px;
+  line-height: 1;
+}
+.descarga-titulo {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text, #1a1a14);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.descarga-sub {
+  font-size: 0.92rem;
+  color: var(--muted, #6b6b5a);
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+.descarga-form {
+  display: flex;
+  gap: 8px;
+  max-width: 420px;
+  margin: 0 auto 12px;
+}
+.descarga-form input[type="email"] {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border, #d4d0c8);
+  border-radius: 4px;
+  font-size: 0.95rem;
+  background: #fff;
+  color: var(--text, #1a1a14);
+  outline: none;
+  transition: border-color 0.15s;
+}
+.descarga-form input[type="email"]:focus {
+  border-color: var(--accent, #2d6a2d);
+}
+.descarga-form button {
+  padding: 12px 20px;
+  background: var(--accent, #2d6a2d);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, opacity 0.15s;
+}
+.descarga-form button:hover { background: #235823; }
+.descarga-form button:disabled { opacity: 0.6; cursor: not-allowed; }
+.descarga-estado {
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  margin: 0 auto 12px;
+  max-width: 420px;
+  text-align: left;
+}
+.descarga-estado.ok {
+  background: #edf7ed;
+  color: #1e5c1e;
+  border: 1px solid #b8ddb8;
+}
+.descarga-estado.error {
+  background: #fdf0f0;
+  color: #7a1f1f;
+  border: 1px solid #f0c0c0;
+}
+.descarga-nota {
+  font-size: 0.75rem;
+  color: var(--muted, #6b6b5a);
+  opacity: 0.7;
+  margin: 0;
+}
+@media (max-width: 480px) {
+  .descarga-form { flex-direction: column; }
+  .descarga-form button { width: 100%; }
+}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+// ── Mostrar bloque cuando hay resultados ──
+(function() {
+  var orig = document.getElementById.bind(document);
+  var observer = new MutationObserver(function() {
+    var flujo = document.getElementById('tabla-flujo');
+    if (flujo && flujo.children.length > 0) {
+      document.getElementById('bloque-descarga').style.display = 'block';
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+})();
+
+async function procesarDescarga() {
+  var email = document.getElementById('descarga-email').value.trim();
+  var btn   = document.getElementById('descarga-btn');
+  var estado = document.getElementById('descarga-estado');
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    mostrarEstado('Ingresa un correo válido.', 'error');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Procesando...';
+  estado.style.display = 'none';
+
+  // 1. Registrar en MailerLite
+  var registrado = await registrarMailerLite(email);
+
+  // 2. Generar y descargar XLSX sin importar si MailerLite falló
+  generarXLSX();
+
+  if (registrado) {
+    mostrarEstado('✓ Tu archivo se está descargando. Revisa también tu correo para más herramientas.', 'ok');
+  } else {
+    mostrarEstado('✓ Tu archivo se está descargando.', 'ok');
+  }
+
+  btn.textContent = '¡Descargado!';
+  document.getElementById('descarga-form').style.opacity = '0.5';
+  document.getElementById('descarga-form').style.pointerEvents = 'none';
+}
+
+async function registrarMailerLite(email) {
+  var API_KEY = eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMGNmYWExZjdiNjcyOTU0NDQ5MjVkYmM4MzBiNGZlYzk2OTRiOGViYjNjZGVlMmNjNWZlYzM1NDA2ZjlmMGE4YzRhYTY5ZTQ3MmYxNzU5Y2UiLCJpYXQiOjE3NzkzODI4ODkuMjIwOTMsIm5iZiI6MTc3OTM4Mjg4OS4yMjA5MzQsImV4cCI6NDkzNTA1NjQ4OS4yMTIyMTgsInN1YiI6IjIwNzUzNzUiLCJzY29wZXMiOltdfQ.okbjjfo1N9m1cqEaEURhepmQElcXcBZ3wP4sv_GvC80DfceNFVnUTgrp4TUkYRoLvhJXXWmORVIoXOvf_gHy6bGqvGx9Qb8JBv_vNIdSdDjmVFXN3gI6zyKjW9MNIM6in1DVCP5ulYTNfN5AjyqBGUcF1IjXUme-Srd4u54QYSYFlKytvhkxPUtn1zVl8U8yQY7LBfxkC16nvL9DnmKgavD5KZCdg86r6M-on98z6oNrsGwQoUZR9ZraRtwzqipbFSkAR3bionhCm6415xTz2j5kico5UNmJwX-x0BwYlscY_vWrEQbZFWCPn6dv_rbdjQvPmquT5Ume7NMHd7cUh5FICBL6noI80UlUfAGlwWD23gEHhvd6XfOMOtKX5gDyBxjmn-9j7Z94QwNuntdj_KC2P12l8o4snHou2-TrFFc3VGxhnlV_UxcX-WcbzsXDhMPboTZChGgPXdjb6d1F87SCItoUJtmFHZcHg6Y6YjhonxIrocoXn0NVAfNm7Ilrhb8chKJ-NVj9OSRyjHWyup_f5zSSM_69JazS2lXqoSx64dBkpdq7IzedEPpCuDokz-40qe_X14z1CnKFbBAzvrj2mULXBraqAPFU3INKwqvoBV-dmi6jJnzlIsPVeDWmfjh9AB28lx1saGlO4MsLnV6xW7PSIHn0MS0NwtW_zhM;
+  var GROUP_NAME = 'CALCULADORA AVES';
+
+  try {
+    // Buscar grupo por nombre
+    var grRes = await fetch('https://connect.mailerlite.com/api/groups?limit=100', {
+      headers: { 'Authorization': 'Bearer ' + API_KEY, 'Content-Type': 'application/json' }
+    });
+    var grData = await grRes.json();
+    var grupo = (grData.data || []).find(function(g) {
+      return g.name.trim().toUpperCase() === GROUP_NAME;
+    });
+    var groupId = grupo ? grupo.id : null;
+
+    // Crear suscriptor
+    var body = { email: email, status: 'active' };
+    if (groupId) body.groups = [groupId];
+
+    var res = await fetch('https://connect.mailerlite.com/api/subscribers', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + API_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    return res.ok || res.status === 409; // 409 = ya existe
+  } catch(e) {
+    return false;
+  }
+}
+
+function generarXLSX() {
+  var wb = XLSX.utils.book_new();
+
+  // ── Hoja 1: Resumen del proyecto ──
+  var aves  = document.getElementById('aves')  ? document.getElementById('aves').value  : '—';
+  var meses = document.getElementById('meses') ? document.getElementById('meses').value : '—';
+  var moneda = document.getElementById('moneda') ? document.getElementById('moneda').value : 'USD';
+  var sistema = document.getElementById('sistema') ? document.getElementById('sistema').options[document.getElementById('sistema').selectedIndex].text : '—';
+  var curva = document.getElementById('curva') ? document.getElementById('curva').options[document.getElementById('curva').selectedIndex].text : '—';
+
+  var resumen = [
+    ['Simulación de Proyecto Avícola — agromack.online'],
+    ['Generado por M.V. Andrew MacKinnon'],
+    [''],
+    ['Parámetro', 'Valor'],
+    ['Número de aves', aves],
+    ['Meses proyectados', meses],
+    ['Moneda', moneda],
+    ['Sistema de alojamiento', sistema],
+    ['Tipo de huevo', curva],
+    ['Precio huevo (por unidad)', document.getElementById('precioHuevo') ? document.getElementById('precioHuevo').value : '—'],
+    ['Precio alimento postura (kg)', document.getElementById('precioAlimentoPostura') ? document.getElementById('precioAlimentoPostura').value : '—'],
+    ['Precio gallina lista postura', document.getElementById('precioAvePostura') ? document.getElementById('precioAvePostura').value : '—'],
+    ['Mano de obra mensual', document.getElementById('manoObra') ? document.getElementById('manoObra').value : '—'],
+    ['Otros costos mensuales', document.getElementById('otrosMensuales') ? document.getElementById('otrosMensuales').value : '—'],
+    ['Costo construcción (m²)', document.getElementById('costoM2') ? document.getElementById('costoM2').value : '—'],
+    [''],
+    ['KPIs principales', ''],
+    ['Área requerida', document.getElementById('k-area') ? document.getElementById('k-area').textContent : '—'],
+    ['Inversión inicial estimada', document.getElementById('k-inversion') ? document.getElementById('k-inversion').textContent : '—'],
+    ['Alimento / mes', document.getElementById('k-alimento') ? document.getElementById('k-alimento').textContent : '—'],
+  ];
+
+  var wsResumen = XLSX.utils.aoa_to_sheet(resumen);
+  wsResumen['!cols'] = [{wch:38},{wch:22}];
+  XLSX.utils.book_append_sheet(wb, wsResumen, 'Resumen');
+
+  // ── Hoja 2: Flujo mensual ──
+  var flujoData = [[]];
+  var thead = document.getElementById('flujo-thead');
+  var tbody = document.getElementById('tabla-flujo');
+
+  if (thead && thead.rows.length > 0) {
+    var headers = [];
+    Array.from(thead.rows[0].cells).forEach(function(c) { headers.push(c.textContent.trim()); });
+    flujoData[0] = headers;
+  }
+
+  if (tbody) {
+    Array.from(tbody.rows).forEach(function(row) {
+      var fila = [];
+      Array.from(row.cells).forEach(function(c) { fila.push(c.textContent.trim()); });
+      flujoData.push(fila);
+    });
+  }
+
+  var wsFlujo = XLSX.utils.aoa_to_sheet(flujoData);
+  wsFlujo['!cols'] = Array(20).fill({wch:16});
+  XLSX.utils.book_append_sheet(wb, wsFlujo, 'Flujo mensual');
+
+  // ── Hoja 3: Equipamiento ──
+  var equipData = [['Ítem', 'Cantidad requerida', 'Precio unitario ingresado']];
+  document.querySelectorAll('#equip-list .equip-row').forEach(function(row) {
+    var nombre = row.querySelector('.equip-nombre, .eq-name, td:first-child');
+    var cant   = row.querySelector('.equip-cant, .eq-qty, td:nth-child(2)');
+    var precio = row.querySelector('input[type="number"]');
+    equipData.push([
+      nombre ? nombre.textContent.trim() : '—',
+      cant   ? cant.textContent.trim()   : '—',
+      precio ? precio.value              : '—'
+    ]);
+  });
+  var wsEquip = XLSX.utils.aoa_to_sheet(equipData);
+  wsEquip['!cols'] = [{wch:36},{wch:22},{wch:22}];
+  XLSX.utils.book_append_sheet(wb, wsEquip, 'Equipamiento');
+
+  // ── Hoja 4: Observaciones ──
+  var obsItems = [];
+  document.querySelectorAll('#observaciones li, #observaciones p').forEach(function(el) {
+    obsItems.push([el.textContent.trim()]);
+  });
+  if (obsItems.length === 0) obsItems.push(['Sin observaciones generadas.']);
+  var wsObs = XLSX.utils.aoa_to_sheet([['Observaciones del proyecto']].concat(obsItems));
+  wsObs['!cols'] = [{wch:80}];
+  XLSX.utils.book_append_sheet(wb, wsObs, 'Observaciones');
+
+  XLSX.writeFile(wb, 'simulacion-proyecto-avicola.xlsx');
+}
+
+function mostrarEstado(msg, tipo) {
+  var el = document.getElementById('descarga-estado');
+  el.textContent = msg;
+  el.className = 'descarga-estado ' + tipo;
+  el.style.display = 'block';
+}
+</script>
+
+<section class="cta">
+<div class="cta-grid">
+<div>
+<div class="kicker">Siguiente paso</div>
+<h2>Convierte el cálculo en gestión real con el Libro + Kit de Inicio y Gestión Avícola.</h2>
+<p>La calculadora dimensiona. El libro y el kit te ayudan a ordenar criterios, registros y decisiones para no operar a ciegas.</p>
+<ul>
+<li>Ebook</li><li>Excel de registros productivos</li><li>Guía de contingencia</li>
+<li>Documento sobre Salmonella</li><li>Guía de gestión</li><li>Bono AviManager</li>
+</ul>
+</div>
+<a href="index.html#contacto">Comprar libro + kit</a>
+</div>
+</section>
+<footer class="footer">
+  Herramienta orientativa. No reemplaza asesoría veterinaria, sanitaria ni financiera profesional.
+</footer>
+</main>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/calculadora-integral-proyecto.js"></script></body>
+</html>
