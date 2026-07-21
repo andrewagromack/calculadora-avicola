@@ -79,6 +79,55 @@
   font-size:0.85rem;
 }
 
+/* acordeón de capítulos del libro (kit-item 1) */
+.kit-toc{
+  margin-top:12px;
+}
+.kit-toc summary{
+  cursor:pointer;
+  font-size:0.86rem;
+  font-weight:700;
+  color:var(--verde);
+  list-style:none;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+.kit-toc summary::-webkit-details-marker{display:none;}
+.kit-toc summary::before{
+  content:"+";
+  font-weight:900;
+}
+.kit-toc[open] summary::before{
+  content:"–";
+}
+.kit-toc-list{
+  list-style:none;
+  padding:0;
+  margin:12px 0 0 0;
+  display:grid;
+  gap:6px;
+}
+.kit-toc-list li{
+  font-size:0.9rem;
+  color:var(--texto);
+  display:flex;
+  gap:8px;
+  align-items:baseline;
+}
+.kit-toc-num{
+  font-size:0.72rem;
+  color:var(--tierra);
+  font-weight:700;
+  flex-shrink:0;
+}
+.kit-toc-more{
+  margin:10px 0 0 0;
+  font-size:0.82rem;
+  color:var(--texto-suave);
+  font-style:italic;
+}
+
 /* lista de dolores (sección Problema) */
 .pain-list{
   display:grid;
