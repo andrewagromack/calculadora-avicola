@@ -1,0 +1,124 @@
+/* Extensión del sistema de diseño existente — solo componentes nuevos para la landing de venta */
+
+:root{
+  --hero-navy:#12295a;
+  --hero-teal:#1fa6aa;
+}
+
+/* Prueba: hero adaptado a los tonos azul/teal de la imagen (resto del sitio sigue en verde/dorado) */
+.hero{
+  background:
+    linear-gradient(180deg, rgba(18,41,90,0.05) 0%, rgba(31,166,170,0.05) 100%);
+  border-radius: 28px;
+}
+.hero .eyebrow{
+  background: rgba(18,41,90,0.08);
+  color: var(--hero-navy);
+  border-color: rgba(18,41,90,0.18);
+}
+.hero .proof-pill{
+  border-color: rgba(31,166,170,0.4);
+}
+.hero-card{
+  border-color: rgba(31,166,170,0.45);
+  box-shadow: 0 16px 40px rgba(18,41,90,0.14);
+}
+.hero-card::before{
+  background: rgba(31,166,170,0.18);
+}
+.hero .btn-secondary{
+  border-color: rgba(18,41,90,0.35);
+  color: var(--hero-navy);
+}
+.hero .price-note{
+  color: var(--hero-teal);
+}
+
+.price-row{
+  display:flex;
+  align-items:baseline;
+  gap:12px;
+  margin:14px 0 4px;
+}
+.price-now{
+  font-size:2rem;
+  font-weight:900;
+  letter-spacing:-0.03em;
+  color:var(--texto);
+}
+.price-was{
+  font-size:1.05rem;
+  color:var(--texto-suave);
+  text-decoration:line-through;
+  opacity:0.75;
+}
+.price-note{
+  font-size:0.82rem;
+  color:var(--tierra);
+  font-weight:700;
+  margin-bottom:16px;
+}
+.guarantee-line{
+  margin-top:14px;
+  font-size:0.85rem;
+  color:var(--texto-suave);
+  text-align:center;
+}
+
+/* precio dentro del panel verde del kit (texto claro sobre fondo oscuro) */
+.kit-panel h2{color:#fff;}
+.kit-panel-was{
+  color:rgba(255,255,255,0.65);
+  text-decoration:line-through;
+  font-size:0.95rem;
+  margin-bottom:10px;
+}
+.kit-panel-guarantee{
+  margin-top:12px;
+  color:rgba(255,255,255,0.82);
+  font-size:0.85rem;
+}
+
+/* lista de dolores (sección Problema) */
+.pain-list{
+  display:grid;
+  gap:12px;
+}
+.pain-item{
+  background:rgba(255,250,241,0.76);
+  border:1px solid rgba(211,190,160,0.9);
+  border-radius:var(--radio);
+  padding:18px 20px;
+  display:grid;
+  grid-template-columns:52px 1fr;
+  gap:14px;
+  align-items:start;
+  box-shadow:0 10px 22px rgba(64,43,20,0.06);
+}
+.pain-num{
+  font-size:0.8rem;
+  font-weight:900;
+  color:var(--tierra);
+  padding-top:2px;
+}
+.pain-item p{
+  color:var(--texto);
+  font-size:0.96rem;
+  margin:0;
+}
+
+/* sección de autor a ancho completo, reutiliza hero-card/authority-card */
+.author-full{
+  max-width:var(--max);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:32px;
+  align-items:start;
+}
+.author-full .photo-frame{margin-bottom:0;}
+
+@media (max-width:860px){
+  .author-full{grid-template-columns:1fr;}
+  .author-full .photo-frame{max-width:260px;margin:0 auto 18px;}
+}

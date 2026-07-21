@@ -114,8 +114,8 @@ function calcPonedoras() {
 
   let bebederos, beb_ref;
   if (beb === 'canal') {
-    bebederos = Math.ceil(n * 0.025) + ' m';
-    beb_ref = '2.5 cm por ave (canal)';
+    bebederos = Math.ceil(n * d.bebedero.canal / 100) + ' m';
+    beb_ref = d.bebedero.canal + ' cm por ave (canal)';
   } else {
     bebederos = Math.ceil(n / d.bebedero[beb]);
     beb_ref = beb_referencia(beb);
@@ -185,8 +185,8 @@ function calcPollitas() {
 
   let bebederos, beb_ref;
   if (beb === 'canal') {
-    bebederos = Math.ceil(n * d.comedero_cm / 100) + ' m';
-    beb_ref = 'canal por etapa';
+    bebederos = Math.ceil(n * d.bebedero.canal / 100) + ' m';
+    beb_ref = d.bebedero.canal + ' cm por pollita (canal)';
   } else {
     bebederos = Math.ceil(n / d.bebedero[beb]);
     beb_ref = beb_referencia(beb);

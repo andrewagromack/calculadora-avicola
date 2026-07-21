@@ -155,7 +155,7 @@ function calcular() {
 }
 
 function irAviManager() {
-  alert('Enlace a AviManager — reemplaza esta función con tu URL real.');
+  window.open('https://pay.hotmart.com/D106823713U', '_blank', 'noopener');
 }
 
 

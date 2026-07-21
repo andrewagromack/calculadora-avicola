@@ -93,6 +93,8 @@ function weekArrayForProduction(line, prodMonth){
 }
 function productionMonth(line, initialBirds, prodMonth){
   const weeks=weekArrayForProduction(line, prodMonth);
+  // Si el array está vacío, el ciclo productivo terminó (semana > line.production.end)
+  if(weeks.length===0) return null;
   let eggs=0, feedKg=0, waterL=0, postSum=0, lastWeek=weeks[weeks.length-1];
   weeks.forEach(w=>{
     const live=liveBirds(initialBirds,line,'production',w);
@@ -231,6 +233,11 @@ function calcular(){
     htmlEco=[row('Semanas usadas mes 1',`${pm1.weekStart}–${pm1.weekEnd}`), row('Postura esperada mes 1',`${num(pm1.posture,1)}%`), row('Mortalidad acumulada mes 1',`${num(pm1.mort,2)}%`), row('Aves vivas fin mes 1',`${num(pm1.alive,0)}`), row('Huevos esperados mes 1',`${num(pm1.eggs,0)} unidades`), row('Docenas mes 1',`${num(pm1.eggs/12,0)}`), row('Ingreso estimado mes 1',money(ing1)), outRow('Consumo alimento mes 1',`${num(pm1.feedKg,0)} kg · ${money(egrAlim1)}`), outRow('Consumo agua mes 1',`${num(pm1.waterL,0)} L`), outRow('Otros costos mensuales',money(otrosM)), outRow('Costo operativo por huevo (mes 1)',money(cH)), outRow('Costo por huevo incl. depreciación infra',money(cHD)), row('Precio de venta por huevo',money(n('precioHuevo'))), row('Margen operativo por huevo (mes 1)',money(n('precioHuevo')-cH)), row('Flujo operativo mes 1',money(ing1-egrOp1),negClass(ing1-egrOp1)), outRow('Depreciación mensual infraestructura',money(depre))].join('');
     for(let m=1;m<=meses;m++){
       const pm=productionMonth(p,aves,m);
+      // Ciclo productivo terminado (semanas agotadas en la tabla técnica)
+      if(!pm){
+        flujoHTML+=`<tr><td>${m}</td><td colspan="13" style="text-align:center;color:var(--muted);font-size:.75rem;">Ciclo productivo finalizado (semana ${p.production.end})</td></tr>`;
+        break;
+      }
       const ing=pm.eggs*n('precioHuevo');
       const costoAlim=pm.feedKg*n('precioAlimentoPostura');
       const repos=m>1&&tasaR>0?aves*tasaR*n('precioAvePostura'):0;
@@ -243,12 +250,12 @@ function calcular(){
     el('flujo-nota').textContent='Cada mes refleja costos de caja. Consumo, agua y mortalidad salen de la tabla semanal de crianza.';
     el('flujo-thead').innerHTML='<tr><th>Mes</th><th>Semanas</th><th>Aves vivas</th><th>Alimento kg</th><th>Agua L</th><th>Mortalidad acum.</th><th>Costo alim.</th><th>Otros costos</th><th>Egresos op.</th><th>Ingreso venta</th><th>Flujo neto</th><th>Acumulado</th></tr>';
     const semV=Math.max(14,Math.min(20,n('semanaVentaCria')));
-    const mC=Math.ceil(semV/4);
+    const mC=semV/4; // meses reales de recría (valor continuo para costo proporcional correcto)
     const totalR=rearingPeriod(p,aves,1,Math.min(semV,17));
     const avesV= semV<=17 ? totalR.alive : liveBirds(aves,p,'rearing',17);
     const ingV=avesV*n('precioVentaRecria'), cAlimT=totalR.feedKg*n('precioAlimentoCria'), depreCiclo=depre*mC;
     const margenBrutoCria=ingV-cAlimT-costoAves-otrosM*mC;
-    htmlEco=[row('Pollitas compradas',`${num(aves)}`), row(`Aves en semana ${semV}`,`${num(avesV,0)}`), row('Mortalidad acumulada recría',`${num(totalR.mort,2)}%`), row('Alimento total recría',`${num(totalR.feedKg,0)} kg`), row('Agua total recría',`${num(totalR.waterL,0)} L`), outRow('Costo compra pollitas',money(costoAves)), outRow('Costo alimento total recría',money(cAlimT)), outRow('Costo equipamiento inicial',money(costoEquip)), outRow('Depreciación mensual infraestructura',money(depre)), outRow(`Depreciación asignada al ciclo (${mC} meses)`,money(depreCiclo)), row('Ingreso estimado por venta',money(ingV)), row('Margen bruto estimado antes de depreciación',money(margenBrutoCria),negClass(margenBrutoCria)), row('Resultado estimado después de depreciación',money(margenBrutoCria-depreCiclo),negClass(margenBrutoCria-depreCiclo))].join('');
+    htmlEco=[row('Pollitas compradas',`${num(aves)}`), row(`Aves en semana ${semV}`,`${num(avesV,0)}`), row('Mortalidad acumulada recría',`${num(totalR.mort,2)}%`), row('Alimento total recría',`${num(totalR.feedKg,0)} kg`), row('Agua total recría',`${num(totalR.waterL,0)} L`), outRow('Costo compra pollitas',money(costoAves)), outRow('Costo alimento total recría',money(cAlimT)), outRow('Costo equipamiento inicial',money(costoEquip)), outRow('Depreciación mensual infraestructura',money(depre)), outRow(`Depreciación asignada al ciclo (${mC.toFixed(1)} meses)`,money(depreCiclo)), row('Ingreso estimado por venta',money(ingV)), row('Margen bruto estimado antes de depreciación',money(margenBrutoCria),negClass(margenBrutoCria)), row('Resultado estimado después de depreciación',money(margenBrutoCria-depreCiclo),negClass(margenBrutoCria-depreCiclo))].join('');
     for(let m=1;m<=meses;m++){
       const si=(m-1)*4+1, sf=Math.min(m*4,semV,17);
       if(si>semV || si>17){flujoHTML+=`<tr><td>${m}</td><td colspan="11" style="text-align:center;color:var(--muted);font-size:.75rem;">Ciclo finalizado en semana ${semV}</td></tr>`;break;}
