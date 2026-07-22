@@ -79,6 +79,38 @@
   font-size:0.85rem;
 }
 
+/* sección "En terreno" */
+.terreno-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:20px;
+  max-width:var(--max);
+  margin:0 auto;
+}
+.terreno-card{
+  margin:0;
+  background:var(--blanco-calido);
+  border:1px solid var(--borde);
+  border-radius:var(--radio);
+  overflow:hidden;
+  box-shadow:var(--sombra);
+}
+.terreno-card img{
+  display:block;
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+}
+.terreno-card figcaption{
+  padding:12px 16px 16px;
+  font-size:0.85rem;
+  color:var(--texto-suave);
+  text-align:center;
+}
+@media (max-width:760px){
+  .terreno-grid{grid-template-columns:1fr;}
+}
+
 /* acordeón de capítulos del libro (kit-item 1) */
 .kit-toc{
   margin-top:12px;
