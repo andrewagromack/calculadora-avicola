@@ -6,11 +6,6 @@
 }
 
 /* Prueba: hero adaptado a los tonos azul/teal de la imagen (resto del sitio sigue en verde/dorado) */
-.hero{
-  background:
-    linear-gradient(180deg, rgba(18,41,90,0.05) 0%, rgba(31,166,170,0.05) 100%);
-  border-radius: 28px;
-}
 .hero .eyebrow{
   background: rgba(18,41,90,0.08);
   color: var(--hero-navy);
@@ -77,6 +72,34 @@
   margin-top:12px;
   color:rgba(255,255,255,0.82);
   font-size:0.85rem;
+}
+
+.tax-note{
+  font-size:0.78rem;
+  color:var(--texto-suave);
+  margin-top:-4px;
+  margin-bottom:14px;
+}
+.tax-note-dark{
+  color:rgba(255,255,255,0.65);
+}
+
+/* enlace discreto de WhatsApp en Para quién es */
+.whatsapp-link{
+  max-width:var(--max);
+  margin:28px auto 0;
+  text-align:center;
+  font-size:0.92rem;
+  color:var(--texto-suave);
+}
+.whatsapp-link a{
+  color:var(--verde);
+  font-weight:700;
+  text-decoration:none;
+  margin-left:6px;
+}
+.whatsapp-link a:hover{
+  text-decoration:underline;
 }
 
 /* sección "En terreno" */
