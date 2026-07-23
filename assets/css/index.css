@@ -518,6 +518,94 @@
       font-size: 0.92rem;
     }
 
+    /* ── LIBRO DESTACADO ── */
+    .kit-item-book {
+      border-color: rgba(45, 74, 45, 0.3);
+      background: rgba(238, 245, 238, 0.55);
+      padding: 22px;
+    }
+
+    .kit-item-book .kit-num {
+      background: var(--verde);
+      color: #fff;
+      border-radius: 12px;
+    }
+
+    .kit-book-header {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .kit-item-book h3 {
+      font-size: 1.12rem;
+      color: var(--verde);
+      margin-bottom: 0;
+    }
+
+    .kit-book-badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--tierra);
+      background: rgba(138, 100, 40, 0.12);
+      border: 1px solid rgba(138, 100, 40, 0.2);
+      padding: 3px 9px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .kit-book-lead {
+      color: var(--texto-suave);
+      font-size: 0.93rem;
+      margin-bottom: 16px;
+      line-height: 1.55;
+    }
+
+    .kit-chapters {
+      display: grid;
+      gap: 8px;
+    }
+
+    .kit-chapter {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 9px 12px;
+      background: rgba(255, 250, 241, 0.75);
+      border: 1px solid rgba(211, 190, 160, 0.6);
+      border-radius: 10px;
+    }
+
+    .ch-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: rgba(45, 74, 45, 0.1);
+      color: var(--verde);
+      font-size: 0.72rem;
+      font-weight: 900;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .kit-chapter strong {
+      display: block;
+      font-size: 0.84rem;
+      color: var(--texto);
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+
+    .kit-chapter span {
+      font-size: 0.78rem;
+      color: var(--texto-suave);
+      line-height: 1.4;
+    }
+
     .fit-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);

@@ -143,11 +143,29 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
           </p>
 </aside>
 <div class="kit-items">
-<article class="kit-item">
+
+<!-- LIBRO DESTACADO -->
+<article class="kit-item kit-item-book">
 <div class="kit-num">1</div>
-<div>
-<h3>Libro Tu Primer Proyecto Avícola</h3>
-<p>Base técnica y práctica para comenzar: manejo, criterios productivos, errores comunes y decisiones que conviene tomar antes de invertir.</p>
+<div class="kit-item-body">
+<div class="kit-book-header">
+  <h3>Libro Tu Primer Proyecto Avícola</h3>
+  <span class="kit-book-badge">237 páginas · Primera edición</span>
+</div>
+<p class="kit-book-lead">El núcleo del kit. Cubre desde la decisión inicial hasta la gestión económica del proyecto, con criterio técnico veterinario y ejemplos aplicados a pequeña escala.</p>
+<div class="kit-chapters">
+  <div class="kit-chapter"><span class="ch-num">1</span><div><strong>Empezando el proyecto</strong><span>Cómo definir el objetivo, estimar escala, elegir el modelo de negocio y los errores más caros al comenzar.</span></div></div>
+  <div class="kit-chapter"><span class="ch-num">2</span><div><strong>Elección de las aves</strong><span>Criterios técnicos para seleccionar raza o línea según tu objetivo, clima, espacio y disponibilidad local.</span></div></div>
+  <div class="kit-chapter"><span class="ch-num">3</span><div><strong>El ambiente adecuado</strong><span>Temperatura, ventilación, iluminación y densidad. Qué controlar y por qué afecta directamente la producción.</span></div></div>
+  <div class="kit-chapter"><span class="ch-num">4</span><div><strong>El gallinero</strong><span>Diseño, materiales, comederos, bebederos y nidos. Cómo dimensionarlo bien desde el principio.</span></div></div>
+  <div class="kit-chapter"><span class="ch-num">5</span><div><strong>Alimentación</strong><span>Requerimientos nutricionales por etapa, tipos de alimento, errores frecuentes y cómo calcular el consumo.</span></div></div>
+  <div class="kit-chapter"><span class="ch-num">6</span><div><strong>Reproducción</strong><span>Manejo reproductivo básico, selección de reproductores y factores que afectan la fertilidad.</span></div></div>
+  <div class="kit-chapter"><span class="ch-num">7</span><div><strong>Incubación y crianza</strong><span>Parámetros de incubación, manejo de pollitos y las primeras semanas críticas del lote.</span></div></div>
+  <div class="kit-chapter"><span class="ch-num">8</span><div><strong>Producción de huevos</strong><span>Curva de postura, factores que la afectan, estándares por línea y cómo detectar desvíos a tiempo.</span></div></div>
+  <div class="kit-chapter"><span class="ch-num">9</span><div><strong>Enfermedades y salud</strong><span>Enfermedades frecuentes, signos de alerta, bioseguridad práctica y cuándo llamar al veterinario.</span></div></div>
+  <div class="kit-chapter"><span class="ch-num">10</span><div><strong>Gestión y los números</strong><span>Cómo registrar, calcular costo por huevo, evaluar rentabilidad y tomar decisiones basadas en datos.</span></div></div>
+  <div class="kit-chapter"><span class="ch-num">11</span><div><strong>Crecimiento del negocio</strong><span>Cuándo y cómo escalar, qué indicadores revisar antes de ampliar y cómo proyectar el crecimiento.</span></div></div>
+</div>
 </div>
 </article>
 <article class="kit-item">
@@ -235,7 +253,7 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 <p>Este formulario abre un correo dirigido a <strong>andrew@agromack.cl</strong>. Úsalo para pedir el kit avícola, consultar por implementación o enviar antecedentes de tu proyecto.</p>
 <div class="contact-note">Te responderé prontamente</div>
 </div>
-<form action="mailto:andrew@agromack.cl" class="contact-form" enctype="text/plain" method="post">
+<form class="contact-form" method="post" onsubmit="enviarContacto(event)">
 <label>Nombre
           <input autocomplete="name" name="nombre" required="" type="text"/>
 </label>
@@ -265,5 +283,17 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 </div>
 </footer>
 <script src="assets/js/common.js"></script>
-<script src="assets/js/index.js"></script></body>
+<script src="assets/js/index.js"></script><script>
+function enviarContacto(e) {
+  e.preventDefault();
+  const form = e.target;
+  const nombre  = form.querySelector('[name="nombre"]')?.value || '';
+  const asunto  = form.querySelector('[name="asunto"]')?.value || 'Consulta desde agromack.online';
+  const mensaje = form.querySelector('[name="mensaje"]')?.value || '';
+  const body = encodeURIComponent(`Nombre: ${nombre}\n\n${mensaje}`);
+  const subject = encodeURIComponent(asunto);
+  window.location.href = `mailto:andrew@agromack.cl?subject=${subject}&body=${body}`;
+}
+</script>
+</body>
 </html>
