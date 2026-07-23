@@ -27,3 +27,15 @@
     if(window.innerWidth > 860) closeMenu();
   });
 })();
+
+(function(){
+  const bar = document.getElementById('sticky-buy');
+  const hero = document.querySelector('.hero');
+  if(!bar || !hero || !('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      bar.classList.toggle('is-visible', !entry.isIntersecting && entry.boundingClientRect.top < 0);
+    });
+  }, { threshold: 0 });
+  io.observe(hero);
+})();
