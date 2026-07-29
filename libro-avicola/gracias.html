@@ -16,14 +16,6 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-6T841YJ30M');
-  if(new URLSearchParams(window.location.search).get('ref')==='hotmart'){
-  gtag('event', 'purchase', {
-    transaction_id: Date.now().toString(),
-    value: 19.00,
-    currency: 'USD',
-    items: [{ item_id: 'kit-avicola-completo', item_name: 'Tu Primer Proyecto Avícola — Kit completo', price: 19.00, quantity: 1 }]
-  });
-  }
 </script>
 
 <!-- Meta Pixel -->
@@ -35,9 +27,6 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
 (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','1330091375798035');
 fbq('track','PageView');
-if(new URLSearchParams(window.location.search).get('ref')==='hotmart'){
-  fbq('track','Purchase',{value:19.00,currency:'USD',content_name:'Kit Avícola Completo',content_type:'product'});
-}
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1330091375798035&ev=Purchase&cd[value]=19.00&cd[currency]=USD&noscript=1"/></noscript>
