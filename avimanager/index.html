@@ -54,7 +54,7 @@
     <div class="wrap hero-inner">
       <div class="hero-copy">
         <span class="hero-badge"><span class="dot" aria-hidden="true"></span> Software avícola · Disponible en toda Latinoamérica</span>
-        <h1>Deja las planillas. <mark>Analiza cómo va cada lote</mark> hoy, no a fin de mes.</h1>
+        <h1>Deja las planillas. <mark>Sabe cómo va cada lote</mark> hoy, no a fin de mes.</h1>
         <p class="hero-lead">
           Avimanager registra producción, alimento, ventas y gastos por lote,
           y calcula uniformidad, conversión, postura y costo <strong>de forma automática</strong>,
@@ -105,9 +105,8 @@
             <div class="lbl">Registro diario del galpón</div>
           </div>
         </div>
-        <!-- Reemplazar por assets/img/hero.jpg — mockup del panel o foto del galpón -->
-        <div class="media-slot" style="aspect-ratio:4/3;">
-          <span>Mockup del panel de Avimanager o foto de tu operación<br><small>(las cifras 87% y 2 min de las tarjetas son de ejemplo)</small></span>
+        <div class="phone-frame">
+          <img src="assets/img/hero-app.jpg" alt="Panel de resultados del negocio en Avimanager, con ventas totales, gastos operativos y compras de alimento" class="phone-screen" width="730" height="858" loading="lazy">
         </div>
       </div>
     </div>
@@ -149,20 +148,23 @@
       </div>
       <div class="shot-grid">
         <div>
-          <!-- Reemplazar por assets/img/shot-dashboard.jpg -->
-          <div class="media-slot"><span>Captura: panel de indicadores</span></div>
+          <button type="button" class="shot-zoom" aria-label="Ampliar captura: Panel de indicadores">
+            <img class="shot-img" src="assets/img/shot-dashboard.jpg" alt="Panel de indicadores por lote en Avimanager: mortalidad, consumo, uniformidad, peso promedio y costo por ave" width="1557" height="1059" loading="lazy">
+          </button>
           <p class="shot-caption">Panel de indicadores</p>
           <p class="shot-sub">Uniformidad, postura, conversión y costo por lote y consolidado.</p>
         </div>
         <div>
-          <!-- Reemplazar por assets/img/shot-registro.jpg -->
-          <div class="media-slot"><span>Captura: registro diario</span></div>
+          <button type="button" class="shot-zoom" aria-label="Ampliar captura: Registro diario">
+            <img class="shot-img" src="assets/img/shot-registro.jpg" alt="Detalle de un registro diario en Avimanager, con stock, mortalidad, alimento entregado y quién lo cargó" width="1458" height="1093" loading="lazy">
+          </button>
           <p class="shot-caption">Registro diario</p>
           <p class="shot-sub">Producción, alimento, mortalidad y condiciones, cargados en minutos.</p>
         </div>
         <div>
-          <!-- Reemplazar por assets/img/shot-historial.jpg -->
-          <div class="media-slot"><span>Captura: historial y KPIs</span></div>
+          <button type="button" class="shot-zoom" aria-label="Ampliar captura: Historial por periodo">
+            <img class="shot-img" src="assets/img/shot-historial.jpg" alt="Gráficos históricos de mortalidad diaria y consumo de alimento por ave en Avimanager" width="1554" height="1074" loading="lazy">
+          </button>
           <p class="shot-caption">Historial por periodo</p>
           <p class="shot-sub">Compara semanas, ciclos y lotes sin recalcular nada a mano.</p>
         </div>
@@ -329,7 +331,7 @@
   <section class="team" id="equipo">
     <div class="wrap team-inner">
       <!-- Reemplazar por assets/img/team.jpg — foto del creador en terreno o retrato profesional -->
-      <div class="media-slot team-photo"><span>Foto del creador de Avimanager en terreno</span></div>
+      <img class="team-photo" src="assets/img/team.jpg" alt="Andrew MacKinnon, médico veterinario y creador de Avimanager, en terreno con un ave" width="500" height="548" loading="lazy">
       <div class="team-copy">
         <span class="eyebrow">Quién está detrás</span>
         <h2>Creado por quien conoce el galpón por dentro</h2>
@@ -368,7 +370,7 @@
             <li>Acceso desde web y celular</li>
             <li>Soporte por correo</li>
           </ul>
-          <a href="#acceso" class="btn btn-ghost btn-block">Quiero el plan mensual</a>
+          <a href="https://pay.hotmart.com/M104285732W?off=oq5pxatd&bid=1789858561063" class="btn btn-ghost btn-block" target="_blank" rel="noopener">Quiero el plan mensual</a>
         </div>
         <div class="price-card price-card-featured">
           <div class="price-badge">Ahorra 2 meses</div>
@@ -381,7 +383,7 @@
             <li>Prioridad en soporte</li>
             <li>Acceso anticipado a nuevas funciones</li>
           </ul>
-          <a href="#acceso" class="btn btn-accent btn-block">Quiero el plan anual</a>
+          <a href="https://pay.hotmart.com/M104285732W?off=fq87e7xf&checkoutMode=6&bid=1789858594987" class="btn btn-accent btn-block" target="_blank" rel="noopener">Quiero el plan anual</a>
         </div>
       </div>
       <p class="price-guarantee">
@@ -548,6 +550,13 @@
 <div class="mobile-cta" role="navigation" aria-label="Acciones rápidas">
   <a href="calculadora-uniformidad.html" class="btn btn-ghost">Calculadora</a>
   <a href="#precios" class="btn btn-primary">Ver planes</a>
+</div>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Cerrar imagen ampliada">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="">
 </div>
 
 <script src="assets/js/main.js"></script>

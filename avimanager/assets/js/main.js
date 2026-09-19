@@ -93,3 +93,50 @@ if (header) {
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 }
+
+// ============================================================
+// Lightbox: zoom al hacer click en las capturas de producto
+// ============================================================
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxClose = document.getElementById('lightboxClose');
+const zoomButtons = document.querySelectorAll('.shot-zoom');
+
+let lastFocusedZoom = null;
+
+function openLightbox(triggerBtn) {
+  const img = triggerBtn.querySelector('img');
+  if (!img || !lightbox || !lightboxImg) return;
+
+  lastFocusedZoom = triggerBtn;
+  lightboxImg.src = img.src;
+  lightboxImg.alt = img.alt;
+  lightbox.hidden = false;
+  document.body.style.overflow = 'hidden';
+  lightboxClose.focus();
+}
+
+function closeLightbox() {
+  if (!lightbox) return;
+  lightbox.hidden = true;
+  lightboxImg.src = '';
+  document.body.style.overflow = '';
+  if (lastFocusedZoom) lastFocusedZoom.focus();
+}
+
+zoomButtons.forEach((btn) => {
+  btn.addEventListener('click', () => openLightbox(btn));
+});
+
+if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+
+if (lightbox) {
+  // Cierra al hacer click fuera de la imagen (en el fondo oscuro)
+  lightbox.addEventListener('click', (event) => {
+    if (event.target === lightbox) closeLightbox();
+  });
+}
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && lightbox && !lightbox.hidden) closeLightbox();
+});
