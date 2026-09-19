@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de uniformidad de lote — gratis | Avimanager</title>
+<meta name="description" content="Calcula gratis la uniformidad y el CV% de peso de tu lote avícola a partir de una muestra de pesajes. Herramienta gratuita de Avimanager, sin necesidad de crear cuenta.">
+<meta property="og:title" content="Calculadora de uniformidad de lote — gratis">
+<meta property="og:description" content="Ingresa los pesos de tu muestra y obtén peso promedio, desviación estándar, CV% y % de uniformidad al instante.">
+
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="icon" href="assets/img/favicon.ico">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<header class="site-header" id="header">
+  <div class="wrap header-inner">
+    <a href="index.html" class="brand" aria-label="Avimanager, inicio">
+      <img class="brand-mark-img" src="assets/img/logo.png" alt="" width="38" height="38">
+      <span class="brand-name">Avimanager</span>
+    </a>
+
+    <nav class="main-nav" id="mainNav" aria-label="Navegación principal">
+      <a href="index.html#funciones">Funciones</a>
+      <a href="index.html#como-funciona">Cómo funciona</a>
+      <a href="index.html#precios">Precios</a>
+      <a href="calculadora-uniformidad.html" class="is-active">Calculadora gratis</a>
+      <a href="index.html#preguntas">Preguntas</a>
+      <a href="#precios" class="nav-cta">Ver planes</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <section class="tool-intro">
+    <div class="wrap tool-intro-inner">
+      <span class="eyebrow">Herramienta gratuita · Sin cuenta</span>
+      <h1>Calculadora de uniformidad de lote</h1>
+      <p>
+        Ingresa los pesos de una muestra de tu lote y obtén el <strong>peso promedio</strong>,
+        la <strong>desviación estándar</strong>, el <strong>CV%</strong> y el <strong>% de uniformidad</strong> —
+        al instante, sin crear cuenta.
+      </p>
+    </div>
+  </section>
+
+  <section class="tool-body">
+    <div class="wrap tool-grid">
+
+      <div class="tool-panel">
+        <h2>Tus datos</h2>
+        <div class="form-row">
+          <label for="pesos">Pesos de la muestra</label>
+          <textarea id="pesos" rows="10" placeholder="Un peso por línea o separados por espacio.&#10;Ej:&#10;1250&#10;1180,5&#10;1300&#10;1220">1250
+1180,5
+1300
+1220
+1275
+1150
+1290
+1240
+1195
+1265</textarea>
+          <span class="hint">Un peso por línea o separados por espacio. Usa coma o punto para decimales.</span>
+        </div>
+        <div class="form-row" style="margin-top:1rem;">
+          <label for="unidad">Unidad</label>
+          <select id="unidad">
+            <option value="g">Gramos (g)</option>
+            <option value="kg">Kilogramos (kg)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="tool-panel tool-results">
+        <h2>Resultados</h2>
+        <div id="toolEmpty" class="tool-empty">Ingresa al menos 2 pesos para ver los resultados.</div>
+
+        <div id="toolResults" class="tool-results-body" style="display:none;">
+          <div class="uni-main">
+            <div class="uni-main-l">Uniformidad (±10% del promedio)</div>
+            <div class="uni-main-v" id="rUnif">—<span>%</span></div>
+            <div class="uni-badge" id="rBadge"></div>
+          </div>
+
+          <div class="uni-kpis">
+            <div class="uni-kpi">
+              <div class="uni-kpi-l">Muestra</div>
+              <div class="uni-kpi-v" id="rN">—</div>
+              <div class="uni-kpi-s">aves</div>
+            </div>
+            <div class="uni-kpi">
+              <div class="uni-kpi-l">Promedio</div>
+              <div class="uni-kpi-v" id="rMean">—</div>
+              <div class="uni-kpi-s" id="rUnitMean">g</div>
+            </div>
+            <div class="uni-kpi">
+              <div class="uni-kpi-l">Desv. Est.</div>
+              <div class="uni-kpi-v" id="rSD">—</div>
+              <div class="uni-kpi-s" id="rUnitSD">g</div>
+            </div>
+            <div class="uni-kpi">
+              <div class="uni-kpi-l">CV</div>
+              <div class="uni-kpi-v" id="rCV">—</div>
+              <div class="uni-kpi-s">%</div>
+            </div>
+          </div>
+
+          <div class="uni-range" id="rRange"></div>
+          <div class="uni-outliers" id="rOutliers"></div>
+
+          <p class="tool-note">
+            Referencia general: ≥80% suele considerarse buena uniformidad, 70–79% amerita revisión de manejo,
+            &lt;70% requiere atención. La meta exacta depende de la línea genética y la edad del lote —
+            confírmala con la guía técnica de tu estirpe.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="tool-explain">
+    <div class="wrap wrap-narrow">
+      <span class="eyebrow">Guía rápida</span>
+      <h2>¿Qué es la uniformidad de lote y por qué importa?</h2>
+      <p>
+        La uniformidad mide qué tan parejo está el peso de tu lote. Un lote uniforme responde
+        parejo al manejo nutricional y sanitario; un lote disperso tiene aves que se quedan atrás
+        y otras que se adelantan, lo que complica ajustar el programa de alimentación y anticipa
+        problemas de mortalidad o postura desigual.
+      </p>
+      <p>
+        El cálculo se hace con una muestra representativa del lote (mientras más aves peses,
+        más confiable el resultado), no con el lote completo. El CV% (coeficiente de variación)
+        y el % de uniformidad son las dos formas más usadas de expresar este mismo dato.
+      </p>
+    </div>
+  </section>
+
+  <section class="pricing" id="precios">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="eyebrow">Da el siguiente paso</span>
+        <h2>Esto — y mucho más — automatizado por lote</h2>
+        <p>Avimanager calcula uniformidad, conversión, postura y costo por lote, cada día. Elige tu plan y deja las planillas atrás.</p>
+      </div>
+      <div class="price-grid">
+        <div class="price-card">
+          <div class="price-tier">Plan mensual</div>
+          <div class="price-tag">Flexibilidad total</div>
+          <div class="price-amount">$XX.XXX<span>/mes</span></div>
+          <ul class="price-features">
+            <li>Lotes y galpones ilimitados</li>
+            <li>KPIs automáticos por lote y consolidados</li>
+            <li>Acceso desde web y celular</li>
+            <li>Soporte por correo</li>
+          </ul>
+          <a href="index.html#acceso" class="btn btn-ghost btn-block">Quiero el plan mensual</a>
+        </div>
+        <div class="price-card price-card-featured">
+          <div class="price-badge">Ahorra 2 meses</div>
+          <div class="price-tier price-tier-light">Plan anual</div>
+          <div class="price-tag price-tag-light">Recomendado</div>
+          <div class="price-amount price-amount-light">$XXX.XXX<span>/año</span></div>
+          <ul class="price-features price-features-light">
+            <li>Todo lo del plan mensual</li>
+            <li>Equivalente a 10 meses (2 gratis)</li>
+            <li>Prioridad en soporte</li>
+            <li>Acceso anticipado a nuevas funciones</li>
+          </ul>
+          <a href="index.html#acceso" class="btn btn-accent btn-block">Quiero el plan anual</a>
+        </div>
+      </div>
+      <p class="price-guarantee">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/><polyline points="9 12 11 14 15 10"/></svg>
+        Sin permanencia · Cancela cuando quieras · Datos siempre disponibles para exportar
+      </p>
+      <p class="price-disclaimer">Precios de referencia — reemplazar con los valores reales antes de publicar.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="brand" aria-label="Avimanager, inicio">
+          <img class="brand-mark-img" src="assets/img/logo.png" alt="" width="34" height="34">
+          <span class="brand-name">Avimanager</span>
+        </a>
+        <p class="footer-tagline">Gestión avícola por lote — un producto de Agromack. Escríbenos a <a href="mailto:contacto@agromack.cl">contacto@agromack.cl</a>.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Navegación de pie de página">
+        <a href="index.html#funciones">Funciones</a>
+        <a href="index.html#como-funciona">Cómo funciona</a>
+        <a href="index.html#precios">Precios</a>
+        <a href="calculadora-uniformidad.html">Calculadora</a>
+        <a href="index.html#plataformas">Plataformas</a>
+        <a href="index.html#preguntas">Preguntas</a>
+        <a href="index.html#acceso">Contacto</a>
+      </nav>
+    </div>
+    <p class="footer-legal">© <span id="year">2025</span> Agromack · Avimanager. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<!-- Sticky CTA mobile -->
+<div class="mobile-cta" role="navigation" aria-label="Acciones rápidas">
+  <a href="index.html" class="btn btn-ghost">Volver</a>
+  <a href="#precios" class="btn btn-primary">Ver planes</a>
+</div>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/calculadora-uniformidad.js"></script>
+</body>
+</html>

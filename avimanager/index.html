@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avimanager — Software de gestión avícola por lote | KPIs automáticos</title>
+<meta name="description" content="Avimanager reemplaza tus planillas: registra producción, alimento, ventas y gastos por lote y calcula uniformidad, conversión y postura en segundos. Prueba la calculadora gratis o solicita acceso.">
+<meta property="og:title" content="Avimanager — Gestión avícola por lote, con KPIs al instante">
+<meta property="og:description" content="Registra producción, alimento, ventas y gastos por lote. Uniformidad, conversión y postura calculadas automáticamente. Para productores avícolas en toda Latinoamérica.">
+<meta property="og:type" content="website">
+
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="icon" href="assets/img/favicon.ico">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<header class="site-header" id="header">
+  <div class="wrap header-inner">
+    <a href="#" class="brand" aria-label="Avimanager, inicio">
+      <img class="brand-mark-img" src="assets/img/logo.png" alt="" width="38" height="38">
+      <span class="brand-name">Avimanager</span>
+    </a>
+
+    <nav class="main-nav" id="mainNav" aria-label="Navegación principal">
+      <a href="#funciones">Funciones</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#precios">Precios</a>
+      <a href="calculadora-uniformidad.html">Calculadora gratis</a>
+      <a href="#preguntas">Preguntas</a>
+      <a href="#precios" class="nav-cta">Ver planes</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid-bg" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <span class="hero-badge"><span class="dot" aria-hidden="true"></span> Software avícola · Disponible en toda Latinoamérica</span>
+        <h1>Deja las planillas. <mark>Controla cada lote</mark> desde un solo lugar.</h1>
+        <p class="hero-lead">
+          Avimanager registra producción, alimento, ventas y gastos por lote,
+          y te entrega uniformidad, conversión, postura y costo <strong>calculados automáticamente</strong> —
+          a diario o por el periodo que necesites.
+        </p>
+        <div class="hero-actions">
+          <a href="#precios" class="btn btn-primary">
+            Ver planes y precios
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="calculadora-uniformidad.html" class="btn btn-ghost">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="12" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="12" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="10" y2="18"/><line x1="12" y1="18" x2="16" y2="18"/></svg>
+            Probar calculadora gratis
+          </a>
+        </div>
+        <ul class="hero-trust">
+          <li class="hero-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Sin instalar nada, en web y celular
+          </li>
+          <li class="hero-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Creado por médico veterinario avícola
+          </li>
+          <li class="hero-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Cancela cuando quieras
+          </li>
+        </ul>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-stat-chip chip-a" aria-hidden="true">
+          <div class="ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M11 19V5M18 19v-7"/></svg>
+          </div>
+          <div>
+            <div class="num">87%</div>
+            <div class="lbl">Uniformidad de lote</div>
+          </div>
+        </div>
+        <div class="hero-stat-chip chip-b" aria-hidden="true">
+          <div class="ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </div>
+          <div>
+            <div class="num">2 min</div>
+            <div class="lbl">Registro diario del galpón</div>
+          </div>
+        </div>
+        <!-- Reemplazar por assets/img/hero.jpg — mockup del panel o foto del galpón -->
+        <div class="media-slot" style="aspect-ratio:4/3;">
+          <span>Mockup del panel de Avimanager o foto de tu operación</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COUNTRY / TRUST STRIP -->
+  <section class="country-strip" aria-label="Alcance regional">
+    <div class="wrap country-strip-inner">
+      <strong>Productores avícolas confían en Avimanager en:</strong>
+      <span class="flag">Chile</span>
+      <span class="flag">Perú</span>
+      <span class="flag">Colombia</span>
+      <span class="flag">México</span>
+      <span class="flag">Argentina</span>
+      <span class="flag">Ecuador</span>
+    </div>
+  </section>
+
+  <!-- CONTEXTO / DOLOR -->
+  <section class="context">
+    <div class="wrap">
+      <p>
+        Hoy esos números suelen vivir repartidos: un cuaderno en el galpón,
+        una planilla que solo una persona sabe llenar, y un cálculo que llega
+        semanas después de tomada la decisión. Avimanager junta ese registro
+        en un solo lugar, ordenado por lote desde el primer día — para que
+        decidas con datos, no con memoria.
+      </p>
+    </div>
+  </section>
+
+  <!-- PRODUCTO / CAPTURAS -->
+  <section class="product-shots" id="producto">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">El producto</span>
+        <h2>Tu operación, de un vistazo</h2>
+        <p>Desde el panel de indicadores hasta el registro del día — todo por lote, todo enlazado.</p>
+      </div>
+      <div class="shot-grid">
+        <div>
+          <!-- Reemplazar por assets/img/shot-dashboard.jpg -->
+          <div class="media-slot"><span>Captura: panel de indicadores</span></div>
+          <p class="shot-caption">Panel de indicadores</p>
+          <p class="shot-sub">Uniformidad, postura, conversión y costo por lote y consolidado.</p>
+        </div>
+        <div>
+          <!-- Reemplazar por assets/img/shot-registro.jpg -->
+          <div class="media-slot"><span>Captura: registro diario</span></div>
+          <p class="shot-caption">Registro diario</p>
+          <p class="shot-sub">Producción, alimento, mortalidad y condiciones — cargados en minutos.</p>
+        </div>
+        <div>
+          <!-- Reemplazar por assets/img/shot-historial.jpg -->
+          <div class="media-slot"><span>Captura: historial y KPIs</span></div>
+          <p class="shot-caption">Historial por periodo</p>
+          <p class="shot-sub">Compara semanas, ciclos y lotes sin recalcular nada a mano.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNCIONES -->
+  <section class="features" id="funciones">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Funciones</span>
+        <h2>Todo lo que hoy anotas a mano, en un solo lugar</h2>
+        <p>Cada dato queda asociado a su lote y su galpón — no suelto en una hoja aparte.</p>
+      </div>
+
+      <div class="feature-groups">
+
+        <div class="feature-group" style="--accent:#1A2A5C">
+          <h3>Producción</h3>
+          <ul>
+            <li>
+              <svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg>
+              <div>
+                <strong>Registros diarios</strong>
+                <p>Mortalidad, consumo de alimento y condiciones del galpón, lote por lote.</p>
+              </div>
+            </li>
+            <li>
+              <svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              <div>
+                <strong>Pesaje y uniformidad</strong>
+                <p>Peso promedio, CV% y % de uniformidad calculados desde tus muestras.</p>
+              </div>
+            </li>
+            <li>
+              <svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+              <div>
+                <strong>Selección de huevos por calibre</strong>
+                <p>Clasificación por tamaño, con el detalle que hoy separas a mano.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="feature-group" style="--accent:#0A7272">
+          <h3>Alimentación</h3>
+          <ul>
+            <li>
+              <svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 10h12l-1.5 10h-9L6 10z"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/></svg>
+              <div>
+                <strong>Compra y stock de alimento</strong>
+                <p>Ingresas la compra y el stock de bodega baja solo con el consumo real del lote.</p>
+              </div>
+            </li>
+            <li>
+              <svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="14" y2="17"/></svg>
+              <div>
+                <strong>Mantenedor de dietas</strong>
+                <p>Alimentos organizados por marca y formulación, listos para asignar a cada lote.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="feature-group" style="--accent:#1FBCBD">
+          <h3>Comercial</h3>
+          <ul>
+            <li>
+              <svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18l-2 10H5L3 6z"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg>
+              <div>
+                <strong>Ventas por lote</strong>
+                <p>Huevos, aves, alimento y otros ítems — cada venta enlazada al lote correspondiente.</p>
+              </div>
+            </li>
+            <li>
+              <svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="2"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="14" y2="14"/></svg>
+              <div>
+                <strong>Gastos generales</strong>
+                <p>Atribuibles a un lote específico o a la operación completa, según corresponda.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="feature-group" style="--accent:#F5B02E">
+          <h3>Indicadores (KPIs)</h3>
+          <ul>
+            <li>
+              <svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8M22 20V14"/></svg>
+              <div>
+                <strong>KPIs diarios y por periodo</strong>
+                <p>Uniformidad, postura, conversión, mortalidad y costo — por lote y consolidados.</p>
+              </div>
+            </li>
+            <li>
+              <svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>
+              <div>
+                <strong>Comparativas y tendencias</strong>
+                <p>Ve cómo evoluciona cada lote y detecta desviaciones antes de que se vuelvan un problema.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="how" id="como-funciona">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="eyebrow">Cómo funciona</span>
+        <h2>De la libreta al panel en 3 pasos</h2>
+        <p>La primera carga toma minutos. Desde ahí, solo registras el día a día.</p>
+      </div>
+      <ol class="steps">
+        <li>
+          <span class="step-n">1</span>
+          <h3>Crea tus galpones y lotes</h3>
+          <p>Defines la estructura de tu operación y el objetivo de cada lote: postura, engorde o crianza.</p>
+        </li>
+        <li>
+          <span class="step-n">2</span>
+          <h3>Registra a diario</h3>
+          <p>Cargas producción, alimento, ventas y gastos a medida que ocurren, o en bloque al cierre del día.</p>
+        </li>
+        <li>
+          <span class="step-n">3</span>
+          <h3>Revisa tus KPIs al momento</h3>
+          <p>Uniformidad, conversión, postura y costo por lote, calculados automáticamente.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL / SOCIAL PROOF -->
+  <section class="testimonial">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="eyebrow">Voz de productor</span>
+        <h2>Lo que dicen quienes ya lo usan</h2>
+      </div>
+      <figure class="testimonial-card">
+        <blockquote class="testimonial-quote">
+          Antes cerraba el mes con planillas de tres personas distintas y siempre discutíamos los números.
+          Ahora abro Avimanager y sé cómo va cada lote en un minuto — y el equipo del galpón carga los datos
+          sin preguntarme nada.
+        </blockquote>
+        <figcaption class="testimonial-author">
+          <div class="testimonial-avatar" aria-hidden="true">JR</div>
+          <div>
+            <div class="testimonial-name">Testimonio de productor</div>
+            <div class="testimonial-role">Reemplazar con nombre, cargo y plantel real</div>
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- EQUIPO / CREDIBILIDAD -->
+  <section class="team" id="equipo">
+    <div class="wrap team-inner">
+      <!-- Reemplazar por assets/img/team.jpg — foto del creador en terreno o retrato profesional -->
+      <div class="media-slot team-photo"><span>Foto del creador de Avimanager en terreno</span></div>
+      <div class="team-copy">
+        <span class="eyebrow">Quién está detrás</span>
+        <h2>Creado por quien conoce el galpón por dentro</h2>
+        <p>
+          Avimanager nace de la experiencia directa en terreno: un médico
+          veterinario especializado en avicultura, que asesoró planteles de
+          postura y engorde antes de construir la herramienta que necesitaba
+          para llevar el control real de cada lote — la misma que hoy ofrece a
+          productores en toda Latinoamérica.
+        </p>
+        <ul class="team-facts">
+          <li>Médico veterinario, especialista en avicultura</li>
+          <li>Experiencia directa en planteles de postura y engorde</li>
+          <li>Creador y desarrollador de Avimanager</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRECIOS -->
+  <section class="pricing" id="precios">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="eyebrow">Precios</span>
+        <h2>Un solo plan, dos ciclos</h2>
+        <p>Todo incluido. Cambia entre mensual y anual, o cancela, cuando quieras.</p>
+      </div>
+      <div class="price-grid">
+        <div class="price-card">
+          <div class="price-tier">Plan mensual</div>
+          <div class="price-tag">Flexibilidad total</div>
+          <div class="price-amount">$XX.XXX<span>/mes</span></div>
+          <ul class="price-features">
+            <li>Lotes y galpones ilimitados</li>
+            <li>KPIs automáticos por lote y consolidados</li>
+            <li>Acceso desde web y celular</li>
+            <li>Soporte por correo</li>
+          </ul>
+          <a href="#acceso" class="btn btn-ghost btn-block">Quiero el plan mensual</a>
+        </div>
+        <div class="price-card price-card-featured">
+          <div class="price-badge">Ahorra 2 meses</div>
+          <div class="price-tier price-tier-light">Plan anual</div>
+          <div class="price-tag price-tag-light">Recomendado</div>
+          <div class="price-amount price-amount-light">$XXX.XXX<span>/año</span></div>
+          <ul class="price-features price-features-light">
+            <li>Todo lo del plan mensual</li>
+            <li>Equivalente a 10 meses (2 gratis)</li>
+            <li>Prioridad en soporte</li>
+            <li>Acceso anticipado a nuevas funciones</li>
+          </ul>
+          <a href="#acceso" class="btn btn-accent btn-block">Quiero el plan anual</a>
+        </div>
+      </div>
+      <p class="price-guarantee">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/><polyline points="9 12 11 14 15 10"/></svg>
+        Sin permanencia · Cancela cuando quieras · Datos siempre disponibles para exportar
+      </p>
+      <p class="price-disclaimer">Precios de referencia — reemplazar con los valores reales antes de publicar.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="preguntas">
+    <div class="wrap wrap-narrow">
+      <div class="section-head center">
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2>Lo que suelen preguntarnos</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>¿Qué es Avimanager exactamente?</summary>
+          <p>Es una plataforma web donde registras la producción, el alimento, las ventas y los gastos de cada lote de tu operación avícola, y obtienes los indicadores (KPIs) calculados automáticamente — a diario o por el periodo que necesites.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Necesito instalar algo?</summary>
+          <p>No. Hoy funciona completo desde el navegador, en el computador o el celular, sin instalar aplicaciones. La versión instalable para Android e iOS está en camino.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Sirve para planteles de postura y engorde?</summary>
+          <p>Sí. Al crear un lote defines si es de postura, engorde o crianza, y los KPIs se ajustan a lo que corresponde medir en cada caso.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Puedo gestionar más de un galpón o lote?</summary>
+          <p>Sí, sin límite. Cada galpón y cada lote se registran por separado, con sus propios indicadores, y también tienes la vista consolidada de toda la operación.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Mis trabajadores del galpón pueden cargar datos?</summary>
+          <p>Sí. Está pensado para que el equipo en terreno cargue lo del día directo desde el celular, sin necesidad de ser el administrador ni pasar por planillas.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Qué KPIs calcula Avimanager?</summary>
+          <p>Uniformidad, CV% de peso, postura, conversión alimenticia, mortalidad y costo por lote — con vista diaria, por periodo y consolidada para toda tu operación.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Cómo cambio o cancelo mi plan?</summary>
+          <p>Puedes cambiar entre el plan mensual y el anual, o cancelar, cuando lo necesites. Escríbenos a <a href="mailto:contacto@agromack.cl">contacto@agromack.cl</a> y lo hacemos el mismo día.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Puedo ver cómo funciona antes de suscribirme?</summary>
+          <p>Sí. Puedes probar la <a href="calculadora-uniformidad.html">calculadora de uniformidad</a> ahora mismo — usa la misma metodología que Avimanager. Y si quieres ver el sistema completo, escríbenos y coordinamos una demostración.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATAFORMAS -->
+  <section class="platforms" id="plataformas">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="eyebrow">Plataformas</span>
+        <h2>Empieza en la web, sigue en el celular</h2>
+        <p>La operación diaria pasa en el galpón. Avimanager va con ella.</p>
+      </div>
+      <div class="platform-list">
+        <div class="platform-item">
+          <div class="platform-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><line x1="8" y1="22" x2="16" y2="22"/><line x1="12" y1="18" x2="12" y2="22"/></svg>
+          </div>
+          <span class="platform-status status-ready">Disponible</span>
+          <h3>Aplicación web</h3>
+          <p>Funciona desde cualquier navegador, en el escritorio o el celular — sin instalar nada.</p>
+        </div>
+        <div class="platform-item">
+          <div class="platform-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+          </div>
+          <span class="platform-status status-soon">Pronto</span>
+          <h3>Instalable para Android e iOS</h3>
+          <p>Una versión instalable pensada para usarse directo desde el galpón, incluso con conexión débil.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCESO -->
+  <section class="access" id="acceso">
+    <div class="wrap access-inner">
+      <div class="access-side">
+        <span class="eyebrow">Solicita acceso</span>
+        <h2 style="color:#fff;">Comienza a llevar tu operación en Avimanager</h2>
+        <p>Cuéntanos sobre tu operación y te contactamos en menos de 24 horas para coordinar la implementación — te ayudamos a cargar tus primeros lotes.</p>
+        <ul class="access-perks">
+          <li>Respuesta en menos de 24 horas hábiles</li>
+          <li>Implementación asistida — no partes de cero solo</li>
+          <li>Sin permanencia · Cancela cuando quieras</li>
+        </ul>
+      </div>
+
+      <form class="access-form" id="accessForm" novalidate>
+        <p class="access-form-title">Déjanos tus datos</p>
+        <div class="form-row">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" required autocomplete="name" placeholder="Cómo te llamas">
+        </div>
+        <div class="form-row">
+          <label for="correo">Correo</label>
+          <input type="email" id="correo" name="correo" required autocomplete="email" placeholder="tu@correo.com">
+        </div>
+        <div class="form-row">
+          <label for="pais">País</label>
+          <select id="pais" name="pais" required>
+            <option value="">Selecciona</option>
+            <option>Chile</option>
+            <option>Perú</option>
+            <option>Colombia</option>
+            <option>México</option>
+            <option>Argentina</option>
+            <option>Ecuador</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="lotes">Cantidad de lotes o galpones (opcional)</label>
+          <input type="text" id="lotes" name="lotes" autocomplete="off" placeholder="Ej: 4 galpones · 20.000 aves">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Solicitar acceso</button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        <p class="form-alt">o escríbenos por</p>
+        <a href="mailto:contacto@agromack.cl" class="btn btn-ghost btn-block">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          contacto@agromack.cl
+        </a>
+        <p class="form-legal">Al enviar aceptas que te contactemos para coordinar el acceso. No compartimos tus datos.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="brand" aria-label="Avimanager, inicio">
+          <img class="brand-mark-img" src="assets/img/logo.png" alt="" width="34" height="34">
+          <span class="brand-name">Avimanager</span>
+        </a>
+        <p class="footer-tagline">Gestión avícola por lote — un producto de Agromack. Escríbenos a <a href="mailto:contacto@agromack.cl">contacto@agromack.cl</a>.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Navegación de pie de página">
+        <a href="#funciones">Funciones</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#precios">Precios</a>
+        <a href="calculadora-uniformidad.html">Calculadora</a>
+        <a href="#plataformas">Plataformas</a>
+        <a href="#preguntas">Preguntas</a>
+        <a href="#acceso">Contacto</a>
+      </nav>
+    </div>
+    <p class="footer-legal">© <span id="year">2025</span> Agromack · Avimanager. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<!-- Sticky CTA mobile -->
+<div class="mobile-cta" role="navigation" aria-label="Acciones rápidas">
+  <a href="calculadora-uniformidad.html" class="btn btn-ghost">Calculadora</a>
+  <a href="#precios" class="btn btn-primary">Ver planes</a>
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
