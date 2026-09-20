@@ -100,7 +100,7 @@ if (header) {
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
 const lightboxClose = document.getElementById('lightboxClose');
-const zoomButtons = document.querySelectorAll('.shot-zoom');
+const zoomButtons = document.querySelectorAll('.shot-zoom, .compare-zoom');
 
 let lastFocusedZoom = null;
 

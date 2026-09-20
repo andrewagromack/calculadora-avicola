@@ -3,6 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YMJ07HMBLQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YMJ07HMBLQ');
+</script>
+
 <title>Avimanager — Software de gestión avícola por lote | KPIs automáticos</title>
 <meta name="description" content="Avimanager reemplaza tus planillas: registra producción, alimento, ventas y gastos por lote y calcula uniformidad, conversión y postura en segundos. Prueba la calculadora gratis o solicita acceso.">
 <meta property="og:title" content="Avimanager — Gestión avícola por lote, con KPIs al instante">
@@ -54,7 +65,7 @@
     <div class="wrap hero-inner">
       <div class="hero-copy">
         <span class="hero-badge"><span class="dot" aria-hidden="true"></span> Software avícola · Disponible en toda Latinoamérica</span>
-        <h1>Deja las planillas. <mark>Sabe cómo va cada lote</mark> hoy, no a fin de mes.</h1>
+        <h1>Deja las planillas. <mark>Revisa cómo va cada lote</mark> hoy, no a fin de mes.</h1>
         <p class="hero-lead">
           Avimanager registra producción, alimento, ventas y gastos por lote,
           y calcula uniformidad, conversión, postura y costo <strong>de forma automática</strong>,
@@ -274,6 +285,24 @@
     </div>
   </section>
 
+  <!-- POR QUÉ AVICULTURA Y NO GENÉRICO -->
+  <section class="not-generic" id="enfoque">
+    <div class="wrap not-generic-inner">
+      <div class="not-generic-copy">
+        <span class="eyebrow">Por qué existe</span>
+        <h2>Ya habla el idioma de tu galpón</h2>
+        <p>Lote, galpón, calibre, postura: las palabras que ya usas todos los días, ya están adentro.</p>
+        <ul class="not-generic-list">
+          <li>Preguntamos por tu lote y tu galpón desde el primer clic.</li>
+          <li>El alimento se liga solo al lote que lo consumió.</li>
+          <li>Uniformidad, conversión y postura llegan ya calculadas.</li>
+          <li>Las pantallas usan tus palabras: postura, engorde, calibre, crianza.</li>
+        </ul>
+      </div>
+      <img class="not-generic-photo" src="assets/img/enfoque-terreno.jpg" alt="Andrew MacKinnon con su equipo en terreno, frente a los galpones de un plantel avícola" width="1445" height="1088" loading="lazy">
+    </div>
+  </section>
+
   <!-- COMO FUNCIONA -->
   <section class="how" id="como-funciona">
     <div class="wrap">
@@ -302,28 +331,42 @@
     </div>
   </section>
 
-  <!-- TESTIMONIAL / SOCIAL PROOF -->
-  <section class="testimonial">
+  <!-- VIDEO -->
+  <section class="video-demo" id="video">
     <div class="wrap">
       <div class="section-head center">
-        <span class="eyebrow">Voz de productor</span>
-        <h2>Lo que dicen quienes ya lo usan</h2>
+        <span class="eyebrow">Véelo en acción</span>
+        <h2>Un recorrido de un minuto</h2>
       </div>
-      <figure class="testimonial-card">
-        <blockquote class="testimonial-quote">
-          Antes cerraba el mes con planillas de tres personas distintas y siempre discutíamos los números.
-          Ahora abro Avimanager y sé cómo va cada lote en un minuto — y el equipo del galpón carga los datos
-          sin preguntarme nada.
-        </blockquote>
-        <figcaption class="testimonial-author">
-          <div class="testimonial-avatar" aria-hidden="true">JR</div>
-          <div>
-            <div class="testimonial-name">Testimonio de productor</div>
-            <div class="testimonial-role">Reemplazar con nombre, cargo y plantel real</div>
-          </div>
-        </figcaption>
-      </figure>
-      <p class="placeholder-note">Placeholder — testimonio de ejemplo, reemplazar por uno real (o quitar la sección) antes de publicar.</p>
+      <!-- Reemplazar por el embed real (YouTube no listado o Vimeo) cuando el video esté grabado -->
+      <div class="media-slot video-slot" style="aspect-ratio:16/9;">
+        <span>Video del recorrido (próximamente)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANTES Y DESPUÉS -->
+  <section class="compare" id="antes-despues">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="eyebrow">Antes y después</span>
+        <h2>Un registro real, del papel al sistema</h2>
+        <p>Misma clase de dato de campo: mortalidad, temperatura, amoniaco, comentarios del día.</p>
+      </div>
+      <div class="compare-grid">
+        <div class="compare-item">
+          <span class="compare-tag">Antes</span>
+          <button type="button" class="compare-zoom" aria-label="Ampliar: planilla de papel (antes)">
+            <img class="compare-img" src="assets/img/planilla-antes.jpg" alt="Planilla de papel real con registro diario de pollitos: temperatura, mortalidad y comentarios" width="640" height="760" loading="lazy">
+          </button>
+        </div>
+        <div class="compare-item">
+          <span class="compare-tag compare-tag-accent">Ahora</span>
+          <button type="button" class="compare-zoom" aria-label="Ampliar: registro digitalizado en Avimanager (ahora)">
+            <img class="compare-img" src="assets/img/shot-registro.jpg" alt="El mismo tipo de registro diario, digitalizado en Avimanager" width="1458" height="1093" loading="lazy">
+          </button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -335,8 +378,9 @@
       <div class="team-copy">
         <span class="eyebrow">Quién está detrás</span>
         <h2>Creado por quien conoce el galpón por dentro</h2>
+        <p class="team-name-tag"><strong>Andrew MacKinnon</strong> · Médico veterinario, creador de Avimanager</p>
         <p>
-          Avimanager nace de la experiencia directa en terreno: un médico
+          Avimanager nace de la experiencia directa en terreno de Andrew: un médico
           veterinario especializado en avicultura, que asesoró planteles de
           postura y engorde antes de construir la herramienta que necesitaba
           para llevar el control real de cada lote. Hoy es la misma que ofrece a
@@ -346,6 +390,7 @@
           <li>Médico veterinario, especialista en avicultura</li>
           <li>Experiencia directa en planteles de postura y engorde</li>
           <li>Creador y desarrollador de Avimanager</li>
+          <li>Sin equipo de soporte por turnos: escribes y te responde quien construyó la herramienta</li>
         </ul>
       </div>
     </div>
@@ -363,34 +408,34 @@
         <div class="price-card">
           <div class="price-tier">Plan mensual</div>
           <div class="price-tag">Flexibilidad total</div>
-          <div class="price-amount">$XX.XXX<span>/mes</span></div>
+          <div class="price-amount">US$8,99<span>/mes</span></div>
           <ul class="price-features">
             <li>Lotes y galpones ilimitados</li>
             <li>KPIs automáticos por lote y consolidados</li>
             <li>Acceso desde web y celular</li>
             <li>Soporte por correo</li>
           </ul>
-          <a href="https://pay.hotmart.com/M104285732W?off=oq5pxatd&bid=1789858561063" class="btn btn-ghost btn-block" target="_blank" rel="noopener">Quiero el plan mensual</a>
+          <a href="https://pay.hotmart.com/M104285732W?off=g03cegig&checkoutMode=6" class="btn btn-ghost btn-block" target="_blank" rel="noopener">Quiero el plan mensual</a>
         </div>
         <div class="price-card price-card-featured">
-          <div class="price-badge">Ahorra 2 meses</div>
+          <div class="price-badge">Ahorra 29%</div>
           <div class="price-tier price-tier-light">Plan anual</div>
           <div class="price-tag price-tag-light">Recomendado</div>
-          <div class="price-amount price-amount-light">$XXX.XXX<span>/año</span></div>
+          <div class="price-amount price-amount-light">US$77<span>/año</span></div>
           <ul class="price-features price-features-light">
             <li>Todo lo del plan mensual</li>
-            <li>Equivalente a 10 meses (2 gratis)</li>
+            <li>Equivale a US$6,42/mes</li>
             <li>Prioridad en soporte</li>
             <li>Acceso anticipado a nuevas funciones</li>
           </ul>
-          <a href="https://pay.hotmart.com/M104285732W?off=fq87e7xf&checkoutMode=6&bid=1789858594987" class="btn btn-accent btn-block" target="_blank" rel="noopener">Quiero el plan anual</a>
+          <a href="https://pay.hotmart.com/M104285732W?off=nf4hmr9h&checkoutMode=6" class="btn btn-accent btn-block" target="_blank" rel="noopener">Quiero el plan anual</a>
         </div>
       </div>
       <p class="price-guarantee">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/><polyline points="9 12 11 14 15 10"/></svg>
         Sin permanencia · Cancela cuando quieras · Datos siempre disponibles para exportar
       </p>
-      <p class="price-disclaimer">Precios de referencia — reemplazar con los valores reales antes de publicar.</p>
+      <p class="price-disclaimer">Precios en dólares americanos (USD). Pago procesado por Hotmart.</p>
     </div>
   </section>
 
@@ -433,6 +478,10 @@
         <details class="faq-item">
           <summary>¿Puedo ver cómo funciona antes de suscribirme?</summary>
           <p>Sí. Puedes probar la <a href="calculadora-uniformidad.html">calculadora de uniformidad</a> ahora mismo, con la misma metodología que usa Avimanager. Y si quieres ver el sistema completo, escríbenos y coordinamos una demostración.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Por qué no tiene todas las funciones de una plataforma grande?</summary>
+          <p>Porque el foco está en que uses todo lo que tiene, no en sumar módulos que nunca vas a abrir. Cubre registro diario, alimento, ventas, gastos, pesaje, clasificación de huevos y KPIs, lo que un productor mediano usa todos los días, sin la curva de aprendizaje de una plataforma corporativa.</p>
         </details>
       </div>
     </div>
