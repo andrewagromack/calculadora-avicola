@@ -28,58 +28,13 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
 // ============================================================
 // Formulario de solicitud de acceso
 //
-// TODO(backend): este formulario NO envía datos a ningún lado
-// todavía. Antes de publicar, conectar a uno de:
-//   - Un endpoint propio (ej. FastAPI existente o una función
-//     serverless en Vercel) que inserte en Supabase.
-//   - Un servicio de formularios externo (Formspree, Basin, etc.)
-//     cambiando el fetch de abajo por su endpoint.
-// Mientras tanto, solo valida y muestra un mensaje de confirmación
-// en pantalla; los datos no quedan guardados en ningún lado.
+// El envío real lo maneja el script de MailerLite (ver el final
+// de index.html: webforms.min.js + ml_webform_success_46151553).
+// Ese script intercepta el submit, publica en la lista real y
+// muestra el div .row-success al terminar. Acá no hay que hacer
+// nada más — si se agrega lógica de submit propia, hay que evitar
+// un event.preventDefault() incondicional o bloquea el envío real.
 // ============================================================
-const accessForm = document.getElementById('accessForm');
-const formStatus = document.getElementById('formStatus');
-
-if (accessForm && formStatus) {
-  accessForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    const nombre = document.getElementById('nombre').value.trim();
-    const correo = document.getElementById('correo').value.trim();
-
-    if (!nombre || !correo) {
-      formStatus.classList.remove('is-success');
-      formStatus.classList.add('is-error');
-      formStatus.textContent = 'Completa nombre y correo para continuar.';
-      return;
-    }
-
-    // Validación mínima de email
-    if (!/^\S+@\S+\.\S+$/.test(correo)) {
-      formStatus.classList.remove('is-success');
-      formStatus.classList.add('is-error');
-      formStatus.textContent = 'Revisa que el correo esté bien escrito.';
-      return;
-    }
-
-    // --- Punto de integración futuro ---
-    // fetch('/api/leads', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({
-    //     nombre,
-    //     correo,
-    //     pais: document.getElementById('pais')?.value || '',
-    //     lotes: document.getElementById('lotes')?.value.trim() || ''
-    //   })
-    // });
-
-    formStatus.classList.remove('is-error');
-    formStatus.classList.add('is-success');
-    formStatus.textContent = `¡Listo, ${nombre.split(' ')[0]}! Te escribimos a ${correo} en menos de 24 horas hábiles.`;
-    accessForm.reset();
-  });
-}
 
 // ============================================================
 // Header más denso al hacer scroll
@@ -109,7 +64,9 @@ function openLightbox(triggerBtn) {
   if (!img || !lightbox || !lightboxImg) return;
 
   lastFocusedZoom = triggerBtn;
-  lightboxImg.src = img.src;
+  // Si la miniatura es un recorte (tiene data-full), el lightbox muestra
+  // la imagen completa en vez del recorte.
+  lightboxImg.src = img.dataset.full || img.src;
   lightboxImg.alt = img.alt;
   lightbox.hidden = false;
   document.body.style.overflow = 'hidden';

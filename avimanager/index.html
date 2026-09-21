@@ -366,24 +366,31 @@ src="https://www.facebook.com/tr?id=1386238589918832&ev=PageView&noscript=1"
   <section class="compare" id="antes-despues">
     <div class="wrap">
       <div class="section-head center">
-        <span class="eyebrow">Antes y después</span>
-        <h2>Un registro real, del papel al sistema</h2>
-        <p>Misma clase de dato de campo: mortalidad, temperatura, amoniaco, comentarios del día.</p>
+        <span class="eyebrow">De la tabla al resultado</span>
+        <h2>Un registro real, de principio a fin</h2>
+        <p>La misma tabla de papel no llega a ningún resultado por sí sola. Una vez que pasa por el registro digital, los indicadores salen solos.</p>
       </div>
       <div class="compare-grid">
         <div class="compare-item">
-          <span class="compare-tag">Antes</span>
-          <button type="button" class="compare-zoom" aria-label="Ampliar: planilla de papel (antes)">
+          <span class="compare-tag">1 · Tabla</span>
+          <button type="button" class="compare-zoom" aria-label="Ampliar: planilla de papel">
             <img class="compare-img" src="assets/img/planilla-antes.jpg" alt="Planilla de papel real con registro diario de pollitos: temperatura, mortalidad y comentarios" width="640" height="760" loading="lazy">
           </button>
         </div>
         <div class="compare-item">
-          <span class="compare-tag compare-tag-accent">Ahora</span>
-          <button type="button" class="compare-zoom" aria-label="Ampliar: registro digitalizado en Avimanager (ahora)">
+          <span class="compare-tag compare-tag-accent">2 · Registro</span>
+          <button type="button" class="compare-zoom" aria-label="Ampliar: registro digitalizado en Avimanager">
             <img class="compare-img" src="assets/img/shot-registro.jpg" alt="El mismo tipo de registro diario, digitalizado en Avimanager" width="1458" height="1093" loading="lazy">
           </button>
         </div>
+        <div class="compare-item">
+          <span class="compare-tag compare-tag-accent">3 · Resultados</span>
+          <button type="button" class="compare-zoom" aria-label="Ampliar: gráficos y resultados en Avimanager">
+            <img class="compare-img" src="assets/img/resultados-graficos.jpg" data-full="assets/img/resultados-graficos-full.jpg" alt="Gráficos de curva de peso, temperatura y humedad calculados automáticamente en Avimanager" width="1318" height="1318" loading="lazy">
+          </button>
+        </div>
       </div>
+      <p class="compare-note">Datos de ejemplo, para mostrar el formato. Avimanager además genera un reporte de trazabilidad exportable por lote: indicadores del ciclo, producción por semana, pesajes, alimentación por proveedor, gastos y resultado del ciclo.</p>
     </div>
   </section>
 
@@ -500,6 +507,10 @@ src="https://www.facebook.com/tr?id=1386238589918832&ev=PageView&noscript=1"
           <summary>¿Por qué no tiene todas las funciones de una plataforma grande?</summary>
           <p>Porque el foco está en que uses todo lo que tiene, no en sumar módulos que nunca vas a abrir. Cubre registro diario, alimento, ventas, gastos, pesaje, clasificación de huevos y KPIs, lo que un productor mediano usa todos los días, sin la curva de aprendizaje de una plataforma corporativa.</p>
         </details>
+        <details class="faq-item">
+          <summary>¿Puedo exportar un reporte del ciclo completo?</summary>
+          <p>Sí. Cada lote genera un reporte de trazabilidad exportable con los indicadores del ciclo, producción semana a semana, historial de pesajes, alimentación por proveedor, gastos y el resultado económico del ciclo completo.</p>
+        </details>
       </div>
     </div>
   </section>
@@ -547,42 +558,70 @@ src="https://www.facebook.com/tr?id=1386238589918832&ev=PageView&noscript=1"
         </ul>
       </div>
 
-      <form class="access-form" id="accessForm" novalidate>
-        <p class="access-form-title">Déjanos tus datos</p>
-        <div class="form-row">
-          <label for="nombre">Nombre</label>
-          <input type="text" id="nombre" name="nombre" required autocomplete="name" placeholder="Cómo te llamas">
+      <div id="mlb2-46151553" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-46151553 access-form-wrap">
+        <div class="ml-form-embedWrapper embedForm row-form">
+          <div class="ml-form-embedBody">
+            <p class="access-form-title">Déjanos tus datos</p>
+            <form class="ml-block-form access-form" id="accessForm" action="https://assets.mailerlite.com/jsonp/2057335/forms/199178800157689765/subscribe" data-code="" method="post" target="_blank">
+              <div class="ml-form-formContent">
+                <div class="ml-form-fieldRow form-row">
+                  <label for="nombre">Nombre</label>
+                  <div class="ml-field-group ml-field-name ml-validate-required">
+                    <input aria-label="name" aria-required="true" type="text" id="nombre" class="form-control" name="fields[name]" placeholder="Cómo te llamas" autocomplete="given-name">
+                  </div>
+                </div>
+                <div class="ml-form-fieldRow form-row">
+                  <label for="correo">Correo</label>
+                  <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                    <input aria-label="email" aria-required="true" type="email" id="correo" class="form-control" name="fields[email]" placeholder="tu@correo.com" autocomplete="email">
+                  </div>
+                </div>
+                <div class="ml-form-fieldRow form-row">
+                  <label for="pais">País</label>
+                  <div class="ml-field-group ml-field-country ml-validate-required">
+                    <select class="custom-select" id="pais" name="fields[country]" aria-label="country" aria-required="true">
+                      <option value="">Selecciona</option>
+                      <option>Chile</option>
+                      <option>Perú</option>
+                      <option>Colombia</option>
+                      <option>México</option>
+                      <option>Argentina</option>
+                      <option>Ecuador</option>
+                      <option>Otro</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="ml-form-fieldRow ml-last-item form-row">
+                  <label for="aves">Cantidad de aves</label>
+                  <div class="ml-field-group ml-field-nro_aves ml-validate-required">
+                    <input aria-label="nro_aves" aria-required="true" type="text" id="aves" class="form-control" name="fields[nro_aves]" placeholder="Ej: 20.000 aves" autocomplete="off">
+                  </div>
+                </div>
+              </div>
+              <input type="hidden" name="ml-submit" value="1">
+              <div class="ml-form-embedSubmit">
+                <button type="submit" class="primary btn btn-primary btn-block">Solicitar acceso</button>
+                <button disabled="disabled" style="display:none;" type="button" class="loading btn btn-primary btn-block">
+                  <div class="ml-form-embedSubmitLoad"></div>
+                  <span class="sr-only">Enviando...</span>
+                </button>
+              </div>
+              <input type="hidden" name="anticsrf" value="true">
+            </form>
+          </div>
+          <div class="ml-form-successBody row-success access-form-success" style="display:none">
+            <div class="ml-form-successContent">
+              <p>¡Listo! Te escribimos pronto para coordinar el acceso.</p>
+            </div>
+          </div>
         </div>
-        <div class="form-row">
-          <label for="correo">Correo</label>
-          <input type="email" id="correo" name="correo" required autocomplete="email" placeholder="tu@correo.com">
-        </div>
-        <div class="form-row">
-          <label for="pais">País</label>
-          <select id="pais" name="pais" required>
-            <option value="">Selecciona</option>
-            <option>Chile</option>
-            <option>Perú</option>
-            <option>Colombia</option>
-            <option>México</option>
-            <option>Argentina</option>
-            <option>Ecuador</option>
-            <option>Otro</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <label for="lotes">Cantidad de lotes o galpones (opcional)</label>
-          <input type="text" id="lotes" name="lotes" autocomplete="off" placeholder="Ej: 4 galpones · 20.000 aves">
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Solicitar acceso</button>
-        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
         <p class="form-alt">o escríbenos por</p>
         <a href="mailto:contacto@agromack.cl" class="btn btn-ghost btn-block">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           contacto@agromack.cl
         </a>
         <p class="form-legal">Al enviar aceptas que te contactemos para coordinar el acceso. No compartimos tus datos.</p>
-      </form>
+      </div>
     </div>
   </section>
 
@@ -626,5 +665,19 @@ src="https://www.facebook.com/tr?id=1386238589918832&ev=PageView&noscript=1"
 </div>
 
 <script src="assets/js/main.js"></script>
+
+<!-- MailerLite: envío real del formulario de acceso -->
+<script>
+  function ml_webform_success_46151553() {
+    var successEl = document.querySelector('.ml-subscribe-form-46151553 .row-success');
+    var formEl = document.querySelector('.ml-subscribe-form-46151553 .row-form');
+    if (successEl) successEl.style.display = 'block';
+    if (formEl) formEl.style.display = 'none';
+  }
+</script>
+<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>
+<script>
+  fetch("https://assets.mailerlite.com/jsonp/2057335/forms/199178800157689765/takel")
+</script>
 </body>
 </html>
