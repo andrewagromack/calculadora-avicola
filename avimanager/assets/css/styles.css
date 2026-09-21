@@ -1678,3 +1678,102 @@ ul, ol { padding: 0; margin: 0; list-style: none; }
 }
 .lightbox-close:hover { background: rgba(255, 255, 255, 0.24); }
 .lightbox-close svg { width: 20px; height: 20px; }
+
+/* ============================================================
+   Página legal (privacidad)
+   ============================================================ */
+.legal-intro { padding: var(--space-5) 0 var(--space-4); }
+.legal-intro h1 { margin-bottom: 0.5rem; }
+.legal-updated {
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  margin-bottom: 1.5rem;
+}
+.legal-intro p { color: var(--ink-soft); }
+
+.legal-body { padding-bottom: var(--space-6); }
+
+.legal-section {
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--border);
+}
+.legal-section:first-child { border-top: none; }
+
+.legal-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.9rem;
+}
+.legal-n {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex: none;
+  border-radius: 50%;
+  background: rgba(31, 188, 189, 0.16);
+  color: var(--teal-deep);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.legal-section h3 {
+  font-size: 1rem;
+  color: var(--navy);
+  margin: 1.1rem 0 0.4rem;
+}
+.legal-section p { color: var(--ink-soft); }
+.legal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 0 0 1em;
+}
+.legal-list li {
+  position: relative;
+  padding-left: 1.4rem;
+  color: var(--ink-soft);
+}
+.legal-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--turq);
+}
+.legal-list strong { color: var(--ink); }
+
+/* ============================================================
+   Botón flotante de WhatsApp
+   ============================================================ */
+.whatsapp-float {
+  position: fixed;
+  right: 20px;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  z-index: 95;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  transition: transform 160ms ease;
+}
+.whatsapp-float:hover { transform: scale(1.07); }
+.whatsapp-float svg { width: 30px; height: 30px; }
+
+/* En mobile, la barra fija (.mobile-cta, 760px o menos) mide ~66px de alto
+   más el padding inferior de seguridad; el botón sube por encima de ella. */
+@media (max-width: 760px) {
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+    right: 14px;
+    bottom: calc(78px + 14px + env(safe-area-inset-bottom, 0px));
+  }
+  .whatsapp-float svg { width: 26px; height: 26px; }
+}
