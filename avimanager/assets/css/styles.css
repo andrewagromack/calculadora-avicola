@@ -767,7 +767,23 @@ ul, ol { padding: 0; margin: 0; list-style: none; }
    Video demo
    ============================================================ */
 .video-demo { padding: var(--space-6) 0; }
-.video-slot { max-width: 780px; margin: 0 auto; }
+.video-slot {
+  max-width: 860px;
+  margin: 0 auto;
+  position: relative;
+  aspect-ratio: 16/9;
+  border-radius: var(--radius-block);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: var(--navy);
+}
+.video-slot iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
 
 /* ============================================================
    How it works
