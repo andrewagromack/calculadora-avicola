@@ -144,7 +144,7 @@ src="https://www.facebook.com/tr?id=1386238589918832&ev=PageView&noscript=1"
           </div>
         </div>
         <div class="phone-frame">
-          <img src="assets/img/hero-app.jpg" alt="Panel de resultados del negocio en Avimanager, con ventas totales, gastos operativos y compras de alimento" class="phone-screen" width="730" height="858" loading="lazy">
+          <img src="assets/img/hero-app.webp" alt="Panel de resultados del negocio en Avimanager, con ventas totales, gastos operativos y compras de alimento" class="phone-screen" width="730" height="858" loading="eager" fetchpriority="high">
         </div>
       </div>
     </div>
@@ -175,6 +175,38 @@ src="https://www.facebook.com/tr?id=1386238589918832&ev=PageView&noscript=1"
     </div>
   </section>
 
+  <!-- ANTES Y DESPUÉS -->
+  <section class="compare" id="antes-despues">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="eyebrow">De la tabla al resultado</span>
+        <h2>Un registro real, de principio a fin</h2>
+        <p>La misma tabla de papel no llega a ningún resultado por sí sola. Una vez que pasa por el registro digital, los indicadores salen solos.</p>
+      </div>
+      <div class="compare-grid">
+        <div class="compare-item">
+          <span class="compare-tag">1 · Tabla</span>
+          <button type="button" class="compare-zoom frame-paper" aria-label="Ampliar: planilla de papel">
+            <img class="compare-img" src="assets/img/planilla-antes.webp" alt="Planilla de papel real con registro diario de pollitos: temperatura, mortalidad y comentarios" width="640" height="760" loading="lazy">
+          </button>
+        </div>
+        <div class="compare-item">
+          <span class="compare-tag compare-tag-accent">2 · Registro</span>
+          <button type="button" class="compare-zoom frame-browser" aria-label="Ampliar: registro digitalizado en Avimanager">
+            <img class="compare-img" src="assets/img/shot-registro.webp" alt="El mismo tipo de registro diario, digitalizado en Avimanager" width="1458" height="1093" loading="lazy">
+          </button>
+        </div>
+        <div class="compare-item">
+          <span class="compare-tag compare-tag-accent">3 · Resultados</span>
+          <button type="button" class="compare-zoom frame-crop" aria-label="Ampliar: gráficos y resultados en Avimanager">
+            <img class="compare-img" src="assets/img/resultados-graficos.webp" data-full="assets/img/resultados-graficos-full.webp" alt="Curva de peso con detalle interactivo por fecha, calculada automáticamente en Avimanager" width="1079" height="1079" loading="lazy">
+          </button>
+        </div>
+      </div>
+      <p class="compare-note">Datos de ejemplo, para mostrar el formato. Avimanager además genera un reporte de trazabilidad exportable por lote: indicadores del ciclo, producción por semana, pesajes, alimentación por proveedor, gastos y resultado del ciclo.</p>
+    </div>
+  </section>
+
   <!-- PRODUCTO / CAPTURAS -->
   <section class="product-shots" id="producto">
     <div class="wrap">
@@ -185,22 +217,22 @@ src="https://www.facebook.com/tr?id=1386238589918832&ev=PageView&noscript=1"
       </div>
       <div class="shot-grid">
         <div>
-          <button type="button" class="shot-zoom" aria-label="Ampliar captura: Panel de indicadores">
-            <img class="shot-img" src="assets/img/shot-dashboard.jpg" alt="Panel de indicadores por lote en Avimanager: mortalidad, consumo, uniformidad, peso promedio y costo por ave" width="1557" height="1059" loading="lazy">
+          <button type="button" class="shot-zoom frame-browser" aria-label="Ampliar captura: Panel de indicadores">
+            <img class="shot-img" src="assets/img/shot-dashboard.webp" alt="Panel de indicadores por lote en Avimanager: mortalidad, consumo, uniformidad, peso promedio y costo por ave" width="1557" height="1059" loading="lazy">
           </button>
           <p class="shot-caption">Panel de indicadores</p>
           <p class="shot-sub">Uniformidad, postura, conversión y costo por lote y consolidado.</p>
         </div>
         <div>
-          <button type="button" class="shot-zoom" aria-label="Ampliar captura: Registro diario">
-            <img class="shot-img" src="assets/img/shot-registro.jpg" alt="Detalle de un registro diario en Avimanager, con stock, mortalidad, alimento entregado y quién lo cargó" width="1458" height="1093" loading="lazy">
+          <button type="button" class="shot-zoom frame-browser" aria-label="Ampliar captura: Registro diario">
+            <img class="shot-img" src="assets/img/shot-registro.webp" alt="Detalle de un registro diario en Avimanager, con stock, mortalidad, alimento entregado y quién lo cargó" width="1458" height="1093" loading="lazy">
           </button>
           <p class="shot-caption">Registro diario</p>
           <p class="shot-sub">Producción, alimento, mortalidad y condiciones, cargados en minutos.</p>
         </div>
         <div>
-          <button type="button" class="shot-zoom" aria-label="Ampliar captura: Mantenedor de alimentos">
-            <img class="shot-img" src="assets/img/shot-alimento.jpg" data-full="assets/img/shot-alimento-full.jpg" alt="Mantenedor de alimentos en Avimanager, con stock por dieta y marca" width="1080" height="1080" loading="lazy">
+          <button type="button" class="shot-zoom frame-crop" aria-label="Ampliar captura: Mantenedor de alimentos">
+            <img class="shot-img" src="assets/img/shot-alimento.webp" data-full="assets/img/shot-alimento-full.webp" alt="Mantenedor de alimentos en Avimanager, con stock por dieta y marca" width="1080" height="1080" loading="lazy">
           </button>
           <p class="shot-caption">Mantenedor de alimentos</p>
           <p class="shot-sub">Stock por dieta y marca, listo para asignar a cada lote.</p>
@@ -208,8 +240,8 @@ src="https://www.facebook.com/tr?id=1386238589918832&ev=PageView&noscript=1"
       </div>
 
       <div class="shot-wide">
-        <button type="button" class="shot-zoom" aria-label="Ampliar captura: Gráficos comparados">
-          <img class="shot-img" src="assets/img/shot-comparados.jpg" alt="Gráficos comparados en Avimanager: mortalidad acumulada de dos lotes por semana de edad, con selector de hasta 4 lotes" width="2128" height="940" loading="lazy">
+        <button type="button" class="shot-zoom frame-browser" aria-label="Ampliar captura: Gráficos comparados">
+          <img class="shot-img" src="assets/img/shot-comparados.webp" alt="Gráficos comparados en Avimanager: mortalidad acumulada de dos lotes por semana de edad, con selector de hasta 4 lotes" width="2128" height="940" loading="lazy">
         </button>
         <p class="shot-caption">Gráficos comparados</p>
         <p class="shot-sub">Compara hasta 4 lotes por semana de edad, aunque sean de fechas distintas.</p>
@@ -333,7 +365,7 @@ src="https://www.facebook.com/tr?id=1386238589918832&ev=PageView&noscript=1"
           <li>Las pantallas usan tus palabras: postura, engorde, calibre, crianza.</li>
         </ul>
       </div>
-      <img class="not-generic-photo" src="assets/img/enfoque-terreno.jpg" alt="Andrew MacKinnon con su equipo en terreno, frente a los galpones de un plantel avícola" width="1445" height="1088" loading="lazy">
+      <img class="not-generic-photo" src="assets/img/enfoque-terreno.webp" alt="Andrew MacKinnon con su equipo en terreno, frente a los galpones de un plantel avícola" width="1445" height="1088" loading="lazy">
     </div>
   </section>
 
@@ -374,48 +406,53 @@ src="https://www.facebook.com/tr?id=1386238589918832&ev=PageView&noscript=1"
         <p>Registro diario, pesaje desde el punto de vista del trabajador, e indicadores desde la vista de administrador.</p>
       </div>
       <div class="video-slot">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/rzjP2h25GEU?si=fmf5DafbW93xJPQE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <a class="video-facade" href="https://www.youtube.com/watch?v=rzjP2h25GEU" target="_blank" rel="noopener" data-embed="https://www.youtube.com/embed/rzjP2h25GEU?si=fmf5DafbW93xJPQE&amp;autoplay=1" data-title="YouTube video player" aria-label="Reproducir video">
+          <img src="https://i.ytimg.com/vi/rzjP2h25GEU/hqdefault.jpg" alt="" width="480" height="360" loading="lazy">
+          <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ANTES Y DESPUÉS -->
-  <section class="compare" id="antes-despues">
-    <div class="wrap">
-      <div class="section-head center">
-        <span class="eyebrow">De la tabla al resultado</span>
-        <h2>Un registro real, de principio a fin</h2>
-        <p>La misma tabla de papel no llega a ningún resultado por sí sola. Una vez que pasa por el registro digital, los indicadores salen solos.</p>
+  <!-- PLATAFORMAS -->
+  <section class="platforms" id="plataformas">
+    <div class="wrap platforms-inner">
+      <div class="platforms-copy">
+        <div class="section-head">
+          <span class="eyebrow">Plataformas</span>
+          <h2>Empieza en la web, sigue en el celular</h2>
+          <p>La operación diaria pasa en el galpón. Avimanager va con ella.</p>
+        </div>
+        <div class="platform-list">
+          <div class="platform-item">
+            <div class="platform-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><line x1="8" y1="22" x2="16" y2="22"/><line x1="12" y1="18" x2="12" y2="22"/></svg>
+            </div>
+            <span class="platform-status status-ready">Disponible</span>
+            <h3>Aplicación web</h3>
+            <p>Funciona desde cualquier navegador, en el escritorio o el celular, sin instalar nada.</p>
+          </div>
+          <div class="platform-item">
+            <div class="platform-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+            </div>
+            <span class="platform-status status-soon">Pronto</span>
+            <h3>Instalable para Android e iOS</h3>
+            <p>Una versión instalable pensada para usarse directo desde el galpón, incluso con conexión débil.</p>
+          </div>
+        </div>
       </div>
-      <div class="compare-grid">
-        <div class="compare-item">
-          <span class="compare-tag">1 · Tabla</span>
-          <button type="button" class="compare-zoom" aria-label="Ampliar: planilla de papel">
-            <img class="compare-img" src="assets/img/planilla-antes.jpg" alt="Planilla de papel real con registro diario de pollitos: temperatura, mortalidad y comentarios" width="640" height="760" loading="lazy">
-          </button>
-        </div>
-        <div class="compare-item">
-          <span class="compare-tag compare-tag-accent">2 · Registro</span>
-          <button type="button" class="compare-zoom" aria-label="Ampliar: registro digitalizado en Avimanager">
-            <img class="compare-img" src="assets/img/shot-registro.jpg" alt="El mismo tipo de registro diario, digitalizado en Avimanager" width="1458" height="1093" loading="lazy">
-          </button>
-        </div>
-        <div class="compare-item">
-          <span class="compare-tag compare-tag-accent">3 · Resultados</span>
-          <button type="button" class="compare-zoom" aria-label="Ampliar: gráficos y resultados en Avimanager">
-            <img class="compare-img" src="assets/img/resultados-graficos.jpg" data-full="assets/img/resultados-graficos-full.jpg" alt="Curva de peso con detalle interactivo por fecha, calculada automáticamente en Avimanager" width="1079" height="1079" loading="lazy">
-          </button>
-        </div>
+      <div class="phone-frame phone-frame-tall">
+        <img src="assets/img/shot-pesaje-mobile.webp" alt="Pantalla de Pesaje de Avimanager vista en el celular, con resumen de peso y uniformidad por lote" class="phone-screen" width="1080" height="2126" loading="lazy">
       </div>
-      <p class="compare-note">Datos de ejemplo, para mostrar el formato. Avimanager además genera un reporte de trazabilidad exportable por lote: indicadores del ciclo, producción por semana, pesajes, alimentación por proveedor, gastos y resultado del ciclo.</p>
     </div>
   </section>
 
   <!-- EQUIPO / CREDIBILIDAD -->
   <section class="team" id="equipo">
     <div class="wrap team-inner">
-      <!-- Reemplazar por assets/img/team.jpg — foto del creador en terreno o retrato profesional -->
-      <img class="team-photo" src="assets/img/team.jpg" alt="Andrew MacKinnon, médico veterinario y creador de Avimanager, en terreno con un ave" width="500" height="548" loading="lazy">
+      <!-- Reemplazar por assets/img/team.webp — foto del creador en terreno o retrato profesional -->
+      <img class="team-photo" src="assets/img/team.webp" alt="Andrew MacKinnon, médico veterinario y creador de Avimanager, en terreno con un ave" width="500" height="548" loading="lazy">
       <div class="team-copy">
         <span class="eyebrow">Quién está detrás</span>
         <h2>Creado por quien conoce el galpón por dentro</h2>
@@ -528,40 +565,6 @@ src="https://www.facebook.com/tr?id=1386238589918832&ev=PageView&noscript=1"
           <summary>¿Puedo exportar un reporte del ciclo completo?</summary>
           <p>Sí. Cada lote genera un reporte de trazabilidad exportable con los indicadores del ciclo, producción semana a semana, historial de pesajes, alimentación por proveedor, gastos y el resultado económico del ciclo completo.</p>
         </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- PLATAFORMAS -->
-  <section class="platforms" id="plataformas">
-    <div class="wrap platforms-inner">
-      <div class="platforms-copy">
-        <div class="section-head">
-          <span class="eyebrow">Plataformas</span>
-          <h2>Empieza en la web, sigue en el celular</h2>
-          <p>La operación diaria pasa en el galpón. Avimanager va con ella.</p>
-        </div>
-        <div class="platform-list">
-          <div class="platform-item">
-            <div class="platform-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><line x1="8" y1="22" x2="16" y2="22"/><line x1="12" y1="18" x2="12" y2="22"/></svg>
-            </div>
-            <span class="platform-status status-ready">Disponible</span>
-            <h3>Aplicación web</h3>
-            <p>Funciona desde cualquier navegador, en el escritorio o el celular, sin instalar nada.</p>
-          </div>
-          <div class="platform-item">
-            <div class="platform-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
-            </div>
-            <span class="platform-status status-soon">Pronto</span>
-            <h3>Instalable para Android e iOS</h3>
-            <p>Una versión instalable pensada para usarse directo desde el galpón, incluso con conexión débil.</p>
-          </div>
-        </div>
-      </div>
-      <div class="phone-frame phone-frame-tall">
-        <img src="assets/img/shot-pesaje-mobile.jpg" alt="Pantalla de Pesaje de Avimanager vista en el celular, con resumen de peso y uniformidad por lote" class="phone-screen" width="1080" height="2126" loading="lazy">
       </div>
     </div>
   </section>
@@ -684,11 +687,15 @@ src="https://www.facebook.com/tr?id=1386238589918832&ev=PageView&noscript=1"
   <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Cerrar imagen ampliada">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
-  <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  <img class="lightbox-img" id="lightboxImg" alt="">
 </div>
 
 <a href="https://wa.me/56998791270?text=Hola%2C%20quisiera%20conocer%20m%C3%A1s%20acerca%20de%20Avimanager" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
   <svg viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.42a9.87 9.87 0 0 0 4.62 1.18h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.78 14.02c-.24.68-1.41 1.32-1.94 1.4-.5.08-1.12.11-1.81-.11-.42-.13-.95-.31-1.64-.6-2.88-1.24-4.76-4.14-4.9-4.33-.14-.19-1.17-1.56-1.17-2.98 0-1.42.74-2.11 1.01-2.4.26-.29.57-.36.76-.36h.55c.18 0 .42-.07.65.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.41.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.19-.27.37-.22.62-.13.26.09 1.63.77 1.91.91.28.14.47.21.54.33.07.12.07.71-.17 1.39z"/></svg>
+</a>
+
+<a href="#" class="to-top" id="toTop" aria-label="Volver arriba">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </a>
 
 <script src="assets/js/main.js"></script>
