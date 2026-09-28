@@ -47,7 +47,7 @@ vía Google Fonts.
 | Microsoft Clarity | `<head>` de las 4 páginas | mapas de calor y grabaciones |
 | MailerLite | formulario `#acceso` de `index.html` | envío real; la función `ml_webform_success_46151553` (al final de `index.html`) muestra el mensaje de éxito y dispara `Lead` (Meta) y `generate_lead` (GA4) |
 | Hotmart | botones de plan (`#precios`, calculadora) | checkout externo; `InitiateCheckout` y `Purchase` los reporta Hotmart a Meta. El sitio NO los envía (se contarían doble) |
-| WhatsApp | botón flotante en las 4 páginas | enlace `wa.me/56998791270` con mensaje prellenado |
+| WhatsApp | botón flotante en las 4 páginas | enlace `wa.me/56998791270` con mensaje prellenado; cada clic se mide como `Contact` (ver eventos) |
 | YouTube | video de `index.html` | se carga al hacer clic (`.video-facade`) |
 
 Eventos propios del sitio:
@@ -55,7 +55,8 @@ Eventos propios del sitio:
 | Acción | Meta | Google Analytics |
 |---|---|---|
 | Cargar cualquier página | `PageView` | página vista |
-| Enviar el formulario de acceso | `Lead` | `generate_lead` |
+| Enviar el formulario de acceso | `Lead` (`content_name: formulario`) | `generate_lead` (`lead_source: formulario`) |
+| Clic en el botón de WhatsApp | `Contact` (`content_name: whatsapp`) | `whatsapp_click` |
 | Clic en un plan (sale a Hotmart) | `AddToCart` | `begin_checkout` |
 | Pantallas y CTA de la demo | (no) | `demo_screen`, `demo_cta` |
 
@@ -63,12 +64,12 @@ El plan y el precio de los eventos de plan se leen de la tarjeta, así que sigue
 
 ## Caché
 
-`styles.css` y los `.js` se cargan con `?v=AAAAMMDD` (con una letra si hay varios cambios el mismo día, ej. `20260928b`) para que los navegadores (y Cloudflare) no sirvan una versión vieja tras un cambio. **Al desplegar cambios de CSS o JS, actualiza esa fecha en las 4 páginas.**
+`styles.css` y los `.js` se cargan con `?v=AAAAMMDD` (con una letra si hay varios cambios el mismo día, ej. `20260928d`) para que los navegadores (y Cloudflare) no sirvan una versión vieja tras un cambio. **Al desplegar cambios de CSS o JS, actualiza esa fecha en las 4 páginas.**
 
 Comando para cambiarla en todas:
 
 ```
-sed -i 's/?v=20260928b/?v=NUEVAVERSION/g' *.html
+sed -i 's/?v=20260928d/?v=NUEVAVERSION/g' *.html
 ```
 
 ## Antes de subir

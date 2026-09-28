@@ -249,3 +249,24 @@ document.addEventListener('click', (event) => {
     });
   }
 });
+
+// ============================================================
+// Medición: clic en el botón de WhatsApp.
+// - Meta: Contact (contacto iniciado con el negocio). Se separa de
+//   Lead, que queda solo para el formulario (datos entregados).
+// - Google Analytics: whatsapp_click, evento propio, así no se
+//   mezcla con generate_lead del formulario y no hace falta
+//   registrar dimensiones personalizadas.
+// Un clic abre el chat; no garantiza que la persona envíe el mensaje.
+// ============================================================
+document.addEventListener('click', (event) => {
+  const link = event.target.closest('a[href*="wa.me"]');
+  if (!link) return;
+
+  if (typeof window.fbq === 'function') {
+    window.fbq('track', 'Contact', { content_name: 'whatsapp', content_category: 'contacto' });
+  }
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'whatsapp_click');
+  }
+});

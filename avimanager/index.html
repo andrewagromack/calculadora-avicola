@@ -66,7 +66,7 @@ src="https://www.facebook.com/tr?id=1386238589918832&ev=PageView&noscript=1"
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="assets/css/styles.css?v=20260928b">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260928d">
 </head>
 <body>
 
@@ -709,7 +709,7 @@ src="https://www.facebook.com/tr?id=1386238589918832&ev=PageView&noscript=1"
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </a>
 
-<script src="assets/js/main.js?v=20260928b"></script>
+<script src="assets/js/main.js?v=20260928d"></script>
 
 <!-- MailerLite: envío real del formulario de acceso -->
 <script>
@@ -720,9 +720,9 @@ src="https://www.facebook.com/tr?id=1386238589918832&ev=PageView&noscript=1"
     if (formEl) formEl.style.display = 'none';
     // Conversión para Meta: solicitud de acceso enviada.
     // (InitiateCheckout y Purchase los reporta Hotmart desde su checkout.)
-    if (typeof fbq === 'function') fbq('track', 'Lead');
+    if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'formulario', content_category: 'contacto' });
     // Mismo hito en Google Analytics (evento recomendado de GA4).
-    if (typeof gtag === 'function') gtag('event', 'generate_lead', { form: 'solicitud_acceso' });
+    if (typeof gtag === 'function') gtag('event', 'generate_lead', { form: 'solicitud_acceso', lead_source: 'formulario' });
   }
 </script>
 <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>
