@@ -150,7 +150,7 @@ if (toTop) {
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
 const lightboxClose = document.getElementById('lightboxClose');
-const zoomButtons = document.querySelectorAll('.shot-zoom, .compare-zoom');
+const zoomButtons = document.querySelectorAll('.shot-zoom, .compare-zoom, .demo-zoom');
 
 let lastFocusedZoom = null;
 
@@ -162,11 +162,19 @@ function openLightbox(triggerBtn) {
   // Si la miniatura es un recorte (tiene data-full), el lightbox muestra
   // la imagen completa en vez del recorte.
   lightbox.classList.remove('is-pan');
+  const scrollMode = img.hasAttribute('data-zoom-scroll');
+  lightbox.classList.remove('is-scroll');
   lightboxImg.onload = () => {
     const wide = lightboxImg.naturalWidth / lightboxImg.naturalHeight > 1.6;
-    if (wide && window.innerWidth < 760) {
-      lightbox.classList.add('is-pan');
-      lightbox.scrollLeft = 0;
+    if (window.innerWidth < 760) {
+      if (scrollMode) {
+        lightbox.classList.add('is-scroll');
+        lightbox.scrollTop = 0;
+        lightbox.scrollLeft = 0;
+      } else if (wide) {
+        lightbox.classList.add('is-pan');
+        lightbox.scrollLeft = 0;
+      }
     }
   };
   lightboxImg.src = img.dataset.full || img.src;
@@ -179,7 +187,7 @@ function openLightbox(triggerBtn) {
 function closeLightbox() {
   if (!lightbox) return;
   lightbox.hidden = true;
-  lightbox.classList.remove('is-pan');
+  lightbox.classList.remove('is-pan', 'is-scroll');
   lightboxImg.onload = null;
   lightboxImg.src = '';
   document.body.style.overflow = '';
