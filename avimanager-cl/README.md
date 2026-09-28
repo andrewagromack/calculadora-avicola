@@ -1,17 +1,19 @@
 # Avimanager — Landing
 
-Sitio estático (HTML/CSS/JS, sin build). Ruta prevista: `agromack.online/avimanager/` (subcarpeta del dominio, no subdominio). Todas las rutas internas son relativas, así que funciona igual en cualquier carpeta.
+Sitio estático (HTML/CSS/JS, sin build). Ruta prevista para esta versión (Chile, precios en CLP): `agromack.online/avimanager-cl/` (subcarpeta del dominio, no subdominio). Todas las rutas internas son relativas, así que funciona igual en cualquier carpeta.
 
 ## Estructura
 
 ```
 index.html                       página principal
 demo.html                        demo interactivo (3 pantallas de ejemplo)
+gracias.html                     página de retorno post-compra (noindex); mide la compra
 calculadora-uniformidad.html     calculadora gratuita
 privacidad.html                  política de privacidad
 assets/css/styles.css
 assets/js/main.js                nav, lightbox, CTA móvil, video, eventos de plan
 assets/js/demo.js                navegación de la demo
+assets/js/gracias.js             evento de compra de la página de gracias
 assets/js/calculadora-uniformidad.js
 assets/img/                      imágenes (webp), logo, favicons, og-image.jpg
 ```
@@ -64,18 +66,34 @@ El plan, el valor y la moneda de los eventos de plan se leen de `data-value` y `
 
 ## Caché
 
-`styles.css` y los `.js` se cargan con `?v=AAAAMMDD` (con una letra si hay varios cambios el mismo día, ej. `20260928e`) para que los navegadores (y Cloudflare) no sirvan una versión vieja tras un cambio. **Al desplegar cambios de CSS o JS, actualiza esa fecha en las 4 páginas.**
+`styles.css` y los `.js` se cargan con `?v=AAAAMMDD` (con una letra si hay varios cambios el mismo día, ej. `20260928h`) para que los navegadores (y Cloudflare) no sirvan una versión vieja tras un cambio. **Al desplegar cambios de CSS o JS, actualiza esa fecha en las 4 páginas.**
 
 Comando para cambiarla en todas:
 
 ```
-sed -i 's/?v=20260928e/?v=NUEVAVERSION/g' *.html
+sed -i 's/?v=20260928h/?v=NUEVAVERSION/g' *.html
 ```
 
 ## Antes de subir
 
-- Reemplazar en `index.html`, `calculadora-uniformidad.html` y `demo.html` las URLs absolutas de `og:url`, `og:image` y `canonical` si la ruta final no es `https://agromack.online/avimanager/`.
+- Reemplazar en `index.html`, `calculadora-uniformidad.html` y `demo.html` las URLs absolutas de `og:url`, `og:image` y `canonical` si la ruta final no es `https://agromack.online/avimanager-cl/`.
 - Verificar el dominio en Meta Business (conviene el método DNS TXT, porque el sitio vive en una subcarpeta).
 - Probar en Meta Test Events que llegue `Lead`, y en GA4 (tiempo real) `generate_lead`, `begin_checkout` y `demo_screen`.
 - Revisar la política de privacidad con un abogado antes de campañas pagas en varios países.
 - No hay `robots.txt` ni `sitemap.xml` dentro de esta carpeta: al vivir en una subcarpeta, el `robots.txt` va en la raíz del dominio.
+
+## Página de gracias (compra)
+
+`gracias.html` es la página a la que Hotmart devuelve al comprador. En cada oferta de Hotmart se configura la URL de retorno:
+
+- Mensual: `https://agromack.online/avimanager-cl/gracias.html?plan=mensual`
+- Anual: `https://agromack.online/avimanager-cl/gracias.html?plan=anual`
+
+`assets/js/gracias.js` envía `purchase` a GA4 y, a Meta, el evento definido en `META_PURCHASE_EVENT`:
+
+- `'CompraConfirmada'` (evento propio): mientras Hotmart siga enviando su propio `Purchase`, para no contar doble.
+- `'Purchase'` (estándar): cambiar solo después de desactivar el Purchase en Hotmart y de comprobar con una compra de prueba que la página se dispara una vez.
+
+Los precios de cada plan están en `PLANES` dentro de `gracias.js` y en las tarjetas de `index.html` / `calculadora-uniformidad.html`: al cambiar un precio hay que actualizar los tres sitios. La cifra real de ventas es siempre el panel de Hotmart: la página es un piso (se pierden quienes no vuelven o usan bloqueadores) y no refleja reembolsos.
+
+En GA4, agregar `pay.hotmart.com` a las referencias no deseadas para que el retorno del pago no cuente como tráfico nuevo.
