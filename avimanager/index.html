@@ -47,6 +47,16 @@ src="https://www.facebook.com/tr?id=1386238589918832&ev=PageView&noscript=1"
 <meta property="og:description" content="Registra producción, alimento, ventas y gastos por lote. Uniformidad, conversión y postura calculadas automáticamente. Para productores avícolas en toda Latinoamérica.">
 <meta property="og:type" content="website">
 
+<link rel="canonical" href="https://agromack.online/avimanager/">
+<meta property="og:url" content="https://agromack.online/avimanager/">
+<meta property="og:site_name" content="Avimanager">
+<meta property="og:locale" content="es_CL">
+<meta property="og:image" content="https://agromack.online/avimanager/assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://agromack.online/avimanager/assets/img/og-image.jpg">
+
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
@@ -56,7 +66,7 @@ src="https://www.facebook.com/tr?id=1386238589918832&ev=PageView&noscript=1"
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260928b">
 </head>
 <body>
 
@@ -452,7 +462,6 @@ src="https://www.facebook.com/tr?id=1386238589918832&ev=PageView&noscript=1"
   <!-- EQUIPO / CREDIBILIDAD -->
   <section class="team" id="equipo">
     <div class="wrap team-inner">
-      <!-- Reemplazar por assets/img/team.webp — foto del creador en terreno o retrato profesional -->
       <img class="team-photo" src="assets/img/team.webp" alt="Andrew MacKinnon, médico veterinario y creador de Avimanager, en terreno con un ave" width="500" height="548" loading="lazy">
       <div class="team-copy">
         <span class="eyebrow">Quién está detrás</span>
@@ -700,7 +709,7 @@ src="https://www.facebook.com/tr?id=1386238589918832&ev=PageView&noscript=1"
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </a>
 
-<script src="assets/js/main.js"></script>
+<script src="assets/js/main.js?v=20260928b"></script>
 
 <!-- MailerLite: envío real del formulario de acceso -->
 <script>
@@ -709,6 +718,11 @@ src="https://www.facebook.com/tr?id=1386238589918832&ev=PageView&noscript=1"
     var formEl = document.querySelector('.ml-subscribe-form-46151553 .row-form');
     if (successEl) successEl.style.display = 'block';
     if (formEl) formEl.style.display = 'none';
+    // Conversión para Meta: solicitud de acceso enviada.
+    // (InitiateCheckout y Purchase los reporta Hotmart desde su checkout.)
+    if (typeof fbq === 'function') fbq('track', 'Lead');
+    // Mismo hito en Google Analytics (evento recomendado de GA4).
+    if (typeof gtag === 'function') gtag('event', 'generate_lead', { form: 'solicitud_acceso' });
   }
 </script>
 <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>

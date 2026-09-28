@@ -1,18 +1,22 @@
 # Avimanager — Landing
 
-Sitio estático (HTML/CSS/JS, sin build) para `avimanager.agromack.online`.
+Sitio estático (HTML/CSS/JS, sin build). Ruta prevista: `agromack.online/avimanager/` (subcarpeta del dominio, no subdominio). Todas las rutas internas son relativas, así que funciona igual en cualquier carpeta.
 
 ## Estructura
 
 ```
-index.html
+index.html                       página principal
+demo.html                        demo interactivo (3 pantallas de ejemplo)
+calculadora-uniformidad.html     calculadora gratuita
+privacidad.html                  política de privacidad
 assets/css/styles.css
-assets/js/main.js
-assets/img/logo.png, favicon-*.png, favicon.ico, apple-touch-icon.png
+assets/js/main.js                nav, lightbox, CTA móvil, video, eventos de plan
+assets/js/demo.js                navegación de la demo
+assets/js/calculadora-uniformidad.js
+assets/img/                      imágenes (webp), logo, favicons, og-image.jpg
 ```
 
-Sin dependencias de build: se sirve tal cual desde Vercel (o cualquier
-hosting estático) apuntando la raíz a esta carpeta.
+Sin dependencias de build: se sirve tal cual desde cualquier hosting estático.
 
 ## Paleta
 
@@ -34,31 +38,43 @@ vía Google Fonts.
 - Mobile: hamburguesa desde 900px, menú con X, fondo oscuro y cierre con Escape; barra CTA aparece al pasar el hero y se oculta en Precios/Acceso; WhatsApp se acomoda; chips del hero bajo la captura; Antes/después como carrusel; lightbox desplazable para capturas anchas; áreas táctiles de 44px en el footer.
 - Rendimiento/accesibilidad: imagen del hero sin lazy-load, video de YouTube carga al hacer clic, foco en teal (turquesa sobre fondos oscuros), `--ink-faint` más oscuro para contraste AA, botón "volver arriba" en escritorio.
 
-## Contenido de Claude Design integrado
+## Integraciones
 
-Esta versión incorpora las secciones que agregó Claude Design (Producto/
-capturas, Equipo, Precios, FAQ), reescritas en HTML/CSS/JS plano —
-sin `x-dc`, `support.js` ni `image-slot.js`, que no son deployables tal
-cual. El acordeón de FAQ usa `<details>/<summary>` nativo, sin JS.
+| Qué | Dónde | Notas |
+|---|---|---|
+| Google Analytics 4 | `<head>` de las 4 páginas | ID `G-YMJ07HMBLQ` |
+| Meta Pixel | `<head>` de las 4 páginas | ID `1386238589918832`; `PageView` en todas y `Lead` al enviar el formulario |
+| Microsoft Clarity | `<head>` de las 4 páginas | mapas de calor y grabaciones |
+| MailerLite | formulario `#acceso` de `index.html` | envío real; la función `ml_webform_success_46151553` (al final de `index.html`) muestra el mensaje de éxito y dispara `Lead` (Meta) y `generate_lead` (GA4) |
+| Hotmart | botones de plan (`#precios`, calculadora) | checkout externo; `InitiateCheckout` y `Purchase` los reporta Hotmart a Meta. El sitio NO los envía (se contarían doble) |
+| WhatsApp | botón flotante en las 4 páginas | enlace `wa.me/56998791270` con mensaje prellenado |
+| YouTube | video de `index.html` | se carga al hacer clic (`.video-facade`) |
 
-Se sacó la sección de video (sin video listo aún): quedó como bio de
-equipo en texto, sin imagen ni ícono de play que sugiriera un video
-inexistente.
+Eventos propios del sitio:
 
-## Pendientes antes de publicar
+| Acción | Meta | Google Analytics |
+|---|---|---|
+| Cargar cualquier página | `PageView` | página vista |
+| Enviar el formulario de acceso | `Lead` | `generate_lead` |
+| Clic en un plan (sale a Hotmart) | `AddToCart` | `begin_checkout` |
+| Pantallas y CTA de la demo | (no) | `demo_screen`, `demo_cta` |
 
-- **5 placeholders de imagen (`.media-slot`) sin reemplazar:** foto del
-  hero + 3 capturas de producto. Están marcados con comentarios HTML
-  indicando el nombre de archivo sugerido (`assets/img/shot-dashboard.webp`,
-  etc.). Reemplazar el `<div class="media-slot">` por un `<img>` real.
-- **Precios son placeholder** (`$XX.XXX` / `$XXX.XXX`). El badge "Ahorra
-  2 meses" del plan anual debe cuadrar matemáticamente una vez pongas
-  los valores reales.
-- **Los botones "Quiero este plan" no llevan a un checkout real**, van
-  al formulario de contacto (`#acceso`). Si ya tienes un link de pago
-  (Hotmart/Flow), reemplázalos por ese link y ahí sí puede decir
-  "Suscribirme".
-- **Formulario de contacto no envía datos a ningún lado todavía.** Ver
-  el comentario `TODO(backend)` en `assets/js/main.js`.
-- Confirmar que `avimanager.agromack.online` quede apuntado en Cloudflare
-  antes del deploy en Vercel.
+El plan y el precio de los eventos de plan se leen de la tarjeta, así que siguen al precio si cambia. Deben marcarse como eventos clave en GA4 los que se quieran contar como conversión.
+
+## Caché
+
+`styles.css` y los `.js` se cargan con `?v=AAAAMMDD` (con una letra si hay varios cambios el mismo día, ej. `20260928b`) para que los navegadores (y Cloudflare) no sirvan una versión vieja tras un cambio. **Al desplegar cambios de CSS o JS, actualiza esa fecha en las 4 páginas.**
+
+Comando para cambiarla en todas:
+
+```
+sed -i 's/?v=20260928b/?v=NUEVAVERSION/g' *.html
+```
+
+## Antes de subir
+
+- Reemplazar en `index.html`, `calculadora-uniformidad.html` y `demo.html` las URLs absolutas de `og:url`, `og:image` y `canonical` si la ruta final no es `https://agromack.online/avimanager/`.
+- Verificar el dominio en Meta Business (conviene el método DNS TXT, porque el sitio vive en una subcarpeta).
+- Probar en Meta Test Events que llegue `Lead`, y en GA4 (tiempo real) `generate_lead`, `begin_checkout` y `demo_screen`.
+- Revisar la política de privacidad con un abogado antes de campañas pagas en varios países.
+- No hay `robots.txt` ni `sitemap.xml` dentro de esta carpeta: al vivir en una subcarpeta, el `robots.txt` va en la raíz del dominio.

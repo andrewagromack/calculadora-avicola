@@ -210,3 +210,42 @@ if (lightbox) {
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && lightbox && !lightbox.hidden) closeLightbox();
 });
+
+// ============================================================
+// Medición: clic en un plan (salida al checkout de Hotmart).
+// - Google Analytics: begin_checkout.
+// - Meta: AddToCart. Se envía desde el sitio (mismo dominio del
+//   anuncio) para que Meta lo asocie al clic. NO se envía
+//   InitiateCheckout ni Purchase: los reporta Hotmart, y mandarlos
+//   también acá los contaría dos veces.
+// El plan y el precio se leen de la tarjeta, así no quedan
+// desactualizados si cambia el precio.
+// ============================================================
+document.addEventListener('click', (event) => {
+  const link = event.target.closest('a[href*="pay.hotmart.com"]');
+  if (!link) return;
+
+  const card = link.closest('.price-card');
+  const tier = card?.querySelector('.price-tier')?.textContent.trim() || link.textContent.trim();
+  const amountText = card?.querySelector('.price-amount')?.firstChild?.textContent || '';
+  const value = parseFloat(amountText.replace(/[^\d,.]/g, '').replace(',', '.'));
+  const id = tier.toLowerCase().replace(/\s+/g, '_');
+  const money = Number.isFinite(value) ? { value } : {};
+
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'begin_checkout', {
+      currency: 'USD',
+      ...money,
+      items: [{ item_id: id, item_name: tier }],
+    });
+  }
+  if (typeof window.fbq === 'function') {
+    window.fbq('track', 'AddToCart', {
+      currency: 'USD',
+      ...money,
+      content_name: tier,
+      content_ids: [id],
+      content_type: 'product',
+    });
+  }
+});
