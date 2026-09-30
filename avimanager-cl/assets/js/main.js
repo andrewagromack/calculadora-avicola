@@ -229,7 +229,7 @@ document.addEventListener('click', (event) => {
   const tier = card?.querySelector('.price-tier')?.textContent.trim() || link.textContent.trim();
   const amountEl = card?.querySelector('.price-amount');
   const value = Number(amountEl?.dataset.value);
-  const currency = amountEl?.dataset.currency || 'CLP';
+  const currency = amountEl?.dataset.currency || 'PEN';
   const id = tier.toLowerCase().replace(/\s+/g, '_');
   const money = Number.isFinite(value) && value > 0 ? { value } : {};
 

@@ -17,8 +17,8 @@
 
   // Precios de cada plan. Mantener igual que las tarjetas de index.html.
   const PLANES = {
-    mensual: { nombre: 'Plan mensual', value: 9200, currency: 'CLP' },
-    anual:   { nombre: 'Plan anual',   value: 54500, currency: 'CLP' },
+    mensual: { nombre: 'Plan mensual', value: 31, currency: 'PEN' },
+    anual:   { nombre: 'Plan anual',   value: 262, currency: 'PEN' },
   };
 
   const params = new URLSearchParams(location.search);
