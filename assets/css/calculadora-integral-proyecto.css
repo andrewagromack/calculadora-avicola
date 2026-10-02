@@ -17,14 +17,14 @@ body{
 .shell{max-width:var(--ag-max, 1120px);margin:0 auto;padding:28px 20px 60px;}
 
 /* HERO */
-.hero{background:rgba(255,250,241,.75);border:1px solid rgba(211,190,160,.88);
+.tool-intro{background:rgba(255,250,241,.75);border:1px solid rgba(211,190,160,.88);
   border-radius:22px;box-shadow:0 12px 32px rgba(64,43,20,.10);
   padding:28px 32px;margin-bottom:22px;}
 .eyebrow{display:inline-block;background:rgba(45,74,45,.10);color:var(--verde);
   border:1px solid rgba(45,74,45,.18);padding:4px 11px;border-radius:999px;
   font-size:.7rem;font-weight:900;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;}
-.hero h1{font-size:clamp(1.45rem,3.5vw,2.6rem);line-height:1.06;letter-spacing:-.035em;margin-bottom:6px;}
-.hero p{color:var(--muted);font-size:.93rem;max-width:760px;}
+.tool-intro h1{font-size:clamp(1.45rem,3.5vw,2.6rem);line-height:1.06;letter-spacing:-.035em;margin-bottom:6px;}
+.tool-intro p{color:var(--muted);font-size:.93rem;max-width:760px;}
 
 /* MODO */
 .modo-selector{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:22px;}
@@ -220,7 +220,7 @@ td.fase-pos{font-size:.7rem;color:var(--verde-2);background:rgba(45,74,45,.06)!i
 @media(max-width:480px){
   .shell{padding-left:14px;padding-right:14px;}
   .field-row{grid-template-columns:1fr;}
-  .hero{padding:20px;}
+  .tool-intro{padding:20px;}
   .panel,.card{padding:16px;}
   .kpi-row{grid-template-columns:1fr 1fr;}
 }
@@ -250,7 +250,7 @@ tr.money-out td:first-child {
   box-sizing:border-box !important;
   overflow-x:clip;
 }
-.shell > .hero{display:none !important;}
+.shell > .tool-intro{display:none !important;}
 .modo-selector,
 .layout,
 .kpi-row,

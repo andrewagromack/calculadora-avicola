@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de uniformidad de lote | Agromack</title>
+<meta name="description" content="Calcula el peso promedio, CV% y % de uniformidad de tu lote avícola. Gratis, sin registro.">
+
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6T841YJ30M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6T841YJ30M');
+</script>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1330091375798035');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@400;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/common.css">
+<link rel="stylesheet" href="assets/css/calculadora-integral-proyecto.css">
+<link rel="stylesheet" href="assets/css/tools-shared.css">
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="brand">
+      <img src="assets/img/logo-agromack.png" alt="">
+      Agromack
+    </a>
+  </div>
+</header>
+<div class="wrap tool-breadcrumb">
+  <a href="index.html">Herramientas gratis</a><span>›</span>Calculadora de uniformidad
+</div>
+
+<div id="contenido">
+
+<section class="wrap" style="padding-top:28px;">
+<span class="eyebrow">Herramienta gratuita · Sin cuenta</span>
+<h1 style="font-family:var(--font-heading, inherit); font-size:clamp(1.6rem,3.5vw,2.4rem); margin:10px 0 8px;">Calculadora de uniformidad de lote</h1>
+<p style="max-width:62ch; color:var(--ag-muted,#665a4b); margin-bottom:28px;">
+  Ingresa los pesos de una muestra de tu lote y obtén el peso promedio, la desviación estándar,
+  el CV% y el % de uniformidad, al instante.
+</p>
+
+<div class="tool-grid">
+  <div class="panel">
+    <div class="panel-hd"><div class="panel-num">1</div><h2>Tus datos</h2></div>
+    <div class="field">
+      <label for="pesos">Pesos de la muestra</label>
+      <textarea id="pesos" rows="10" placeholder="Un peso por línea o separados por espacio.&#10;Ej:&#10;1250&#10;1180,5&#10;1300&#10;1220"></textarea>
+      <span class="hint">Un peso por línea o separados por espacio. Usa coma o punto para decimales.</span>
+    </div>
+    <div class="field">
+      <label for="unidad">Unidad</label>
+      <select id="unidad">
+        <option value="g">Gramos (g)</option>
+        <option value="kg">Kilogramos (kg)</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-hd"><div class="panel-num">2</div><h2>Resultados</h2></div>
+    <div id="toolEmpty" class="tool-empty">Ingresa al menos 2 pesos para ver los resultados.</div>
+    <div id="toolResults" style="display:none;">
+      <div class="result-big">
+        <div class="rb-label">Uniformidad (±10% del promedio)</div>
+        <div class="rb-value" id="rUnif">—<span>%</span></div>
+        <div class="badge-pill" id="rBadge"></div>
+      </div>
+      <div class="kpi-row" style="grid-template-columns:repeat(4,1fr);">
+        <div class="kpi"><div class="kl">Muestra</div><div class="kv" id="rN">—</div><div class="ks">aves</div></div>
+        <div class="kpi"><div class="kl">Promedio</div><div class="kv" id="rMean">—</div><div class="ks" id="rUnitMean">g</div></div>
+        <div class="kpi"><div class="kl">Desv. Est.</div><div class="kv" id="rSD">—</div><div class="ks" id="rUnitSD">g</div></div>
+        <div class="kpi"><div class="kl">CV</div><div class="kv" id="rCV">—</div><div class="ks">%</div></div>
+      </div>
+      <p class="hint" id="rRange"></p>
+      <p class="hint" id="rOutliers"></p>
+      <p class="tool-note">
+        Referencia general: ≥80% suele considerarse buena uniformidad, 70–79% amerita revisión de manejo,
+        &lt;70% requiere atención. La meta exacta depende de la línea genética y la edad del lote: confírmala
+        con la guía técnica de tu estirpe.
+      </p>
+    </div>
+  </div>
+</div>
+</section>
+
+</div>
+
+<section class="wrap">
+  <div class="gate-card blueprint">
+    <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+
+    <div id="gatePrompt">
+      <h3>Guarda este resultado</h3>
+      <p>Te lo mandamos a tu correo. De paso, te avisamos cuando sumemos nuevas herramientas.</p>
+      <button type="button" class="btn btn-primary" id="gateOpenBtn">Guardar mi resultado</button>
+    </div>
+
+    <div class="gate-form" id="gateForm">
+      <h3>Guarda este resultado</h3>
+      <p>Déjanos tu correo y te lo enviamos.</p>
+
+      <div id="mlb2-46653918" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-46653918">
+        <div class="ml-form-align-center">
+          <div class="ml-form-embedWrapper embedForm">
+            <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+              <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2057335/forms/200236335171110694/subscribe" data-code="" method="post" target="_blank">
+
+                <div class="field-row">
+                  <div class="field">
+                    <label for="herr-name">Nombre</label>
+                    <input id="herr-name" type="text" class="input" name="fields[name]" placeholder="Tu nombre" autocomplete="given-name">
+                  </div>
+                  <div class="field">
+                    <label for="herr-email">Correo</label>
+                    <input id="herr-email" type="email" class="input" name="fields[email]" placeholder="tu@correo.com" autocomplete="email" required>
+                  </div>
+                </div>
+
+                <div class="field field-full">
+                  <label for="herr-country">País</label>
+                  <select id="herr-country" class="input" name="fields[country]">
+                    <option value="">Selecciona</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Chile">Chile</option>
+                    <option value="Ecuador">Ecuador</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Perú">Perú</option>
+                    <option value="México">México</option>
+                    <option value="Otro">Otro</option>
+                  </select>
+                </div>
+
+                <div class="ml-form-fieldRow" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+                  <div class="ml-field-group">
+                    <select name="fields[herramienta]" id="field-herramienta" tabindex="-1">
+                      <option value="Calculadora de Conversión de alimento">Calculadora de Conversión de alimento</option>
+                  <option value="Calculadora de peso y uniformidad" selected>Calculadora de peso y uniformidad</option>
+                  <option value="Calculadora de proyecto">Calculadora de proyecto</option></select>
+                  </div>
+                </div>
+
+                <div class="ml-form-fieldRow" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+                  <div class="ml-field-group"><input type="text" name="fields[utm_source]" id="field-utm_source" value="" tabindex="-1"></div>
+                </div>
+                <div class="ml-form-fieldRow" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+                  <div class="ml-field-group"><input type="text" name="fields[utm_campaign]" id="field-utm_campaign" value="" tabindex="-1"></div>
+                </div>
+                <div class="ml-form-fieldRow" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+                  <div class="ml-field-group"><input type="text" name="fields[utm_content]" id="field-utm_content" value="" tabindex="-1"></div>
+                </div>
+                <div class="ml-form-fieldRow" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+                  <div class="ml-field-group"><input type="text" name="fields[resultado]" id="field-resultado" value="" tabindex="-1"></div>
+                </div>
+
+                <input type="hidden" name="ml-submit" value="1">
+                <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+                <input type="hidden" name="anticsrf" value="true">
+              </form>
+            </div>
+            <div class="ml-form-successBody row-success" style="display:none">
+              <div class="ml-form-successContent">
+                <h4>¡Listo!</h4>
+                <p>Revisa tu correo — ahí te llega tu resultado.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Agromack. Herramientas gratuitas para productores avícolas.</span>
+    <span><a href="mailto:contacto@agromack.cl">contacto@agromack.cl</a></span>
+  </div>
+</footer>
+
+<script>
+function ml_webform_success_46653918(){
+  var successEl = document.querySelector('.ml-subscribe-form-46653918 .row-success');
+  var formEl = document.querySelector('.ml-subscribe-form-46653918 .row-form');
+  if (successEl) successEl.style.display = 'block';
+  if (formEl) formEl.style.display = 'none';
+  if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'calculadora_uniformidad', content_category: 'herramientas_gratis' });
+  if (typeof gtag === 'function') gtag('event', 'generate_lead', { lead_source: 'calculadora_uniformidad' });
+}
+</script>
+<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>
+<script>
+fetch("https://assets.mailerlite.com/jsonp/2057335/forms/200236335171110694/takel").catch(function(){});
+</script>
+
+<script src="assets/js/common.js"></script>
+<script src="assets/js/calculadora-uniformidad.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

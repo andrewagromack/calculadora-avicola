@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de conversión de alimento (FCR) | Agromack</title>
+<meta name="description" content="Calcula el FCR de tu lote avícola, en engorde (peso vivo) o en postura (huevos). Gratis, sin registro.">
+
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6T841YJ30M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6T841YJ30M');
+</script>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1330091375798035');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@400;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/common.css">
+<link rel="stylesheet" href="assets/css/calculadora-integral-proyecto.css">
+<link rel="stylesheet" href="assets/css/tools-shared.css">
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="brand">
+      <img src="assets/img/logo-agromack.png" alt="">
+      Agromack
+    </a>
+  </div>
+</header>
+<div class="wrap tool-breadcrumb">
+  <a href="index.html">Herramientas gratis</a><span>›</span>Calculadora de conversión de alimento
+</div>
+
+<div id="contenido">
+
+<section class="wrap" style="padding-top:28px;">
+<span class="eyebrow">Herramienta gratuita · Sin cuenta</span>
+<h1 style="font-family:var(--font-heading, inherit); font-size:clamp(1.6rem,3.5vw,2.4rem); margin:10px 0 8px;">Calculadora de conversión de alimento (FCR)</h1>
+<p style="max-width:62ch; color:var(--ag-muted,#665a4b); margin-bottom:28px;">
+  FCR = alimento consumido ÷ lo que ese alimento produjo. En engorde se mide contra peso vivo ganado;
+  en postura, contra huevos producidos. Elige tu caso e ingresa tus datos.
+</p>
+
+<div class="modo-selector">
+  <button class="modo-btn active" data-modo="engorde" type="button">
+    <div class="modo-icon">🍗</div>
+    <span class="modo-titulo">Engorde</span>
+    <span class="modo-desc">FCR contra kilos de peso vivo ganado.</span>
+  </button>
+  <button class="modo-btn" data-modo="postura" type="button">
+    <div class="modo-icon">🥚</div>
+    <span class="modo-titulo">Postura</span>
+    <span class="modo-desc">FCR contra huevos producidos.</span>
+  </button>
+</div>
+
+<div class="tool-grid">
+  <div class="panel">
+    <div class="panel-hd"><div class="panel-num">1</div><h2>Tus datos</h2></div>
+
+    <div id="camposEngorde">
+      <div class="field">
+        <label for="fcrAves">Número de aves</label>
+        <input id="fcrAves" type="number" min="1" step="1" value="100">
+      </div>
+      <div class="field">
+        <label for="fcrPesoIni">Peso inicial promedio (g)</label>
+        <input id="fcrPesoIni" type="number" min="0" step="1" value="45">
+        <span class="hint">Peso al inicio del periodo que quieres medir.</span>
+      </div>
+      <div class="field">
+        <label for="fcrPesoFin">Peso final promedio (g)</label>
+        <input id="fcrPesoFin" type="number" min="0" step="1" value="2200">
+      </div>
+      <div class="field">
+        <label for="fcrAlimento">Alimento total consumido (kg)</label>
+        <input id="fcrAlimento" type="number" min="0" step="0.1" value="420">
+        <span class="hint">Suma de todo el alimento entregado al lote en el periodo.</span>
+      </div>
+    </div>
+
+    <div id="camposPostura" style="display:none;">
+      <div class="field">
+        <label for="fcrHuevos">Huevos producidos (periodo)</label>
+        <input id="fcrHuevos" type="number" min="0" step="1" value="2500">
+        <span class="hint">Total de huevos recolectados en el periodo que quieres medir.</span>
+      </div>
+      <div class="field">
+        <label for="fcrPesoHuevo">Peso promedio del huevo (g)</label>
+        <input id="fcrPesoHuevo" type="number" min="0" step="0.5" value="60">
+        <span class="hint">Si no lo sabes, pesa una docena y divide por 12.</span>
+      </div>
+      <div class="field">
+        <label for="fcrAlimentoPostura">Alimento total consumido (kg)</label>
+        <input id="fcrAlimentoPostura" type="number" min="0" step="0.1" value="150">
+        <span class="hint">Suma de todo el alimento entregado al lote en el mismo periodo.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-hd"><div class="panel-num">2</div><h2>Resultados</h2></div>
+
+    <div id="toolEmptyEngorde" class="tool-empty">Completa los 4 campos para ver el resultado.</div>
+    <div id="toolResultsEngorde" style="display:none;">
+      <div class="result-big">
+        <div class="rb-label">FCR de engorde</div>
+        <div class="rb-value" id="rFCR">—</div>
+      </div>
+      <div class="kpi-row" style="grid-template-columns:repeat(3,1fr);">
+        <div class="kpi"><div class="kl">Ganancia / ave</div><div class="kv" id="rGananciaAve">—</div><div class="ks">g</div></div>
+        <div class="kpi"><div class="kl">Ganancia total</div><div class="kv" id="rGananciaTotal">—</div><div class="ks">kg</div></div>
+        <div class="kpi"><div class="kl">Alimento / ave</div><div class="kv" id="rAlimentoAve">—</div><div class="ks">kg</div></div>
+      </div>
+    </div>
+
+    <div id="toolEmptyPostura" class="tool-empty" style="display:none;">Completa los 3 campos para ver el resultado.</div>
+    <div id="toolResultsPostura" style="display:none;">
+      <div class="result-big">
+        <div class="rb-label">FCR de postura (kg alimento / kg huevo)</div>
+        <div class="rb-value" id="rFCRPostura">—</div>
+      </div>
+      <div class="kpi-row" style="grid-template-columns:repeat(3,1fr);">
+        <div class="kpi"><div class="kl">Masa total de huevo</div><div class="kv" id="rMasaHuevo">—</div><div class="ks">kg</div></div>
+        <div class="kpi"><div class="kl">Alimento / docena</div><div class="kv" id="rAlimentoDocena">—</div><div class="ks">kg</div></div>
+        <div class="kpi"><div class="kl">Alimento / huevo</div><div class="kv" id="rAlimentoHuevo">—</div><div class="ks">g</div></div>
+      </div>
+    </div>
+
+    <p class="tool-note">
+      El FCR esperado depende mucho de la edad, la línea genética y la especie — no hay un número
+      único de "bueno" o "malo". Compáralo con la guía técnica de tu línea genética para ese periodo
+      y esa edad.
+    </p>
+  </div>
+</div>
+</section>
+
+</div>
+
+<section class="wrap">
+  <div class="gate-card blueprint">
+    <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+
+    <div id="gatePrompt">
+      <h3>Guarda este resultado</h3>
+      <p>Te lo mandamos a tu correo. De paso, te avisamos cuando sumemos nuevas herramientas.</p>
+      <button type="button" class="btn btn-primary" id="gateOpenBtn">Guardar mi resultado</button>
+    </div>
+
+    <div class="gate-form" id="gateForm">
+      <h3>Guarda este resultado</h3>
+      <p>Déjanos tu correo y te lo enviamos.</p>
+
+      <div id="mlb2-46653918" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-46653918">
+        <div class="ml-form-align-center">
+          <div class="ml-form-embedWrapper embedForm">
+            <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+              <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2057335/forms/200236335171110694/subscribe" data-code="" method="post" target="_blank">
+
+                <div class="field-row">
+                  <div class="field">
+                    <label for="herr-name">Nombre</label>
+                    <input id="herr-name" type="text" class="input" name="fields[name]" placeholder="Tu nombre" autocomplete="given-name">
+                  </div>
+                  <div class="field">
+                    <label for="herr-email">Correo</label>
+                    <input id="herr-email" type="email" class="input" name="fields[email]" placeholder="tu@correo.com" autocomplete="email" required>
+                  </div>
+                </div>
+
+                <div class="field field-full">
+                  <label for="herr-country">País</label>
+                  <select id="herr-country" class="input" name="fields[country]">
+                    <option value="">Selecciona</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Chile">Chile</option>
+                    <option value="Ecuador">Ecuador</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Perú">Perú</option>
+                    <option value="México">México</option>
+                    <option value="Otro">Otro</option>
+                  </select>
+                </div>
+
+                <div class="ml-form-fieldRow" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+                  <div class="ml-field-group">
+                    <select name="fields[herramienta]" id="field-herramienta" tabindex="-1">
+                      <option value="Calculadora de Conversión de alimento" selected>Calculadora de Conversión de alimento</option>
+                  <option value="Calculadora de peso y uniformidad">Calculadora de peso y uniformidad</option>
+                  <option value="Calculadora de proyecto">Calculadora de proyecto</option></select>
+                  </div>
+                </div>
+
+                <div class="ml-form-fieldRow" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+                  <div class="ml-field-group"><input type="text" name="fields[utm_source]" id="field-utm_source" value="" tabindex="-1"></div>
+                </div>
+                <div class="ml-form-fieldRow" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+                  <div class="ml-field-group"><input type="text" name="fields[utm_campaign]" id="field-utm_campaign" value="" tabindex="-1"></div>
+                </div>
+                <div class="ml-form-fieldRow" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+                  <div class="ml-field-group"><input type="text" name="fields[utm_content]" id="field-utm_content" value="" tabindex="-1"></div>
+                </div>
+                <div class="ml-form-fieldRow" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+                  <div class="ml-field-group"><input type="text" name="fields[resultado]" id="field-resultado" value="" tabindex="-1"></div>
+                </div>
+
+                <input type="hidden" name="ml-submit" value="1">
+                <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+                <input type="hidden" name="anticsrf" value="true">
+              </form>
+            </div>
+            <div class="ml-form-successBody row-success" style="display:none">
+              <div class="ml-form-successContent">
+                <h4>¡Listo!</h4>
+                <p>Revisa tu correo — ahí te llega tu resultado.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Agromack. Herramientas gratuitas para productores avícolas.</span>
+    <span><a href="mailto:contacto@agromack.cl">contacto@agromack.cl</a></span>
+  </div>
+</footer>
+
+<script>
+function ml_webform_success_46653918(){
+  var successEl = document.querySelector('.ml-subscribe-form-46653918 .row-success');
+  var formEl = document.querySelector('.ml-subscribe-form-46653918 .row-form');
+  if (successEl) successEl.style.display = 'block';
+  if (formEl) formEl.style.display = 'none';
+  if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'calculadora_fcr', content_category: 'herramientas_gratis' });
+  if (typeof gtag === 'function') gtag('event', 'generate_lead', { lead_source: 'calculadora_fcr' });
+}
+</script>
+<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>
+<script>
+fetch("https://assets.mailerlite.com/jsonp/2057335/forms/200236335171110694/takel").catch(function(){});
+</script>
+
+<script src="assets/js/common.js"></script>
+<script src="assets/js/calculadora-fcr.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

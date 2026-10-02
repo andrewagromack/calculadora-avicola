@@ -1,0 +1,27 @@
+/* ============================================================
+   Estilo compartido por las calculadoras simples (uniformidad, FCR).
+   Reutiliza .panel/.field/.hint/.kpi-row/.kpi de calculadora-integral-proyecto.css
+   para que las 3 herramientas se vean parte del mismo sitio.
+   ============================================================ */
+.tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+@media (max-width: 860px) { .tool-grid { grid-template-columns: 1fr; } }
+
+.field textarea {
+  font: inherit; font-size: .92rem; padding: 10px 12px; border-radius: 10px;
+  border: 1px solid var(--ag-border, #d3bea0); background: #fff; resize: vertical; min-height: 160px;
+}
+.field textarea:focus { outline: none; border-color: var(--ag-green-2, #3f6b3f); box-shadow: 0 0 0 3px rgba(63,107,63,.12); }
+
+.tool-empty { color: var(--ag-muted, #665a4b); font-size: .9rem; padding: 10px 0; }
+
+.result-big { text-align: center; padding: 10px 0 18px; }
+.result-big .rb-label { font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ag-muted, #665a4b); margin-bottom: 4px; }
+.result-big .rb-value { font-size: 2.6rem; font-weight: 900; color: var(--ag-green, #2d4a2d); line-height: 1; }
+.result-big .rb-value span { font-size: 1.2rem; font-weight: 700; margin-left: 2px; }
+
+.badge-pill { display: inline-block; margin-top: 10px; padding: 5px 14px; border-radius: 999px; font-size: .78rem; font-weight: 700; }
+.badge-good { background: #e3f0e3; color: var(--ag-green, #2d4a2d); }
+.badge-warn { background: #fbeccb; color: #8a5b12; }
+.badge-bad  { background: #fbdede; color: #7a2a1a; }
+
+.tool-note { font-size: .78rem; color: var(--ag-muted, #665a4b); line-height: 1.4; margin-top: 14px; }
