@@ -38,13 +38,10 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/site.css">
-<link rel="stylesheet" href="assets/css/common.css">
-<link rel="stylesheet" href="assets/css/calculadora-integral-proyecto.css">
-<link rel="stylesheet" href="assets/css/tools-shared.css">
 </head>
 <body>
 
@@ -52,10 +49,12 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 
 <header class="site-header">
   <div class="wrap">
-    <a href="index.html" class="brand">
-      <img src="assets/img/logo-agromack.png" alt="">
-      Agromack
-    </a>
+    <a href="index.html" class="brand"><img src="assets/img/logo-agromack.png" alt="" width="38" height="38">Agromack</a>
+    <nav class="site-nav" aria-label="Herramientas">
+      <a href="calculadora-uniformidad.html">Uniformidad</a>
+      <a href="calculadora-fcr.html" aria-current="page">Conversión (FCR)</a>
+      <a href="calculadora-integral-proyecto.html">Proyecto nuevo</a>
+    </nav>
   </div>
 </header>
 <div class="wrap tool-breadcrumb">
@@ -64,29 +63,24 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 
 <div id="contenido">
 
-<section class="wrap" style="padding-top:28px;">
-<span class="eyebrow">Herramienta gratuita · Sin cuenta</span>
-<h1 style="font-family:var(--font-heading, inherit); font-size:clamp(1.6rem,3.5vw,2.4rem); margin:10px 0 8px;">Calculadora de conversión de alimento (FCR)</h1>
-<p style="max-width:62ch; color:var(--ag-muted,#665a4b); margin-bottom:28px;">
-  FCR = alimento consumido ÷ lo que ese alimento produjo. En engorde se mide contra peso vivo ganado;
-  en postura, contra huevos producidos. Elige tu caso e ingresa tus datos.
-</p>
+<section class="wrap tool-main">
+<div class="tool-head"><span class="eyebrow">Herramienta gratuita · Sin cuenta</span><h1>Calculadora de conversión de alimento (FCR)</h1><p class="lede">FCR = alimento consumido ÷ lo que ese alimento produjo. En engorde se mide contra peso vivo ganado; en postura, contra huevos producidos. Elige tu caso e ingresa tus datos.</p></div>
 
 <div class="modo-selector">
   <button class="modo-btn active" data-modo="engorde" type="button">
-    <div class="modo-icon">🍗</div>
+    <div class="modo-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg></div>
     <span class="modo-titulo">Engorde</span>
     <span class="modo-desc">FCR contra kilos de peso vivo ganado.</span>
   </button>
   <button class="modo-btn" data-modo="postura" type="button">
-    <div class="modo-icon">🥚</div>
+    <div class="modo-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c4.4 0 8-3.1 8-8 0-5-4-12-8-12S4 9 4 14c0 4.9 3.6 8 8 8Z"/></svg></div>
     <span class="modo-titulo">Postura</span>
     <span class="modo-desc">FCR contra huevos producidos.</span>
   </button>
 </div>
 
 <div class="tool-grid">
-  <div class="panel">
+  <div class="panel blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
     <div class="panel-hd"><div class="panel-num">1</div><h2>Tus datos</h2></div>
 
     <div id="camposEngorde">
@@ -129,7 +123,7 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
     </div>
   </div>
 
-  <div class="panel">
+  <div class="panel blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
     <div class="panel-hd"><div class="panel-num">2</div><h2>Resultados</h2></div>
 
     <div id="toolEmptyEngorde" class="tool-empty">Completa los 4 campos para ver el resultado.</div>
@@ -138,7 +132,7 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
         <div class="rb-label">FCR de engorde</div>
         <div class="rb-value" id="rFCR">—</div>
       </div>
-      <div class="kpi-row" style="grid-template-columns:repeat(3,1fr);">
+      <div class="kpi-row k3">
         <div class="kpi"><div class="kl">Ganancia / ave</div><div class="kv" id="rGananciaAve">—</div><div class="ks">g</div></div>
         <div class="kpi"><div class="kl">Ganancia total</div><div class="kv" id="rGananciaTotal">—</div><div class="ks">kg</div></div>
         <div class="kpi"><div class="kl">Alimento / ave</div><div class="kv" id="rAlimentoAve">—</div><div class="ks">kg</div></div>
@@ -151,7 +145,7 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
         <div class="rb-label">FCR de postura (kg alimento / kg huevo)</div>
         <div class="rb-value" id="rFCRPostura">—</div>
       </div>
-      <div class="kpi-row" style="grid-template-columns:repeat(3,1fr);">
+      <div class="kpi-row k3">
         <div class="kpi"><div class="kl">Masa total de huevo</div><div class="kv" id="rMasaHuevo">—</div><div class="ks">kg</div></div>
         <div class="kpi"><div class="kl">Alimento / docena</div><div class="kv" id="rAlimentoDocena">—</div><div class="ks">kg</div></div>
         <div class="kpi"><div class="kl">Alimento / huevo</div><div class="kv" id="rAlimentoHuevo">—</div><div class="ks">g</div></div>
@@ -170,18 +164,22 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 </div>
 
 <section class="wrap">
+<p class="autoridad-firma">
+  Herramienta desarrollada por <strong>Andrew MacKinnon, M.V.</strong> — especialista en producción avícola comercial · Agromack, Chile
+</p>
+
   <div class="gate-card blueprint">
     <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
 
     <div id="gatePrompt">
-      <h3>Guarda este resultado</h3>
-      <p>Te lo mandamos a tu correo. De paso, te avisamos cuando sumemos nuevas herramientas.</p>
-      <button type="button" class="btn btn-primary" id="gateOpenBtn">Guardar mi resultado</button>
+      <h3>¿Qué te dice este FCR?</h3>
+      <p>Te mandamos una explicación de qué significa este número, qué factores lo distorsionan y por qué un solo ciclo puede mentir — antes de sacar conclusiones.</p>
+      <button type="button" class="btn btn-primary" id="gateOpenBtn">Recibir la explicación</button>
     </div>
 
     <div class="gate-form" id="gateForm">
-      <h3>Guarda este resultado</h3>
-      <p>Déjanos tu correo y te lo enviamos.</p>
+      <h3>¿Qué te dice este FCR?</h3>
+      <p>Déjanos tu correo y te lo explicamos.</p>
 
       <div id="mlb2-46653918" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-46653918">
         <div class="ml-form-align-center">
@@ -256,8 +254,21 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 
 <footer class="site-footer">
   <div class="wrap">
-    <span>© 2026 Agromack. Herramientas gratuitas para productores avícolas.</span>
-    <span><a href="mailto:contacto@agromack.cl">contacto@agromack.cl</a></span>
+    <div class="site-footer-top">
+      <div class="site-footer-brand">
+        Agromack — MacKinnon Servicios Agropecuarios SpA
+        <span>Consultora veterinaria y agropecuaria · Santiago, Chile</span>
+      </div>
+      <div class="site-footer-contact">
+        <a href="mailto:contacto@agromack.cl">contacto@agromack.cl</a>
+      </div>
+    </div>
+    <hr class="site-footer-divider">
+    <p class="site-footer-bottom">
+      Herramientas desarrolladas por Andrew MacKinnon, Médico Veterinario, especialista en producción avícola comercial.
+      Los cálculos son orientativos y no reemplazan asesoría veterinaria, sanitaria ni financiera profesional.
+      © 2026 MacKinnon Servicios Agropecuarios SpA. Todos los derechos reservados.
+    </p>
   </div>
 </footer>
 

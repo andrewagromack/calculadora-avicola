@@ -38,12 +38,10 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/site.css">
-<link rel="stylesheet" href="assets/css/common.css">
-<link rel="stylesheet" href="assets/css/calculadora-integral-proyecto.css">
 </head>
 <body>
 
@@ -51,10 +49,12 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 
 <header class="site-header">
   <div class="wrap">
-    <a href="index.html" class="brand">
-      <img src="assets/img/logo-agromack.png" alt="">
-      Agromack
-    </a>
+    <a href="index.html" class="brand"><img src="assets/img/logo-agromack.png" alt="" width="38" height="38">Agromack</a>
+    <nav class="site-nav" aria-label="Herramientas">
+      <a href="calculadora-uniformidad.html">Uniformidad</a>
+      <a href="calculadora-fcr.html">Conversión (FCR)</a>
+      <a href="calculadora-integral-proyecto.html" aria-current="page">Proyecto nuevo</a>
+    </nav>
   </div>
 </header>
 
@@ -63,25 +63,21 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 </div>
 
 <div id="contenido">
-<main class="shell">
-<section class="tool-intro">
-<div class="eyebrow">Herramienta integrada</div>
-<h1>Calculadora integral de dimensionamiento y proyecto avícola</h1>
-<p>Elige si quieres proyectar postura o cría, ingresa tus datos y revisa equipamiento, inversión y flujo mensual.</p>
-</section>
+<main class="wrap tool-main">
+<div class="tool-head"><span class="eyebrow">Herramienta integrada</span><h1>Calculadora integral de dimensionamiento y proyecto avícola</h1><p class="lede">Elige si quieres proyectar postura o cría, ingresa tus datos y revisa equipamiento, inversión y flujo mensual.</p></div>
 <div class="modo-selector">
 <button class="modo-btn active" data-modo="postura" type="button">
-<div class="modo-icon">🥚</div>
+<div class="modo-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c4.4 0 8-3.1 8-8 0-5-4-12-8-12S4 9 4 14c0 4.9 3.6 8 8 8Z"/></svg></div>
 <span class="modo-titulo">Solo postura</span>
 <span class="modo-desc">Compras gallinas listas para poner y operas hasta la pelecha.</span>
 </button>
 <button class="modo-btn" data-modo="cria" type="button">
-<div class="modo-icon">🐣</div>
+<div class="modo-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg></div>
 <span class="modo-titulo">Cría y venta</span>
 <span class="modo-desc">Compras pollitas de 1 día y las vendes listas para postura.</span>
 </button>
 </div>
-<div class="calculator-stack"><div class="panel">
+<div class="calculator-stack"><div class="panel blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
 <div class="panel-hd"><div class="panel-num">1</div><h2>Tu proyecto</h2></div>
 <div class="fgroup">
 <div class="field">
@@ -146,7 +142,7 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 <span class="hint">La calculadora dimensiona la cantidad exacta según tus aves.</span>
 </div>
 </div>
-</div><div class="panel">
+</div><div class="panel blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
 <div class="panel-hd"><div class="panel-num">2</div><h2>Precios locales</h2></div>
 <div class="fgroup">
 <span class="fgroup-label">Aves</span>
@@ -237,7 +233,7 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 <div class="kpi">
 <div class="kl">Inversión inicial</div><div class="kv" id="k-inversion">—</div><div class="ks">Estimada</div>
 </div>
-</div><div class="card equipment-card">
+</div><div class="card blueprint equipment-card"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
 <div class="card-hd">
 <div class="card-title">Equipamiento que necesitas</div>
 <div class="card-desc">La calculadora estimó las cantidades para tus aves. Ingresa el precio unitario local de cada ítem y verás el costo total al instante.</div>
@@ -251,11 +247,11 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 <span class="inversion-label">Total inversión inicial estimada</span>
 <span class="inversion-val" id="total-inversion">—</span>
 </div>
-</div><div class="card economy-card">
+</div><div class="card blueprint economy-card"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
 <div class="card-hd"><div class="card-title" id="titulo-economia">Producción y economía</div></div>
 <div class="table-wrap"><table><tbody id="tabla-economia"></tbody></table></div>
 <div class="capital-box" id="capital-trabajo-box" style="display:none;"></div>
-</div><div class="card flow-card">
+</div><div class="card blueprint flow-card"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
 <div class="card-hd">
 <div class="card-title">Flujo mensual proyectado</div>
 <div class="card-desc" id="flujo-nota"></div>
@@ -263,33 +259,12 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 <div class="table-wrap">
 <table><thead id="flujo-thead"></thead><tbody id="tabla-flujo"></tbody></table>
 </div>
-<p style="font-size:.69rem;color:var(--muted);margin-top:8px;">Egresos operativos = alimento + mano de obra + otros. La depreciación aparece en el resumen económico, no en el flujo de caja.</p>
-</div><div class="card obs-card">
-<div class="card-hd"><div class="card-title">Lo que debes revisar</div></div>
-<div id="observaciones"></div>
-</div></div><!-- /layout -->
-<section class="cta">
-<div class="cta-grid">
-<div>
-<div class="kicker">Siguiente paso</div>
-<h2>Convierte el cálculo en gestión real con el Libro + Kit de Inicio y Gestión Avícola.</h2>
-<p>La calculadora dimensiona. El libro y el kit te ayudan a ordenar criterios, registros y decisiones para no operar a ciegas.</p>
-<ul>
-<li>Libro Tu Primer Proyecto Avícola</li><li>Guía de contingencia en el gallinero</li><li>Guía rápida de gestión avícola</li>
-<li>Excel de gestión inicial</li><li>Planilla de registros</li><li>Artículo sobre la Salmonella en avicultura</li>
-</ul>
-</div>
-<a href="https://pay.hotmart.com/D106823713U" target="_blank" rel="noopener">Comprar libro + kit →</a>
-</div>
-</section>
-<footer class="footer">
-  Herramienta orientativa. No reemplaza asesoría veterinaria, sanitaria ni financiera profesional.
-</footer>
-</main>
-</div>
-
-<section class="wrap">
-  <div class="gate-card blueprint">
+<p class="card-foot">Egresos operativos = alimento + mano de obra + otros. La depreciación aparece en el resumen económico, no en el flujo de caja.</p>
+</div><div class="gate-wrap">
+<p class="autoridad-firma">
+  Herramienta desarrollada por <strong>Andrew MacKinnon, M.V.</strong> — especialista en producción avícola comercial · Agromack, Chile
+</p>
+<div class="gate-card blueprint">
     <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
 
     <div id="gatePrompt">
@@ -371,12 +346,47 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
       </div>
     </div>
   </div>
+</div><div class="card blueprint obs-card"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+<div class="card-hd"><div class="card-title">Lo que debes revisar</div></div>
+<div id="observaciones"></div>
+</div></div><!-- /layout -->
+<section class="cta">
+<div class="cta-grid">
+<div>
+<div class="kicker">Siguiente paso</div>
+<h2>Convierte el cálculo en gestión real con el Libro + Kit de Inicio y Gestión Avícola.</h2>
+<p>La calculadora dimensiona. El libro y el kit te ayudan a ordenar criterios, registros y decisiones para no operar a ciegas.</p>
+<ul>
+<li>Libro Tu Primer Proyecto Avícola</li><li>Guía de contingencia en el gallinero</li><li>Guía rápida de gestión avícola</li>
+<li>Excel de gestión inicial</li><li>Planilla de registros</li><li>Artículo sobre la Salmonella en avicultura</li>
+</ul>
+</div>
+<a href="https://pay.hotmart.com/D106823713U" target="_blank" rel="noopener">Comprar libro + kit →</a>
+</div>
 </section>
+<footer class="footer">
+  Herramienta orientativa. No reemplaza asesoría veterinaria, sanitaria ni financiera profesional.
+</footer>
+</main>
+</div>
 
 <footer class="site-footer">
   <div class="wrap">
-    <span>© 2026 Agromack. Herramientas gratuitas para productores avícolas.</span>
-    <span><a href="mailto:contacto@agromack.cl">contacto@agromack.cl</a></span>
+    <div class="site-footer-top">
+      <div class="site-footer-brand">
+        Agromack — MacKinnon Servicios Agropecuarios SpA
+        <span>Consultora veterinaria y agropecuaria · Santiago, Chile</span>
+      </div>
+      <div class="site-footer-contact">
+        <a href="mailto:contacto@agromack.cl">contacto@agromack.cl</a>
+      </div>
+    </div>
+    <hr class="site-footer-divider">
+    <p class="site-footer-bottom">
+      Herramientas desarrolladas por Andrew MacKinnon, Médico Veterinario, especialista en producción avícola comercial.
+      Los cálculos son orientativos y no reemplazan asesoría veterinaria, sanitaria ni financiera profesional.
+      © 2026 MacKinnon Servicios Agropecuarios SpA. Todos los derechos reservados.
+    </p>
   </div>
 </footer>
 

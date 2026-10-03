@@ -38,7 +38,7 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/site.css">
@@ -49,51 +49,64 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 
 <header class="site-header">
   <div class="wrap">
-    <a href="index.html" class="brand">
-      <img src="assets/img/logo-agromack.png" alt="">
-      Agromack
-    </a>
+    <a href="index.html" class="brand"><img src="assets/img/logo-agromack.png" alt="" width="38" height="38">Agromack</a>
+    <nav class="site-nav" aria-label="Herramientas">
+      <a href="calculadora-uniformidad.html">Uniformidad</a>
+      <a href="calculadora-fcr.html">Conversión (FCR)</a>
+      <a href="calculadora-integral-proyecto.html">Proyecto nuevo</a>
+    </nav>
   </div>
 </header>
 
 <main id="contenido">
 
   <section class="hero">
-    <div class="wrap">
-      <span class="eyebrow">Herramientas gratis</span>
-      <h1>Decide con datos, no con la memoria</h1>
-      <p>Tres calculadoras pensadas para avicultura: uniformidad de lote, conversión de alimento y la inversión de un proyecto nuevo. Úsalas gratis, sin crear cuenta.</p>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Herramientas gratis</span>
+        <h1>Decide con datos, no con la memoria</h1>
+        <p class="lede">Tres calculadoras pensadas para avicultura: uniformidad de lote, conversión de alimento y la inversión de un proyecto nuevo. Úsalas gratis, sin crear cuenta.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#herramientas">Ver herramientas</a>
+          <span class="hero-note">Gratis · Sin registro previo</span>
+        </div>
+      </div>
+      <figure class="hero-plate blueprint">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <img src="assets/img/logo-agromack.png" alt="Logo de Agromack">
+        <figcaption>Agromack · Avicultura</figcaption>
+      </figure>
     </div>
   </section>
 
-  <section class="tools">
+  <section class="tools" id="herramientas">
     <div class="wrap">
+      <h2 class="section-label">Elige una herramienta</h2>
       <div class="tools-grid">
-
         <a class="tool-card blueprint" href="calculadora-uniformidad.html">
           <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-          <div class="tool-icon">⚖️</div>
+          <span class="tool-num">01</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg></div>
           <h3>Peso y uniformidad</h3>
           <p>Ingresa los pesos de tu muestra y obtén el peso promedio, el CV% y el % de uniformidad del lote.</p>
-          <span class="tool-cta">Calcular uniformidad →</span>
+          <span class="tool-cta">Calcular uniformidad <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
         </a>
-
         <a class="tool-card blueprint" href="calculadora-fcr.html">
           <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-          <div class="tool-icon">🌾</div>
+          <span class="tool-num">02</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 22 16 8"/><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"/><path d="M11.47 17.47 13 19l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L5 19l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/><path d="M15.47 13.47 17 15l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L9 15l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/><path d="M19.47 9.47 21 11l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L13 11l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/></svg></div>
           <h3>Conversión de alimento</h3>
           <p>Calcula el FCR de tu lote, en engorde (peso vivo) o en postura (huevos).</p>
-          <span class="tool-cta">Calcular FCR →</span>
+          <span class="tool-cta">Calcular FCR <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
         </a>
-
         <a class="tool-card blueprint" href="calculadora-integral-proyecto.html">
           <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-          <div class="tool-icon">📊</div>
+          <span class="tool-num">03</span>
+          <div class="tool-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></div>
           <h3>Proyecto nuevo</h3>
           <p>Para quien aún no tiene aves: equipamiento, inversión inicial y flujo de caja mensual proyectado.</p>
-          <span class="tool-cta">Proyectar mi inversión →</span>
+          <span class="tool-cta">Proyectar mi inversión <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
         </a>
-
       </div>
     </div>
   </section>
@@ -102,8 +115,21 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 
 <footer class="site-footer">
   <div class="wrap">
-    <span>© 2026 Agromack. Herramientas gratuitas para productores avícolas.</span>
-    <span><a href="mailto:contacto@agromack.cl">contacto@agromack.cl</a></span>
+    <div class="site-footer-top">
+      <div class="site-footer-brand">
+        Agromack — MacKinnon Servicios Agropecuarios SpA
+        <span>Consultora veterinaria y agropecuaria · Santiago, Chile</span>
+      </div>
+      <div class="site-footer-contact">
+        <a href="mailto:contacto@agromack.cl">contacto@agromack.cl</a>
+      </div>
+    </div>
+    <hr class="site-footer-divider">
+    <p class="site-footer-bottom">
+      Herramientas desarrolladas por Andrew MacKinnon, Médico Veterinario, especialista en producción avícola comercial.
+      Los cálculos son orientativos y no reemplazan asesoría veterinaria, sanitaria ni financiera profesional.
+      © 2026 MacKinnon Servicios Agropecuarios SpA. Todos los derechos reservados.
+    </p>
   </div>
 </footer>
 

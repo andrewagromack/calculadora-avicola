@@ -38,13 +38,10 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/site.css">
-<link rel="stylesheet" href="assets/css/common.css">
-<link rel="stylesheet" href="assets/css/calculadora-integral-proyecto.css">
-<link rel="stylesheet" href="assets/css/tools-shared.css">
 </head>
 <body>
 
@@ -52,10 +49,12 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 
 <header class="site-header">
   <div class="wrap">
-    <a href="index.html" class="brand">
-      <img src="assets/img/logo-agromack.png" alt="">
-      Agromack
-    </a>
+    <a href="index.html" class="brand"><img src="assets/img/logo-agromack.png" alt="" width="38" height="38">Agromack</a>
+    <nav class="site-nav" aria-label="Herramientas">
+      <a href="calculadora-uniformidad.html" aria-current="page">Uniformidad</a>
+      <a href="calculadora-fcr.html">Conversión (FCR)</a>
+      <a href="calculadora-integral-proyecto.html">Proyecto nuevo</a>
+    </nav>
   </div>
 </header>
 <div class="wrap tool-breadcrumb">
@@ -64,16 +63,11 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 
 <div id="contenido">
 
-<section class="wrap" style="padding-top:28px;">
-<span class="eyebrow">Herramienta gratuita · Sin cuenta</span>
-<h1 style="font-family:var(--font-heading, inherit); font-size:clamp(1.6rem,3.5vw,2.4rem); margin:10px 0 8px;">Calculadora de uniformidad de lote</h1>
-<p style="max-width:62ch; color:var(--ag-muted,#665a4b); margin-bottom:28px;">
-  Ingresa los pesos de una muestra de tu lote y obtén el peso promedio, la desviación estándar,
-  el CV% y el % de uniformidad, al instante.
-</p>
+<section class="wrap tool-main">
+<div class="tool-head"><span class="eyebrow">Herramienta gratuita · Sin cuenta</span><h1>Calculadora de uniformidad de lote</h1><p class="lede">Ingresa los pesos de una muestra de tu lote y obtén el peso promedio, la desviación estándar, el CV% y el % de uniformidad, al instante.</p></div>
 
 <div class="tool-grid">
-  <div class="panel">
+  <div class="panel blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
     <div class="panel-hd"><div class="panel-num">1</div><h2>Tus datos</h2></div>
     <div class="field">
       <label for="pesos">Pesos de la muestra</label>
@@ -89,7 +83,7 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
     </div>
   </div>
 
-  <div class="panel">
+  <div class="panel blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
     <div class="panel-hd"><div class="panel-num">2</div><h2>Resultados</h2></div>
     <div id="toolEmpty" class="tool-empty">Ingresa al menos 2 pesos para ver los resultados.</div>
     <div id="toolResults" style="display:none;">
@@ -98,7 +92,7 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
         <div class="rb-value" id="rUnif">—<span>%</span></div>
         <div class="badge-pill" id="rBadge"></div>
       </div>
-      <div class="kpi-row" style="grid-template-columns:repeat(4,1fr);">
+      <div class="kpi-row k4">
         <div class="kpi"><div class="kl">Muestra</div><div class="kv" id="rN">—</div><div class="ks">aves</div></div>
         <div class="kpi"><div class="kl">Promedio</div><div class="kv" id="rMean">—</div><div class="ks" id="rUnitMean">g</div></div>
         <div class="kpi"><div class="kl">Desv. Est.</div><div class="kv" id="rSD">—</div><div class="ks" id="rUnitSD">g</div></div>
@@ -119,18 +113,22 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 </div>
 
 <section class="wrap">
+<p class="autoridad-firma">
+  Herramienta desarrollada por <strong>Andrew MacKinnon, M.V.</strong> — especialista en producción avícola comercial · Agromack, Chile
+</p>
+
   <div class="gate-card blueprint">
     <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
 
     <div id="gatePrompt">
-      <h3>Guarda este resultado</h3>
-      <p>Te lo mandamos a tu correo. De paso, te avisamos cuando sumemos nuevas herramientas.</p>
-      <button type="button" class="btn btn-primary" id="gateOpenBtn">Guardar mi resultado</button>
+      <h3>¿Qué significa este número?</h3>
+      <p>Te mandamos una explicación de qué dice la uniformidad sobre tu lote, cuándo deberías preocuparte y por qué medirla en cada pesaje cambia las decisiones de manejo.</p>
+      <button type="button" class="btn btn-primary" id="gateOpenBtn">Recibir la explicación</button>
     </div>
 
     <div class="gate-form" id="gateForm">
-      <h3>Guarda este resultado</h3>
-      <p>Déjanos tu correo y te lo enviamos.</p>
+      <h3>¿Qué significa este número?</h3>
+      <p>Déjanos tu correo y te lo explicamos.</p>
 
       <div id="mlb2-46653918" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-46653918">
         <div class="ml-form-align-center">
@@ -205,8 +203,21 @@ src="https://www.facebook.com/tr?id=1330091375798035&ev=PageView&noscript=1"
 
 <footer class="site-footer">
   <div class="wrap">
-    <span>© 2026 Agromack. Herramientas gratuitas para productores avícolas.</span>
-    <span><a href="mailto:contacto@agromack.cl">contacto@agromack.cl</a></span>
+    <div class="site-footer-top">
+      <div class="site-footer-brand">
+        Agromack — MacKinnon Servicios Agropecuarios SpA
+        <span>Consultora veterinaria y agropecuaria · Santiago, Chile</span>
+      </div>
+      <div class="site-footer-contact">
+        <a href="mailto:contacto@agromack.cl">contacto@agromack.cl</a>
+      </div>
+    </div>
+    <hr class="site-footer-divider">
+    <p class="site-footer-bottom">
+      Herramientas desarrolladas por Andrew MacKinnon, Médico Veterinario, especialista en producción avícola comercial.
+      Los cálculos son orientativos y no reemplazan asesoría veterinaria, sanitaria ni financiera profesional.
+      © 2026 MacKinnon Servicios Agropecuarios SpA. Todos los derechos reservados.
+    </p>
   </div>
 </footer>
 
